@@ -5,4 +5,7 @@ class Offer < ApplicationRecord
   validates :creator, presence: true
   validates :first_message, presence: true
   validates :request, presence: true
+
+  has_many :messages
+
 end
