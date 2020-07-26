@@ -25,6 +25,16 @@ require("channels")
 // External imports
 import "bootstrap";
 
+import flatpickr from 'flatpickr';
+import "flatpickr/dist/flatpickr.min.css";
+
+document.addEventListener("turbolinks:load", () => {
+  flatpickr(".flatpickr", {
+    minDate: "today",
+
+  })
+}) 
+
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 

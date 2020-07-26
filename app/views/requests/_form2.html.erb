@@ -1,0 +1,21 @@
+    <%= simple_form_for [@request] do |f| %>
+      <strong><%= f.label "Move-in Date" %> </strong>
+      <br>
+      <%= f.label "Earliest" %>
+      <%= f.input :move_in_date_earliest, as: :string, input_html: { class: "flatpickr" }, label: false %>
+      <%= f.label "Latest" %>
+      <%= f.input :move_in_date_latest, as: :string, input_html: { class: "flatpickr" }, label: false %>
+      <%= f.input :address %>
+      <%= f.input :radius %>
+      <%= f.input :no_of_flat_mates %>
+      <%= f.input :size %>
+      
+
+
+
+
+      
+      
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    <% end %>
+
