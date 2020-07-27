@@ -14,7 +14,7 @@ class RequestsController < ApplicationController
   end
 
   def show
-    @cocktail = Cocktail.find(params[:id])
+    @request = Request.find(params[:id])
     authorize @request
   end
 
