@@ -6,7 +6,7 @@ class RequestsController < ApplicationController
 
   def create
     @request = Request.new(request_params)
-    @request.user_id = current_user.id 
+    @request.user_id = current_user.id
     @request.save
     redirect_to request_path(@request)
   end
@@ -27,8 +27,8 @@ class RequestsController < ApplicationController
 
   def update
     @request = Request.find(params[:id])
-    @request.update(city: params[:request][:city], budget: params[:request][:budget], radius: params[:request][:radius], no_of_flat_mates: params[:request][:no_of_flat_mates], size: params[:request][:size], move_in_date_earliest: params[:request][:move_in_date_earliest], move_in_date_latest: params[:request][:move_in_date_latest], , address:, radius: params[:request][:radius] params[:request][:address], privacy_level: params[:request][:privacy_level])
-    redirect_to request_path(@request)    
+    @request.update(city: params[:request][:city], budget: params[:request][:budget], radius: params[:request][:radius], no_of_flat_mates: params[:request][:no_of_flat_mates], size: params[:request][:size], move_in_date_earliest: params[:request][:move_in_date_earliest], move_in_date_latest: params[:request][:move_in_date_latest], address: params[:request][:address], radius: params[:request][:radius], privacy_level: params[:request][:privacy_level])
+    redirect_to request_path(@request)
   end
 
   private
