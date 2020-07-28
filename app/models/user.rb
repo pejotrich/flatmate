@@ -3,16 +3,23 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  belongs_to :flat
+  belongs_to :flat, optional: true
+  has_many :friended_users, foreign_key: :friended_id, class_name: 'Friendship'
+  has_many :frienders, through: :friended_users
+  has_many :friender_users, foreign_key: :friender_id, class_name: 'Friendship'
+  has_many :friendeds, through: :friender_users
+  has_many :requested_users, foreign_key: :requested_id, class_name: 'FriendRequest'
+  has_many :requesters, through: :requested_users
+  has_many :requester_users, foreign_key: :requester_id, class_name: 'FriendRequest'
+  has_many :requesteds, through: :requester_users
+  has_friendship
 
-  has_many :friend_requests_as_requestor,
-            foreign_key: :requestor_id,
-            class_name: :FriendRequest
-  has_many :friend_requests_as_receiver,
-            foreign_key: :receiver_id,
-            class_name: :FriendRequest
-  has_many :friendships, ->(user) {
-    where("friend_a_id = ? OR friend_b_id = ?", user.id, user.id)
-  }
-  has_many :friends, through: :friendships
+  # def friend_request(user)
+  #  FriendRequest.create(requester: self, requested: user)
+  # end
+
+  # def accept_request(user)
+  #  FriendRequest.find_by(requester: self, requested: user).destroy
+  #  Friendship.create(friender: self, friended: user)
+  # end
 end
