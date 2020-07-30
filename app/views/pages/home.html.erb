@@ -1,3 +1,14 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
-<h1>TEST</h1>
+<% content_for(:title) { "dashboard TEST" } %>
+<div class="gridster">
+  <ul>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="card1" data-view="card2" data-title="TESTER" style="background-color:#96bf48;"></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="valuation" data-view="Number" data-title="Current Valuation" data-prefix="$"></div>
+    </li>
+  </ul>
+</div>
