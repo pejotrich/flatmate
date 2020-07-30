@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_165358) do
     t.string "last_name"
     t.string "photo"
     t.string "city"
-    t.bigint "flat_id"
+    t.bigint "flat_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["flat_id"], name: "index_users_on_flat_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
