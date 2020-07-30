@@ -6,11 +6,11 @@ class RequestPolicy < ApplicationPolicy
   end
 
   def create?
-    record.user == user
+    true
   end
 
   def new?
-    record.user == user
+    true
   end
 
   def update?
@@ -18,6 +18,10 @@ class RequestPolicy < ApplicationPolicy
   end
 
   def destroy?
+    record.user == user
+  end
+
+  def show?
     record.user == user
   end
 end
