@@ -61,9 +61,9 @@
           <strong><%= f.label "Move-in Date" %> </strong>
           <br>
           <%= f.label "Earliest" %>
-          <%= f.input :move_in_date_earliest, as: :string, input_html: { class: "flatpickr" }, label: false, input_html: {value: ""}%>
+          <%= f.input :move_in_date_earliest, as: :string, input_html: { class: "flatpickr" }, label: false%>
           <%= f.label "Latest" %>
-          <%= f.input :move_in_date_latest, as: :string, input_html: { class: "flatpickr" }, label: false, input_html: {value: ""} %>
+          <%= f.input :move_in_date_latest, as: :string, input_html: { class: "flatpickr" }, label: false  %>
           <%= f.input :address , input_html: {value: ""} , :placeholder => "Wanna live close to a specific place?" %>
           <%= f.input :radius, input_html: {value: ""}, :placeholder => "What's your maximum radius? " %>
           <%= f.input :no_of_flat_mates, input_html: {value: ""}, :placeholder => "What's your maximum number of flatmates?" %>
