@@ -4,6 +4,6 @@ class PrivateShare < ApplicationRecord
 
   validates :user, presence: true
   validates :request, presence: true
-  validates :first_message, presence: true
-  
+  #validates :first_message, presence: true
+
 end

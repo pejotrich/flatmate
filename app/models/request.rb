@@ -4,4 +4,5 @@ class Request < ApplicationRecord
   validates :budget, presence: true
 
   has_many :private_shares, dependent: :destroy
+  has_many :offers, dependent: :destroy
 end
