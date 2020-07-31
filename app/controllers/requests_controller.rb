@@ -30,6 +30,7 @@ class RequestsController < ApplicationController
   def edit
     @request = Request.find(params[:id])
     authorize @request
+    redirect_to request_path(@request)
   end
 
   def update
