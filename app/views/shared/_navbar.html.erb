@@ -51,8 +51,8 @@
       </div>
       <div class="modal-body">
             <%= simple_form_for @request do |f| %>
-      <%= f.input :city %>
-      <%= f.input :budget %>
+      <%= f.input :city , input_html: {value: ""}, :placeholder => "e.g. Berlin" %>
+      <%= f.input :budget, input_html: {value: ""}, :placeholder => "350" %>
       <div class="accordion" id="accordionExample">
         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               More criteria
@@ -61,24 +61,26 @@
           <strong><%= f.label "Move-in Date" %> </strong>
           <br>
           <%= f.label "Earliest" %>
-          <%= f.input :move_in_date_earliest, as: :string, input_html: { class: "flatpickr" }, label: false %>
+          <%= f.input :move_in_date_earliest, as: :string, input_html: { class: "flatpickr" }, label: false, input_html: {value: ""}%>
           <%= f.label "Latest" %>
-          <%= f.input :move_in_date_latest, as: :string, input_html: { class: "flatpickr" }, label: false %>
-          <%= f.input :address %>
-          <%= f.input :radius %>
-          <%= f.input :no_of_flat_mates %>
-          <%= f.input :size %>
+          <%= f.input :move_in_date_latest, as: :string, input_html: { class: "flatpickr" }, label: false, input_html: {value: ""} %>
+          <%= f.input :address , input_html: {value: ""} , :placeholder => "Humboldt University Berlin" %>
+          <%= f.input :radius, input_html: {value: ""}, :placeholder => "5 km" %>
+          <%= f.input :no_of_flat_mates, input_html: {value: ""}, :placeholder => "3" %>
+          <%= f.input :size, input_html: {value: ""} , :placeholder => "15 sqm" %>
 
         </div>
       </div>   
-      <%=  f.button :button, 'Cancel', :type => 'reset', :class => 'btn' %>
+    
       <%= f.submit "Submit", class: "btn btn-primary" %>
   
     <% end %>
+   
       </div>
       <div class="modal-footer">
       
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
       </div>
     </div>
   </div>
