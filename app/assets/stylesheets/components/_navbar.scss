@@ -7,6 +7,10 @@
   flex-grow: 0;
 }
 
+.logo {
+  color: whitesmoke;
+}
+
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
@@ -17,4 +21,8 @@
 
 .request {
   background-color:whitesmoke;
+}
+
+.nav-item active {
+  color: whitesmoke;
 }

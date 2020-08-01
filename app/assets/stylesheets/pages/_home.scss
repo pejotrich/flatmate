@@ -7,6 +7,7 @@
 
 .cards {
   display: flex;
+  justify-content: space-around;
 }
 
 .flat-card {
@@ -16,6 +17,7 @@
   text-align: center;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0%;
 
 
 }
@@ -27,6 +29,7 @@
   text-align: center;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0%;
 
 }
 
@@ -43,3 +46,4 @@
   color: black;
   background-color: white;
 }
+
