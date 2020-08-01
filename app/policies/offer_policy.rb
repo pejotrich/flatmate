@@ -1,4 +1,4 @@
-class RequestPolicy < ApplicationPolicy
+class OfferPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -15,16 +15,13 @@ class RequestPolicy < ApplicationPolicy
 
   def update?
     record.user == user
-    true
   end
 
   def destroy?
     record.user == user
-    true
   end
 
   def show?
     record.user == user
-    true
   end
 end

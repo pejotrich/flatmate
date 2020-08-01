@@ -11,6 +11,9 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
+         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Create room request
+        </button></li>
         <li class="nav-item active">
           <%= link_to "Home", "#", class: "nav-link" %>
         </li>
@@ -23,6 +26,7 @@
             <%= link_to "Action", "#", class: "dropdown-item" %>
             <%= link_to "Another action", "#", class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+  
           </div>
         </li>
       <% else %>
@@ -31,5 +35,53 @@
         </li>
       <% end %>
     </ul>
+  </div>
+</div>
+
+
+
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Make a room request</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <%= simple_form_for @request do |f| %>
+      <%= f.input :city , input_html: {value: ""}, :placeholder => "e.g. Berlin" %>
+      <%= f.input :budget, input_html: {value: ""}, :placeholder => "max. price/month in €" %>
+      <div class="accordion" id="accordionExample">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              More criteria
+        </button>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <strong><%= f.label "Move-in Date" %> </strong>
+          <br>
+          <%= f.label "Earliest" %>
+          <%= f.input :move_in_date_earliest, as: :string, input_html: { class: "flatpickr" }, label: false%>
+          <%= f.label "Latest" %>
+          <%= f.input :move_in_date_latest, as: :string, input_html: { class: "flatpickr" }, label: false  %>
+          <%= f.input :address , input_html: {value: ""} , :placeholder => "Wanna live close to a specific place?" %>
+          <%= f.input :radius, input_html: {value: ""}, :placeholder => "What's your maximum radius? " %>
+          <%= f.input :no_of_flat_mates, input_html: {value: ""}, :placeholder => "What's your maximum number of flatmates?" %>
+          <%= f.input :size, input_html: {value: ""} , :placeholder => "What's the minimum size your room should have?" %>
+
+        </div>
+      </div>   
+    
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+  
+    <% end %>
+   
+      </div>
+      <div class="modal-footer">
+      
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
   </div>
 </div>
