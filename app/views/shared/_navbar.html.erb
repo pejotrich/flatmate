@@ -11,11 +11,11 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
     <li>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="request" data-toggle="modal" data-target="#exampleModal">
           Create room request
         </button></li>
       <% if user_signed_in? %>
-   
+
         <li class="nav-item active">
           <%= link_to "Home", "#", class: "nav-link" %>
         </li>
@@ -28,11 +28,12 @@
             <%= link_to "Action", "#", class: "dropdown-item" %>
             <%= link_to "Another action", "#", class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-  
+
           </div>
         </li>
       <% else %>
         <li class="nav-item">
+        <button type="button" class="login" data-toggle="modal" data-target="#exampleModal">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         </li>
       <% end %>
@@ -72,17 +73,17 @@
           <%= f.input :size, input_html: {value: ""} , :placeholder => "What's the minimum size your room should have?" %>
 
         </div>
-      </div>   
-    
+      </div>
+
       <%= f.submit "Submit", class: "btn btn-primary" %>
-  
+
     <% end %>
-   
+
       </div>
       <div class="modal-footer">
-      
+
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
+
       </div>
     </div>
   </div>
