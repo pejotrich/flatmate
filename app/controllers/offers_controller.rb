@@ -13,12 +13,28 @@ class OffersController < ApplicationController
       @offer.request = @request
       @offer.creator_id = current_user.id
       if @offer.save
+        puts "yay, we saved!"
+        current_user.friend_request(@request.user)
         redirect_to request_path(@request)
+        render :root
       else
         render :new
       end
-      
     end
+  end
+
+  def accept
+    @offer = Offer.find(params[:offer_id])
+    @offer.status = "accepted"
+    @offer.save
+    redirect_to offers_path
+  end
+
+  def decline
+    @offer = Offer.find(params[:offer_id])
+    @offer.status = "declined"
+    @offer.save
+    redirect_to offers_path
   end
 
   def show
