@@ -7,8 +7,12 @@
   flex-grow: 0;
 }
 
-.logo {
-  color: whitesmoke;
+.navbar-light .navbar-brand {
+  color: white;
+}
+
+.nav-link {
+  color: whitesmoke !important;
 }
 
 .navbar-lewagon .navbar-brand img {
