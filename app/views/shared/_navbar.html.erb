@@ -10,10 +10,12 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <% if user_signed_in? %>
-         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    <li>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
           Create room request
         </button></li>
+      <% if user_signed_in? %>
+   
         <li class="nav-item active">
           <%= link_to "Home", "#", class: "nav-link" %>
         </li>
@@ -38,7 +40,7 @@
   </div>
 </div>
 
-
+   <% if user_signed_in? %>
 
 <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -85,3 +87,4 @@
     </div>
   </div>
 </div>
+<% end %>
