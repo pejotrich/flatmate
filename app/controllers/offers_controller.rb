@@ -7,8 +7,9 @@ class OffersController < ApplicationController
 
   def create
     @request = Request.find(params[:request_id])
+    @offer = Offer.new(offer_params)
+    authorize @offer
     if current_user.in? @request.private_shares.map{|ps| ps.user}
-      @offer = Offer.new(offer_params)
       @offer.request = @request
       @offer.creator_id = current_user.id
       if @offer.save
@@ -16,7 +17,7 @@ class OffersController < ApplicationController
       else
         render :new
       end
-      authorize @offer
+      
     end
   end
 
