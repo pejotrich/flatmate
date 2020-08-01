@@ -26,7 +26,7 @@ require("channels")
 import "bootstrap";
 
 import flatpickr from 'flatpickr';
-import "flatpickr/dist/flatpickr.min.css";
+require("flatpickr/dist/flatpickr.min.css");
 
 document.addEventListener("turbolinks:load", () => {
   flatpickr(".flatpickr", {
