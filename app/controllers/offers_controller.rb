@@ -36,7 +36,6 @@ class OffersController < ApplicationController
     @offer.status = "accepted"
     @offer.save
     @user = User.find(@offer.creator_id)
-    #@creator_id = @offer.creator_id
     @request.user.accept_request(@user)
     redirect_to root_path
   end
@@ -46,8 +45,9 @@ class OffersController < ApplicationController
     @offer = Offer.find(params[:offer_id])
     @offer.status = "declined"
     @offer.save
-    @request.user.decline_request(@User.find_by_id(@offer.creator_id))
-    redirect_to offers_path
+    @user = User.find(@offer.creator_id)
+    @request.user.decline_request(@user))
+    redirect_to root_path
   end
 
   def show
