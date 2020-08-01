@@ -6,7 +6,7 @@ class User < ApplicationRecord
   belongs_to :flat, optional: true
   has_many :requests
   has_friendship
-
+  has_many :private_shares
   # def friend_request(user)
   #  FriendRequest.create(requester: self, requested: user)
   # end
