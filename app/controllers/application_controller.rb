@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :initialize_request, only: [:show, :home]
-  before_action :set_request, only: :show
   include Pundit
 
   # Pundit: white-list approach.
@@ -23,9 +22,5 @@ class ApplicationController < ActionController::Base
 
   def initialize_request
     @request = Request.new
-  end
-
-  def set_request
-    @request = Request.find(params[:id])
   end
 end
