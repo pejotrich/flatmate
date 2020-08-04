@@ -46,7 +46,7 @@ class OffersController < ApplicationController
     @offer.status = "declined"
     @offer.save
     @user = User.find(@offer.creator_id)
-    @request.user.decline_request(@user))
+    @request.user.decline_request(@user)
     redirect_to root_path
   end
 
