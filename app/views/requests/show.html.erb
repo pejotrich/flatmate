@@ -1,12 +1,7 @@
 <div class="container">
   <div class="d-flex justify-content-around align-items-center">
     <h1>Your Room Search for <%= @request.city %></h1>
-    <div>
-      <%= link_to "Delete request",
-      request_path(@request),
-      method: :delete,
-      data: { confirm: "Are you sure?" } %></div></h1>
-    </div>
+
   </div>
   <div>
   <br>
@@ -74,11 +69,16 @@
      <% end %>
     </tbody>
   </table>
-   
+
+  </div>
+    <div class="option">
+      <button type="button" class="btn" data-toggle="modal" data-target="#editModal">Edit request
+      </button>
+      <%= link_to "Delete request",
+      request_path(@request),
+      method: :delete,
+      data: { confirm: "Are you sure?" } %></div></h1>
     </div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
-  Edit request
-</button>
 </div>
 
 
@@ -105,9 +105,9 @@
           <%= f.input :radius %>
           <%= f.input :no_of_flat_mates %>
           <%= f.input :size %>
- 
+
       <%= f.submit "Submit", class: "btn btn-primary" %>
-  
+
     <% end %>
       </div>
       <div class="modal-footer">
