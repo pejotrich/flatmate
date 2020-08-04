@@ -14,6 +14,9 @@
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
           Create room request
         </button></li>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#friendsModal">
+          Launch demo modal
+        </button>
       <% if user_signed_in? %>
    
         <li class="nav-item active">
@@ -41,6 +44,7 @@
 </div>
 
    <% if user_signed_in? %>
+ 
 
 <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -55,6 +59,7 @@
             <%= simple_form_for @request do |f| %>
       <%= f.input :city , input_html: {value: ""}, :placeholder => "e.g. Berlin" %>
       <%= f.input :budget, input_html: {value: ""}, :placeholder => "max. price/month in €" %>
+      <%# <%= f.collection_select(:user_id, User.all, :city, :first_name, {:prompt => "Please Select at least one friend"}, {:multiple => true}) %> 
       <div class="accordion" id="accordionExample">
         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               More criteria
@@ -80,7 +85,9 @@
    
       </div>
       <div class="modal-footer">
-      
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#friendsModal">
+          Choose friends 
+        </button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         
       </div>
@@ -88,3 +95,29 @@
   </div>
 </div>
 <% end %>
+
+
+ 
+
+
+<!-- Modal -->
+<div class="modal" id="friendsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Choose friends</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+        <%= render "shared/friends" %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+.card-friend {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+
+.card-friend img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+.card-friend h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-friend p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-friend .card-friend-infos {
+  padding: 16px;
+}
+
+.check-icon {
+  background-image: url(/rsrc.php/v3/yf/r/BfD3dF7vTOM.png);
+    background-size: 25px 150px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    font-size: 50px;
+    color: darkgrey;
+}
+
+
+i {
+  color: darkgrey;
+  font-size: 50px;
+  margin-left: auto;
+  margin-left: 70px;
+ 
+}
+
+i:hover {
+  color: cornflowerblue;
+}
+
+.active {
+  color: cornflowerblue;
+}
+
+/* .active:hover {
+  color: darkgray;
+} */
