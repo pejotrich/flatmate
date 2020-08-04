@@ -1,0 +1,23 @@
+<% @user = @request.user %>
+  <% friends = @user.friends %>
+
+  <% array = [] %>
+
+  <% friends.each do |friend| %>
+  
+    <% if friend.friends.where(city: @request.city).count > 1 || friend.city == @request.city %>
+      <% array << friend %>
+    <% end %>
+  <% end %>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8">
+      <h1>Add friends</h1>
+      <%= simple_form_for [ @request, @private_share ] do |f| %>
+        <%= f.input :user_id, collection: friends, input_html: { multiple: true }, include_hidden: false%>
+        <%= f.submit "Add friend", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

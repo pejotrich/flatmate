@@ -1,15 +1,22 @@
 class PrivateSharesController < ApplicationController
-  before_action: :set_request
+  before_action :set_request
 
   def new
     @private_share = PrivateShare.new
+    authorize @private_share
   end
 
   def create
-    @private_share = PrivateShare.new(private_share_params)
-    @private_share.request = @request
-    @private_share.save
+    authorize @request
+    @users = User.where(id: params[:private_share][:user_id])
+    @users.each do |user|
+      private_share = PrivateShare.new(request: @request, user: user)
+      private_share.save
+    end
+      redirect_to request_path(@request)
+    
   end
+
 
   private
 
@@ -18,6 +25,6 @@ class PrivateSharesController < ApplicationController
   end
 
   def private_share_params
-    params.require(:private_share).permit(:user, :request_id)
+    params.require(:private_share).permit(:user_id, :request_id)
   end
 end
