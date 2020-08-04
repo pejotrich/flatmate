@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get "dashboard", to: "dashboards#show"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :requests do
-    resources :offers
+    resources :offers do
+      post :accept
+      post :decline
+    end
   end
 end
