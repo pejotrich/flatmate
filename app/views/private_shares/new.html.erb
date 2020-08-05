@@ -13,7 +13,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-md-8">
-      <h1>Choose friends that might be able to help</h1>
+      <h1>Ask friends for help</h1>
       <% if friends.empty? %>
       <br>
         <p>You don't have any friends yet. <%= link_to "Find friends now", root_path %></p>
@@ -29,7 +29,9 @@
       <% else %>
         <%= simple_form_for [ @request, @private_share ] do |f| %>
           <%#= f.input :user_id, collection: friends, input_html: { multiple: true }, include_hidden: false%>
-          <%= f.input :user do %>
+          <br>
+          <%= f.label "Choose friends who live in #{@request.city} or have friends there:" %>
+          <%= f.input :user , label: false do %>
             <%= f.select :user_id, array.map{ |l| ["#{l.first_name} #{l.last_name} (lives in #{l.city}, has #{l.friends.where(city: @request.city).count} friends in #{@request.city})", l.id, {:first_name => l.first_name}] }, { :prompt => false},
           { :multiple => true, class: "select-checkbox" } %>
           <% end %> 
