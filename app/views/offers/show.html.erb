@@ -1,1 +1,37 @@
-show.html.erb
+<div class="container">
+  <div class="outerbox">
+    <div class="card" >
+      <div class="row">
+        <div class="col-3">
+          <img style="height: 240px"; class="img-thumbnail" src="https://d38we5ntdyxyje.cloudfront.net/753188/profile/GMGLBXSR_avatar_medium_square.jpg" alt="picture-man"/>
+        </div>
+        <div class="col-9" style="margin-top: 2rem;">
+          <div class="card offer">
+            <div class="textbox">
+            <% if @offer.status == "pending"  %>
+            <h1>Gregor made you an offer!</h1>
+            <div class="flex textbox" >
+              <p>
+                Hey there, my name is Gregor and I am a friend of Charlotte.
+                I heard that you are looking for a flat in Berlin.
+                I am looking for a flatmate currently and my flat machtes your
+                search criteria. If you want to chat more about details,
+                feel free to connect with me.
+              </p>
+              <div class="flex"style="justify-content:space-between;">
+                <ul>
+                  <li class="btn btn-danger"><%= link_to "Decline",  request_offer_decline_path(@request, @offer), method: :post%></li>
+                  <li class="btn btn-success"><%= link_to "Accept",  request_offer_accept_path(@request, @offer), method: :post%></li>
+                </ul>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
