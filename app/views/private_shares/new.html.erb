@@ -31,7 +31,7 @@
           <%#= f.input :user_id, collection: friends, input_html: { multiple: true }, include_hidden: false%>
           <%= f.input :user do %>
             <%= f.select :user_id, array.map{ |l| ["#{l.first_name} #{l.last_name} (lives in #{l.city}, has #{l.friends.where(city: @request.city).count} friends in #{@request.city})", l.id, {:first_name => l.first_name}] }, { :prompt => false},
-          { :multiple => true } %>
+          { :multiple => true, class: "multiple-select" } %>
           <% end %> 
           <%= f.submit "Add friends", class: 'btn btn-primary' %>
         <% end %>

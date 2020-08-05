@@ -52,3 +52,7 @@ circles.forEach((item) => {
     item.classList.toggle("active");
   })
 })
+
+import 'select2/dist/css/select2.css';
+import { multipleSelect } from "../components/select";
+multipleSelect();

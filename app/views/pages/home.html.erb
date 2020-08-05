@@ -18,4 +18,15 @@
       <button type="button" class="button2">Post a Room</button>
     </div>
   </div>
+
+  <% @user = current_user %>
+  <% @request = @user.requests.last %>
+  <br>
+  <br>
+  <div>
+    <p><strong>Your request for <%= @request.city %></strong></p>
+    <p>City: <%= @request.city %></p>
+    <p>Budget: <%= @request.budget %></p>
+    <%= link_to "See more", request_path(@request) %>
+  </div>
 </div>
