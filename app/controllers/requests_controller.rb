@@ -10,6 +10,7 @@ class RequestsController < ApplicationController
     @request.user_id = current_user.id
     @request.save
     redirect_to request_path(@request)
+    #render :template => "shared/friends"
     authorize @request
   end
 

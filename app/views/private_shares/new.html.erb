@@ -1,0 +1,41 @@
+<% @user = @request.user %>
+  <% friends = @user.friends %>
+
+  <% array = [] %>
+
+  <% friends.each do |friend| %>
+  
+    <% if friend.friends.where(city: @request.city).count > 1 || friend.city == @request.city %>
+      <% array << friend %>
+    <% end %>
+  <% end %>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8">
+      <h1>Choose friends that might be able to help</h1>
+      <% if friends.empty? %>
+      <br>
+        <p>You don't have any friends yet. <%= link_to "Find friends now", root_path %></p>
+        <br>
+      <% elsif array.empty?  %>
+        <%= simple_form_for [ @request, @private_share ] do |f| %>
+        <%= f.input :user do %>
+          <%= f.select :user_id, friends.map{ |l| ["#{l.first_name} #{l.last_name} (lives in #{l.city}, has #{l.friends.where(city: @request.city).count} friends in #{@request.city})", l.id, {:first_name => l.first_name}] }, { :prompt => false},
+         { :multiple => true } %>
+        <% end %> 
+        <%= f.submit "Add friends", class: 'btn btn-primary' %>
+        <% end %>
+      <% else %>
+        <%= simple_form_for [ @request, @private_share ] do |f| %>
+          <%#= f.input :user_id, collection: friends, input_html: { multiple: true }, include_hidden: false%>
+          <%= f.input :user do %>
+            <%= f.select :user_id, array.map{ |l| ["#{l.first_name} #{l.last_name} (lives in #{l.city}, has #{l.friends.where(city: @request.city).count} friends in #{@request.city})", l.id, {:first_name => l.first_name}] }, { :prompt => false},
+          { :multiple => true } %>
+          <% end %> 
+          <%= f.submit "Add friends", class: 'btn btn-primary' %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

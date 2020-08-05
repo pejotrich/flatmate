@@ -14,6 +14,7 @@
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
           Create room request
         </button></li>
+       
       <% if user_signed_in? %>
    
         <li class="nav-item active">
@@ -41,6 +42,7 @@
 </div>
 
    <% if user_signed_in? %>
+ 
 
 <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -52,9 +54,11 @@
         </button>
       </div>
       <div class="modal-body">
+      <% @request = Request.new %>
             <%= simple_form_for @request do |f| %>
       <%= f.input :city , input_html: {value: ""}, :placeholder => "e.g. Berlin" %>
       <%= f.input :budget, input_html: {value: ""}, :placeholder => "max. price/month in €" %>
+      <%#= f.collection_select(:user_id, User.all, :city, :first_name, {:prompt => "Please Select at least one friend"}, {:multiple => true}) %> 
       <div class="accordion" id="accordionExample">
         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               More criteria
@@ -80,7 +84,9 @@
    
       </div>
       <div class="modal-footer">
-      
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#friendsModal">
+          Choose friends 
+        </button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         
       </div>
