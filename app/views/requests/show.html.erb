@@ -7,10 +7,10 @@
       method: :delete,
       data: { confirm: "Are you sure?" } %></div></h1>
     </div>
-  </div>
+  
   <div>
-  <br>
-  <br>
+    <br>
+    <br>
     <table class="table table-hover">
 
     <tbody>
@@ -72,20 +72,46 @@
         <td><%= @request.size %> sqm</td>
       </tr>
      <% end %>
-    </tbody>
-  </table>
-   
-    </div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
   Edit request
-</button>
-</div>
+  </button>
+  <br>
+  <br>
+  <% if @request.private_shares.empty? %>
+    <h4>You haven't asked your friends for help yet. Do it now and let them connect you with people you'll love. </h4>
+    <%= link_to "Ask friends for help", new_request_private_share_path(@request)  %>
+  <% else %>
+    <h4>You have asked the following friends for help:</h4>
+    <br>
+    <% private_shares = @request.private_shares %>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#friendsModal">
-          Choose friends 
-        </button>
+    <% private_shares.each do |share| %>
+        
+          <div class="card-friend">
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+            <div class="card-friend-infos">
+              <h2><%= share.user.first_name %> <%= share.user.last_name %></h2>
+              <p>Lives in <strong><%= share.user.city %></strong></p>
+              <p>Has <%= share.user.friends.where(city: @request.city).count %> friends in <%= @request.city %></p>
+            </div>
+            
+        </div>
+        <br>
+        <% end %>
+  <%= link_to "Ask more friends for help", new_request_private_share_path(@request)  %>
+  <% end %>
+  </div>
 
-<%= link_to "Ask friends for help", new_request_private_share_path(@request)  %>
+
+
+
+
 <!-- Modal -->
 <div class="modal" id="friendsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
