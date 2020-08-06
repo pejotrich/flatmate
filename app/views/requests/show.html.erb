@@ -135,7 +135,7 @@
             <div class="card-friend-infos">
               <% creator = User.find_by_id(offer.creator_id) %>
               <h2><%= creator.first_name %> <%= creator.last_name %> sent you an offer.</h2>
-              <%= link_to "Check it out" %>
+              <%= link_to "Check it out", request_offer_path(@request, @offer) %>
             </div>
           </div>
           <% end %>
