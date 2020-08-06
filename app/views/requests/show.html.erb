@@ -102,7 +102,11 @@
           <% private_shares.each do |share| %>
 
                 <div class="card-friend">
+                <% if share.user.photo %>
                   <%= image_tag share.user.photo %>
+                <% else %>
+                  <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
+                <% end %>
                   <div class="card-friend-infos">
                     <h2><%= share.user.first_name %> <%= share.user.last_name %></h2>
                     <p>Lives in <strong><%= share.user.city %></strong></p>
