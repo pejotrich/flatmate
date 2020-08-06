@@ -1,10 +1,12 @@
+
+ 
   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#friendsModal">
   Launch demo modal
 </button>
 
 <!-- Modal -->
-<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal" id="friendsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -14,7 +16,27 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= render "form1" %>
+        <div class="container">
+  <% @user = @request.user %>
+  <% friends = @user.friends %>
+
+  <% array = [] %>
+
+  <% friends.each do |friend| %>
+  
+    <% if friend.friends.where(city: @request.city).count > 1 || friend.city == @request.city %>
+      <% array << friend %>
+    <% end %>
+  <% end %>
+  
+    <% array.each do |friend| %>
+      <p>Name: <%= friend.first_name %> <%= friend.last_name %></p>
+      <p>Lives in <%= friend.city %></p>
+      <p>Has <%= friend.friends.where(city: @request.city).count %> friends in <%= @request.city %>.</p>
+      <br>
+    <% end %>
+
+</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -22,4 +44,3 @@
     </div>
   </div>
 </div>
-
