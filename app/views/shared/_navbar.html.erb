@@ -56,7 +56,7 @@
       <div class="modal-body">
       <% @request = Request.new %>
             <%= simple_form_for @request do |f| %>
-      <%= f.input :city , input_html: {value: ""}, :placeholder => "e.g. Berlin" %>
+      <%= f.input :city , input_html: {value: "", id: "city"}, :placeholder => "e.g. Berlin" %>
       <%= f.input :budget, input_html: {value: ""}, :placeholder => "max. price/month in €" %>
       <%#= f.collection_select(:user_id, User.all, :city, :first_name, {:prompt => "Please Select at least one friend"}, {:multiple => true}) %> 
       <div class="accordion" id="accordionExample">
@@ -70,7 +70,8 @@
           <%= f.input :move_in_date_earliest, as: :string, input_html: { class: "flatpickr" }, label: false%>
           <%= f.label "Latest" %>
           <%= f.input :move_in_date_latest, as: :string, input_html: { class: "flatpickr" }, label: false  %>
-          <%= f.input :address , input_html: {value: ""} , :placeholder => "Wanna live close to a specific place?" %>
+          <%= f.input :address , input_html: {value: ""} , input_html: { id: "address-input" }, :placeholder => "Wanna live close to a specific place?" %>
+          <input type="search" id="address-input" placeholder="Where are we going?" />
           <%= f.input :radius, input_html: {value: ""}, :placeholder => "What's your maximum radius? " %>
           <%= f.input :no_of_flat_mates, input_html: {value: ""}, :placeholder => "What's your maximum number of flatmates?" %>
           <%= f.input :size, input_html: {value: ""} , :placeholder => "What's the minimum size your room should have?" %>
@@ -94,3 +95,31 @@
   </div>
 </div>
 <% end %>
+
+
+<script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+<script>
+  var placesAutocomplete = places({
+    appId: 'plR3BORFEJ9P',
+    apiKey: '3123c82725474d7daa0eec1032c92cea',
+    container: document.querySelector('#address-input'),
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+<script>
+  var placesAutocomplete = places({
+    appId: 'plR3BORFEJ9P',
+    apiKey: '3123c82725474d7daa0eec1032c92cea',
+    container: document.querySelector('#city'),
+    templates: {
+      value: function(suggestion) {
+        return suggestion.name;
+      }
+    }
+  }).configure({
+    type: 'city',
+    aroundLatLngViaIP: false,
+  });
+  
+</script>
