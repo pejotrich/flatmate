@@ -39,6 +39,7 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem "algoliasearch-rails"
 gem 'algolia-places-rails'
+gem 'jquery-rails'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
