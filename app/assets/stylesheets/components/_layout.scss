@@ -1,0 +1,29 @@
+.container {
+  padding-top: 55px;
+
+}
+
+.room-request {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.request-table {
+  padding-top: 55px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.table {
+  border: solid 1px lightgray;
+}
+
+.row {
+  padding-top: 55px;
+  display: flex;
+  width: 100%;
+}
+.column {
+  flex: 1;
+  padding: 16px;
+}

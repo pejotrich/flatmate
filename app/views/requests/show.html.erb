@@ -1,6 +1,7 @@
+
 <% if @request.user == current_user %>
   <div class="container">
-    <div class="d-flex justify-content-around align-items-center">
+    <div class=" room-request d-flex align-items-center">
       <h1>Your Room Search for <%= @request.city %></h1>
       <div>
         <%= link_to "Delete request",
@@ -9,7 +10,7 @@
         data: { confirm: "Are you sure?" } %></div></h1>
       </div>
 
-    <div>
+    <div class="request-table">
       <br>
       <br>
       <table class="table table-hover">
@@ -88,11 +89,14 @@
     <div class="row">
       <div class="column">
         <% if @request.private_shares.empty? %>
-          <h4>You haven't asked your friends for help yet. Do it now and let them connect you with people you'll love. </h4>
+        <h4>Friends helping you</h4>
+          <br>
+          <br>
+          <p>You haven't asked your friends for help yet. Do it now and let them connect you with people you'll love. </p>
           <%= link_to "Ask friends for help", new_request_private_share_path(@request)  %>
         <% else %>
-          <h4>You have asked the following friends for help:</h4>
-          <br>
+          <h4>Friends helping you</h4>
+          <br><br>
           <% private_shares = @request.private_shares %>
 
           <% private_shares.each do |share| %>
@@ -112,11 +116,12 @@
         <% end %>
       </div>
       <div class="column ml-3">
-        <h4>Offers:</h4>
+        <h4>Offers</h4>
         <% if @request.offers.empty? %>
           <br>
           <br>
-          <p>You don't have any offers yet</p>
+          <p>You don't have any offers yet. Have a coffee while waiting and help someone else in the meantime for some good karma.</p>
+          <%= link_to "Help friends", root_path %>
         <% else %>
           <% offers = @request.offers %>
           <% offers.each do |offer| %>
