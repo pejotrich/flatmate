@@ -1,0 +1,14 @@
+<h3>Your open requests</h3>
+
+<% @my_requests.each do |request| %>
+  <p>Location: <%= request.city %></p>
+  <p>Max. price: <%= request.budget %></p>
+<% end %>
+
+<h3>Your offers</h3>
+
+<% @my_offers.flatten.each do |offer| %>
+  <p></p>
+  <p>Offer created at: <%= offer.created_at %></p>
+  <p>Offer status: <%= offer.status %></p>
+<% end %>

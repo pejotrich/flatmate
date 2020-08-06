@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-
   before_action :initialize_request
   #before_action :set_request, only: :show
 

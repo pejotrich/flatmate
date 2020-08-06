@@ -1,4 +1,5 @@
 class RequestsController < ApplicationController
+  before_action :set_request, only: :show
 
   def new
     @request = Request.new
@@ -44,6 +45,10 @@ class RequestsController < ApplicationController
   end
 
   private
+
+  def set_request
+    @request = Request.find(params[:id])
+  end
 
   def request_params
     params.require(:request).permit(:city, :budget, :user, :radius, :no_of_flat_mates, :size, :move_in_date_earliest, :move_in_date_latest, :address, :privacy_level)

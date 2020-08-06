@@ -1,12 +1,32 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: rgb(184, 3, 184);
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
 
+.navbar-light .navbar-brand {
+  color: white;
+}
+
+.nav-link {
+  color: whitesmoke !important;
+}
+
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.login {
+  background-color:whitesmoke;
+}
+
+.request {
+  background-color:whitesmoke;
+}
+
+.nav-item active {
+  color: whitesmoke;
 }
