@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  before_action :initialize_request, only: [:show, :home
+  before_action :initialize_request
   #before_action :set_request, only: :show
   include Pundit
 
