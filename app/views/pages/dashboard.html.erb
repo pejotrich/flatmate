@@ -33,7 +33,7 @@
             <p>Offer by: <%= User.find(offer.creator_id).first_name %> <%= User.find(offer.creator_id).last_name %></p>
             <p>Offer created at: <%= offer.created_at %></p>
             <p>Offer status: <%= offer.status %></p>
-            <%= link_to "View offer", root_path %>
+            <%= link_to "View offer", request_offer_path(offer.request, offer) %>
 
           <% end %>
           <% end %>
