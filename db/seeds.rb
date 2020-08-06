@@ -6,6 +6,14 @@ require 'faker'
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.destroy_all
+Offer.destroy_all
+Request.destroy_all
+PrivateShare.destroy_all
+Flat.destroy_all
+User.destroy_all
+Friendship.destroy_all
+Message.destroy_all
 
 u1 = User.create(email: "sarahj@gmail.com", password: "12345678", first_name: "Sarah", last_name: "Johnson", city: "Berlin", photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80")
 u2 = User.create(email: "johnk@gmail.com", password: "12345678", first_name: "John", last_name: "Kelly", city: "Berlin")
@@ -67,7 +75,7 @@ u18.accept_request(u10)
 
 users_berlin1 = []
 
-46.times do 
+46.times do
   user = User.create(email: Faker::Internet.email, password: "12345678", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city: "Berlin", photo: "http://lorempixel.com/400/400/people/")
   users_berlin1 << user
 end
@@ -87,7 +95,7 @@ end
 
 users_berlin2 = []
 
-72.times do 
+72.times do
   user = User.create(email: Faker::Internet.email, password: "12345678", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city: "Berlin", photo: "http://lorempixel.com/400/400/people/")
   users_berlin2 << user
 end
@@ -106,7 +114,7 @@ end
 
 users_world1 = []
 
-50.times do 
+50.times do
   user = User.create(email: Faker::Internet.email, password: "12345678", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city: Faker::Address.city, photo: "http://lorempixel.com/400/400/people/")
   users_world1 << user
 end
@@ -125,27 +133,25 @@ end
 
 users_world2 = []
 
-50.times do 
+50.times do
   user = User.create(email: Faker::Internet.email, password: "12345678", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city: Faker::Address.city, photo: "http://lorempixel.com/400/400/people/")
   users_world2 << user
 end
 
 users_world2.each do |user|
   users_berlin1.each do |friend|
-   user.friend_request(friend) 
+   user.friend_request(friend)
   end
 end
 
 users_berlin1.each do |user|
   users_world2.each do |friend|
-   user.accept_request(friend) 
+   user.accept_request(friend)
   end
 end
 
 100.times do
   user = User.all.sample(1)[0]
-  u1.friend_request(user) unless u1 = user
-  user.accept_request(u1)
+  u1.friend_request(user) unless u1 == user
+  user.accept_request(u1) unless u1 == user
 end
-
-
