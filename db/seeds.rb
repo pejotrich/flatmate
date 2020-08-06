@@ -76,7 +76,7 @@ u18.accept_request(u10)
 users_berlin1 = []
 
 46.times do
-  user = User.create(email: Faker::Internet.email, password: "12345678", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city: "Berlin", photo: "http://lorempixel.com/400/400/people/")
+  user = User.create(email: Faker::Internet.email, password: "12345678", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city: "Berlin")
   users_berlin1 << user
 end
 
@@ -96,7 +96,7 @@ end
 users_berlin2 = []
 
 72.times do
-  user = User.create(email: Faker::Internet.email, password: "12345678", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city: "Berlin", photo: "http://lorempixel.com/400/400/people/")
+  user = User.create(email: Faker::Internet.email, password: "12345678", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city: "Berlin")
   users_berlin2 << user
 end
 
@@ -115,7 +115,7 @@ end
 users_world1 = []
 
 50.times do
-  user = User.create(email: Faker::Internet.email, password: "12345678", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city: Faker::Address.city, photo: "http://lorempixel.com/400/400/people/")
+  user = User.create(email: Faker::Internet.email, password: "12345678", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city: Faker::Address.city)
   users_world1 << user
 end
 
@@ -134,7 +134,7 @@ end
 users_world2 = []
 
 50.times do
-  user = User.create(email: Faker::Internet.email, password: "12345678", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city: Faker::Address.city, photo: "http://lorempixel.com/400/400/people/")
+  user = User.create(email: Faker::Internet.email, password: "12345678", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city: Faker::Address.city)
   users_world2 << user
 end
 
@@ -152,6 +152,17 @@ end
 
 100.times do
   user = User.all.sample(1)[0]
+  next if user == u1
+  next if u1.friends.include?(user)
   u1.friend_request(user) unless u1 == user
   user.accept_request(u1) unless u1 == user
+end
+
+100.times do
+  user2 = User.all.sample(1)[0]
+  user = User.all.sample(1)[0]
+  next if user == user2
+  next if user2.friends.include?(user)
+  user2.friend_request(user) unless user2 == user
+  user.accept_request(u1) unless user2 == user
 end
