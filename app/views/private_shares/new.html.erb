@@ -32,7 +32,7 @@
           <br>
           <%= f.label "Choose friends who live in #{@request.city} or have friends there:" %>
           <%= f.input :user , label: false do %>
-            <%= f.select :user_id, array.map{ |l| ["#{l.first_name} #{l.last_name} (lives in #{l.city}, has #{l.friends.where(city: @request.city).count} friends in #{@request.city})", l.id, {:first_name => l.first_name}] }, { :prompt => false},
+            <%= f.select :user_id, array.sort_by { |hsh| hsh[:city] }.map{ |l| ["#{l.first_name} #{l.last_name} (lives in #{l.city}, has #{l.friends.where(city: @request.city).count} friends in #{@request.city})", l.id, {:first_name => l.first_name}] }, { :prompt => false},
           { :multiple => true, class: "select-checkbox" } %>
           <% end %> 
           <%= f.submit "Add friends", class: 'btn btn-primary' %>
