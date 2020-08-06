@@ -40,6 +40,7 @@ gem 'simple_form'
 gem "algoliasearch-rails"
 gem 'algolia-places-rails'
 gem 'jquery-rails'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
