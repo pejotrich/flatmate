@@ -14,9 +14,9 @@
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
           Create room request
         </button></li>
-       
+
       <% if user_signed_in? %>
-   
+
         <li class="nav-item active">
           <%= link_to "Home", "#", class: "nav-link" %>
         </li>
@@ -29,7 +29,7 @@
             <%= link_to "Action", "#", class: "dropdown-item" %>
             <%= link_to "Another action", "#", class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-  
+
           </div>
         </li>
       <% else %>
@@ -42,7 +42,7 @@
 </div>
 
    <% if user_signed_in? %>
- 
+
 
 <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -58,7 +58,7 @@
             <%= simple_form_for @request do |f| %>
       <%= f.input :city , input_html: {value: "", id: "city"}, :placeholder => "e.g. Berlin" %>
       <%= f.input :budget, input_html: {value: ""}, :placeholder => "max. Price/month in €" %>
-      <%#= f.collection_select(:user_id, User.all, :city, :first_name, {:prompt => "Please Select at least one friend"}, {:multiple => true}) %> 
+      <%#= f.collection_select(:user_id, User.all, :city, :first_name, {:prompt => "Please Select at least one friend"}, {:multiple => true}) %>
       <div class="accordion" id="accordionExample">
         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               More criteria
@@ -77,17 +77,17 @@
 
 
         </div>
-      </div>   
-    
+      </div>
+
       <%= f.submit "Submit", class: "btn btn-primary" %>
-  
+
     <% end %>
-   
+
       </div>
       <div class="modal-footer">
-    
+
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
+
       </div>
     </div>
   </div>
@@ -119,6 +119,5 @@
     type: 'city',
     aroundLatLngViaIP: false,
   });
-  
-</script>
 
+</script>

@@ -8,7 +8,7 @@
         method: :delete,
         data: { confirm: "Are you sure?" } %></div></h1>
       </div>
-    
+
     <div>
       <br>
       <br>
@@ -96,7 +96,7 @@
           <% private_shares = @request.private_shares %>
 
           <% private_shares.each do |share| %>
-              
+
                 <div class="card-friend">
                   <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
                   <div class="card-friend-infos">
@@ -104,7 +104,7 @@
                     <p>Lives in <strong><%= share.user.city %></strong></p>
                     <p>Has <%= share.user.friends.where(city: @request.city).count %> friends in <%= @request.city %></p>
                   </div>
-                  
+
               </div>
               <br>
               <% end %>
@@ -144,7 +144,7 @@
         method: :delete,
         data: { confirm: "Are you sure?" } %></div></h1>
       </div>
-    
+
     <div>
       <br>
       <br>
@@ -235,7 +235,7 @@
         </div>
         <div class="modal-body">
           <div class="container">
-          
+
               <% @user = @request.user %>
     <% friends = @user.friends %>
 
@@ -246,9 +246,9 @@
         <% array << friend %>
       <% end %>
     <% end %>
-    
+
     <% array.each do |friend| %>
-      
+
         <div class="card-friend">
           <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
           <div class="card-friend-infos">
@@ -256,12 +256,12 @@
             <p>Lives in <strong><%= friend.city %></strong></p>
             <p>Has <%= friend.friends.where(city: @request.city).count %> friends in <%= @request.city %></p>
           </div>
-          
+
           <h2><i class="check-friend fas fa-check-circle "></i></h2>
-          
+
       </div>
       <br>
-    
+
       <% end %>
 
           </div>
@@ -283,11 +283,11 @@
           </button>
         </div>
         <div class="modal-body">
-        
+
               <%= simple_form_for @request do |f| %>
         <%= f.input :city , :placeholder => "e.g. Berlin" %>
         <%= f.input :budget, :placeholder => "max. price/month in €" %>
-        <%#= f.collection_select(:user_id, User.all, :city, :first_name, {:prompt => "Please Select at least one friend"}, {:multiple => true}) %> 
+        <%#= f.collection_select(:user_id, User.all, :city, :first_name, {:prompt => "Please Select at least one friend"}, {:multiple => true}) %>
         <div class="accordion" id="accordionExample">
           <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 More criteria
@@ -304,17 +304,17 @@
             <%= f.input :no_of_flat_mates, input_html: {value: ""}, :placeholder => "What's your maximum number of flatmates?" %>
             <%= f.input :size, input_html: {value: ""} , :placeholder => "What's the minimum size your room should have?" %>
           </div>
-        </div>   
+        </div>
         <%= f.submit "Submit", class: "btn btn-primary" %>
       <% end %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#friendsModal">
-            Choose friends 
+            Choose friends
           </button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          
+
         </div>
       </div>
     </div>
-  </div> 
+  </div>
