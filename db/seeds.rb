@@ -15,7 +15,7 @@ User.destroy_all
 Friendship.destroy_all
 Message.destroy_all
 
-u1 = User.create(email: "sarahj@gmail.com", password: "12345678", first_name: "Sarah", last_name: "Johnson", city: "Berlin")
+u1 = User.create(email: "sarahj@gmail.com", password: "12345678", first_name: "Sarah", last_name: "Johnson", city: "Berlin", photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80")
 u2 = User.create(email: "johnk@gmail.com", password: "12345678", first_name: "John", last_name: "Kelly", city: "Berlin")
 u3 = User.create(email: "bobm@gmail.com", password: "12345678", first_name: "Bob", last_name: "May", city: "Berlin")
 u4 = User.create(email: "rosab@gmail.com", password: "12345678", first_name: "Rosa", last_name: "Buch", city: "Berlin")
