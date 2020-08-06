@@ -23,6 +23,10 @@ require("channels")
 // WRITE YOUR OWN JS STARTING FROM HERE 👇
 // ----------------------------------------------------
 
+
+
+
+
 // External imports
 import "bootstrap";
 
@@ -56,3 +60,4 @@ circles.forEach((item) => {
 import 'select2/dist/css/select2.css';
 import { multipleSelect } from "../components/select";
 multipleSelect();
+
