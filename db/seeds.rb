@@ -73,10 +73,18 @@ u16.accept_request(u10)
 u17.accept_request(u10)
 u18.accept_request(u10)
 
+require 'json'
+require 'open-uri'
+url = 'https://api.generated.photos/api/v1/faces?per_page=100&api_key=DKzteQay2rjVjKijMGIV-g'
+user_serialized = open(url).read
+person = JSON.parse(user_serialized)
+
 users_berlin1 = []
+
 
 46.times do
   user = User.create(email: Faker::Internet.email, password: "12345678", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city: "Berlin")
+  user.photo = person['faces'].sample['urls'][2]['128']
   users_berlin1 << user
 end
 
@@ -97,6 +105,7 @@ users_berlin2 = []
 
 72.times do
   user = User.create(email: Faker::Internet.email, password: "12345678", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city: "Berlin")
+  user.photo = person['faces'].sample['urls'][2]['128']
   users_berlin2 << user
 end
 
@@ -116,6 +125,7 @@ users_world1 = []
 
 50.times do
   user = User.create(email: Faker::Internet.email, password: "12345678", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city: Faker::Address.city)
+  user.photo = person['faces'].sample['urls'][2]['128']
   users_world1 << user
 end
 
@@ -135,6 +145,7 @@ users_world2 = []
 
 50.times do
   user = User.create(email: Faker::Internet.email, password: "12345678", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city: Faker::Address.city)
+  user.photo = person['faces'].sample['urls'][2]['128']
   users_world2 << user
 end
 
@@ -164,5 +175,5 @@ end
   next if user == user2
   next if user2.friends.include?(user)
   user2.friend_request(user) unless user2 == user
-  user.accept_request(u1) unless user2 == user
+  user.accept_request(user2) unless user2 == user
 end
