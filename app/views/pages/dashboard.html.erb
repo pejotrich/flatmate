@@ -33,7 +33,7 @@
             <p>Offer by: <%= User.find(offer.creator_id).first_name %> <%= User.find(offer.creator_id).last_name %></p>
             <p>Offer created at: <%= offer.created_at %></p>
             <p>Offer status: <%= offer.status %></p>
-            <%= link_to "View offer", root_path %>
+            <%= link_to "View offer", request_offer_path(offer.request, offer) %>
 
           <% end %>
           <% end %>
@@ -50,11 +50,9 @@
           <% shares.each do |share| %>
             <% request = share.request %>
             <div class="card-friend pb-2">
-            <% if share.request.user.photo %>
-               <%= image_tag share.user.photo %>
-            <% else %>
+           
               <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
-            <% end %>
+            
             <div class="card-friend-infos">
               <p><strong><%= share.request.user.first_name %> <%= share.request.user.last_name %></strong> is looking for a room.</p>
               <p>Can you help?</p>
