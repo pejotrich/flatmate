@@ -9,9 +9,9 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
     @request.user_id = current_user.id
-    @request.save
-    redirect_to request_path(@request)
-    #render :template => "shared/friends"
+    if @request.save
+      redirect_to request_path(@request)
+    end
     authorize @request
   end
 
