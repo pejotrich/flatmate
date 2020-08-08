@@ -20,8 +20,8 @@
           <h5><%= @offer.first_message %></h5>
           <div class="d-flex">
             <ul>
-              <li class="btn-offer btn-danger btn-lg white-link" style="margin-right: 0.5rem;"><%= link_to "Decline",  request_offer_decline_path(@request, @offer), method: :post%></li>
-              <li class="btn-offer btn-success btn-lg white-link blue-hover"><%= link_to "Accept",  request_offer_accept_path(@request, @offer), method: :post%></li>
+              <li class="btn-offer btn-danger btnwhite-link" style="margin-right: 0.5rem;"><%= link_to "Decline",  request_offer_decline_path(@request, @offer), method: :post%></li>
+              <li class="btn-offer btn-success btn white-link blue-hover"><%= link_to "Accept",  request_offer_accept_path(@request, @offer), method: :post%></li>
             </ul>
           </div>
         <% end %>

@@ -79,7 +79,7 @@
         </table>
       </div>
 
-    
+
 
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
       Edit request
@@ -217,9 +217,13 @@
         <% end %>
           </tbody>
         </table>
+        <div class="d-flex">
+          <ul>
+            <li class="btn-offer btn-success btn white-link" style="margin-right: 0.5rem;"><%= link_to "Reshare request", new_request_private_share_path(@request) %></li>
+            <li class="btn-offer btn-success btn white-link blue-hover"><%= link_to "Make an offer", new_request_offer_path(@request) %></li>
+          </ul>
+        </div>
       </div>
-      <%= link_to "Reshare request", new_request_private_share_path(@request) %>
-      <%= link_to "Make an offer", new_request_offer_path(@request) %>
     </div>
   <% end %>
 
