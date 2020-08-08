@@ -1,7 +1,11 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<<<<<<< HEAD
   <%= link_to "#", class: "navbar-brand" do %>
     <%= image_tag "https://p.kindpng.com/picc/s/421-4212623_gd-avatar-alien-circle-hd-png-download.png" %>
     <% end %>
+=======
+<%= link_to root_path, class: "navbar-brand" %>
+>>>>>>> 1cf8cc7ad0a86ec2f7e0763fe294812db52c23a6
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -10,19 +14,29 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+    <li>
+          <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal">
+          Create room request
+        </button></li>
+
       <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "Home", "#", class: "nav-link" %>
-        </li>
+
+        <% @user = current_user %>
+
         <li class="nav-item">
           <%= link_to "Messages", "#", class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% if @user.photo %>
+            <%= image_tag @user.photo, class: "avatar dropdown-toggle mask", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+           <% else %>
+            <%= image_tag "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+           <% end %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Action", "#", class: "dropdown-item" %>
             <%= link_to "Another action", "#", class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+
           </div>
         </li>
       <% else %>
@@ -33,3 +47,84 @@
     </ul>
   </div>
 </div>
+
+   <% if user_signed_in? %>
+
+
+<div class="modal" <%= @show_modal ? "d-block" : "d-none" %> id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Make a room request</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <% @request = Request.new %>
+            <%= simple_form_for @request do |f| %>
+      <%= f.input :city , input_html: {value: "", id: "city"}, :placeholder => "e.g. Berlin" %>
+      <%= f.input :budget, input_html: {value: ""}, :placeholder => "max. Price/month in €" %>
+      <%#= f.collection_select(:user_id, User.all, :city, :first_name, {:prompt => "Please Select at least one friend"}, {:multiple => true}) %>
+      <div class="accordion" id="accordionExample">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              More criteria
+        </button>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <strong><%= f.label "Move-in Date" %> </strong>
+          <br>
+          <%= f.label "Earliest" %>
+          <%= f.input :move_in_date_earliest, as: :string, input_html: { class: "flatpickr" }, label: false%>
+          <%= f.label "Latest" %>
+          <%= f.input :move_in_date_latest, as: :string, input_html: { class: "flatpickr" }, label: false  %>
+          <%= f.input :address , input_html: {value: ""} , input_html: { id: "address-input" }, :placeholder => "Wanna live close to a specific place?" %>
+          <%= f.input :radius, input_html: {value: ""}, :placeholder => "What's your maximum radius? " %>
+          <%= f.input :no_of_flat_mates, input_html: {value: ""}, :placeholder => "What's your maximum number of flatmates?", :label => "No. of flatmates" %>
+          <%= f.input :size, input_html: {value: ""} , :placeholder => "What's the minimum size your room should have?" %>
+
+
+        </div>
+      </div>
+
+      <%= f.submit "Submit", class: "btn btn-secondary" %>
+
+    <% end %>
+
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+
+<script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+<script>
+  var placesAutocomplete = places({
+    appId: 'plR3BORFEJ9P',
+    apiKey: '3123c82725474d7daa0eec1032c92cea',
+    container: document.querySelector('#address-input'),
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+<script>
+  var placesAutocomplete = places({
+    appId: 'plR3BORFEJ9P',
+    apiKey: '3123c82725474d7daa0eec1032c92cea',
+    container: document.querySelector('#city'),
+    templates: {
+      value: function(suggestion) {
+        return suggestion.name;
+      }
+    }
+  }).configure({
+    type: 'city',
+    aroundLatLngViaIP: false,
+  });
+
+</script>

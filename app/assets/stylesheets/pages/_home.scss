@@ -1,1 +1,49 @@
 // Specific CSS for your home-page
+.jumbotron {
+  background-image: asset-url('apartment.jpg');
+  background-size: cover;
+  padding: 180px 0;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-around;
+}
+
+.flat-card {
+  width: 600px;
+  height: 300px;
+  padding: 40px;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0%;
+
+
+}
+
+.roommate-card {
+  width: 600px;
+  height: 300px;
+  padding: 40px;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0%;
+
+}
+
+.button1 {
+  text-align: center;
+  padding: 15px 32px;
+  color: black;
+  background-color: white;
+}
+
+.button2 {
+  text-align: center;
+  padding: 15px 32px;
+  color: black;
+  background-color: white;
+}
+

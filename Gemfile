@@ -25,6 +25,7 @@ gem 'redis', '~> 4.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+gem 'flatpickr'
 
 gem 'cloudinary', '~> 1.12.0'
 
@@ -37,6 +38,12 @@ gem 'has_friendship'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
+gem "algoliasearch-rails"
+gem 'algolia-places-rails'
+gem 'jquery-rails'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+gem 'unsplash'
+
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails', groups: [:development, :test]

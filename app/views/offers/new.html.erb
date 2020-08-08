@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="card">
+    <%= simple_form_for [@request, @offer] do |f| %>
+      <%= f.input :first_message %>
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
