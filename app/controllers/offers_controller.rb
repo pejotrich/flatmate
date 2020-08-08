@@ -12,9 +12,15 @@ class OffersController < ApplicationController
     if current_user.in? @request.private_shares.map{|ps| ps.user}
       @offer.request = @request
       @offer.creator_id = current_user.id
+      @user = User.find(@offer.creator_id)
       if @offer.save
-        current_user.friend_request(@request.user)
-        redirect_to request_path(@request)
+        if @user.friends_with?(@request.user)
+          redirect_to request_path(@request)
+        else
+          current_user.friend_request(@request.user)
+          redirect_to request_path(@request)
+        end
+        @offer.status = 'send'
       else
         render :new
       end
@@ -36,8 +42,13 @@ class OffersController < ApplicationController
     @offer.status = "accepted"
     @offer.save
     @user = User.find(@offer.creator_id)
-    @request.user.accept_request(@user)
-    redirect_to root_path
+    if @user.friend_request(@request.user)
+      @request.user.accept_request(@user)
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
+    authorize @offer
   end
 
   def decline
@@ -46,8 +57,13 @@ class OffersController < ApplicationController
     @offer.status = "declined"
     @offer.save
     @user = User.find(@offer.creator_id)
-    @request.user.decline_request(@user)
-    redirect_to root_path
+    if @user.friend_request(@request.user)
+      @request.user.decline_request(@user)
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
+    authorize @offer
   end
 
   def show
