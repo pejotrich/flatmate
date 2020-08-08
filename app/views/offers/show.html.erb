@@ -27,4 +27,14 @@
         <% end %>
     </div>
   </div>
+   <div>
+      <% private_share = @offer.request.private_shares.where(user: creator)[0] %>
+      <p> You </p>
+      <p>|</p>
+      <% if private_share.sharer_id != current_user.id %>
+        <p> <%= User.find(private_share.sharer_id).first_name %></p>
+        <p>|</p>
+      <% end %>
+      <p><%= creator.first_name %></p>
+      </div>
 </div>
