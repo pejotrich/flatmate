@@ -1,7 +1,5 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag "logoflat.png", class: "logo"%>
-    <% end %>
+<%= link_to root_path, class: "navbar-brand" %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -11,19 +9,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
     <li>
-          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal">
           Create room request
         </button></li>
 
       <% if user_signed_in? %>
 
         <% @user = current_user %>
-      <div class="icons-wrapper">
-        <li class="nav-item active">
-          <%= link_to dashboard_path, class: "nav-link" do %>
-            <i class="fa fa-home" aria-hidden="true" style="font-size: 40px; color: white";></i>
-          <% end %>
-        </li>
         <li class="nav-item">
           <%= link_to dashboard_path, class: "nav-link" do %>
           <i class="fa fa-envelope" aria-hidden="true" style="font-size: 40px; color: white";></i>
@@ -55,7 +47,7 @@
    <% if user_signed_in? %>
 
 
-<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal" <%= @show_modal ? "d-block" : "d-none" %> id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -90,7 +82,7 @@
         </div>
       </div>
 
-      <%= f.submit "Submit", class: "btn btn-primary" %>
+      <%= f.submit "Submit", class: "btn btn-secondary" %>
 
     <% end %>
 
