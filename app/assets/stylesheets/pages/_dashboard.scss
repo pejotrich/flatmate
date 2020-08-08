@@ -1,28 +1,28 @@
 .cards {
   display: flex;
-  justify-content: space-around;
-  margin-top: 50px;
+  justify-content: space-between;
+  margin-top: 100px;
 }
 
 .card1 {
   background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin-top: 100px;
   padding: 40px;
-
 }
 
 .card2 {
   background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 40px;
+  width: 500px;
 
 }
 
 
 .card3 {
   background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 40px;
+  width: 500px;
+  height: 700px
 
 }
 
