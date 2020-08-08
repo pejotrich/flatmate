@@ -146,7 +146,8 @@
         </div>
       </div>
     </div>
-  <% else %>
+  <% else %> <%# view for non-request-maker %>
+    <% private_share = current_user.private_shares.where(request: @request)[0] %>
     <div class="container">
       <div class="d-flex justify-content-around align-items-center">
         <h1>Room Search from <%= @request.user.first_name %> <%= @request.user.last_name %></h1>
@@ -218,7 +219,9 @@
           </tbody>
         </table>
       </div>
-      <% if @request.privacy_level %>
+
+      <% if private_share.privacy_level %>
+      <% %>
         <%= link_to "Reshare request", new_request_private_share_path(@request) %>
       <% else %>
         <p><%= @request.user.first_name  %> doesn't want you to share this request with your friends. </p>
@@ -248,7 +251,7 @@
           <div class="modal-body">
             <div class="container">
 
-                <% @user = @request.user %>
+                <% @user = @current_user %>
       <% friends = @user.friends %>
 
       <% array = [] %>
