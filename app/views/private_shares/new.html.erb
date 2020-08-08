@@ -1,4 +1,4 @@
-<% @user = @request.user %>
+<% @user = @current_user %>
   <% friends = @user.friends %>
 
   <% array = [] %>
@@ -24,6 +24,11 @@
           <%= f.select :user_id, friends.map{ |l| ["#{l.first_name} #{l.last_name} (lives in #{l.city}, has #{l.friends.where(city: @request.city).count} friends in #{@request.city})", l.id, {:first_name => l.first_name}] }, { :prompt => false},
          { :multiple => true } %>
         <% end %> 
+        <div class="custom-control custom-switch">
+            <%= f.input_field :privacy_level, class: "custom-control-input", id: "customSwitch1"   %>
+          <label class="custom-control-label" for="customSwitch1"> Allow friends to reshare request </label>
+        </div>
+        <br>
         <%= f.submit "Add friends", class: 'btn btn-primary' %>
         <% end %>
       <% else %>
@@ -35,11 +40,13 @@
             <%= f.select :user_id, array.sort_by { |hsh| hsh[:city] }.map{ |l| ["#{l.first_name} #{l.last_name} (lives in #{l.city}, has #{l.friends.where(city: @request.city).count} friends in #{@request.city})", l.id, {:first_name => l.first_name}] }, { :prompt => false},
           { :multiple => true, class: "select-checkbox" } %>
           <% end %> 
-             <div class="custom-control custom-switch">
-                <%= f.input_field :privacy_level, class: "custom-control-input", id: "customSwitch1"   %>
-              <label class="custom-control-label" for="customSwitch1"> Allow friends to reshare request </label>
-            </div>
-            <br>
+
+          <div class="custom-control custom-switch">
+            <%= f.input_field :privacy_level, class: "custom-control-input", id: "customSwitch1"   %>
+          <label class="custom-control-label" for="customSwitch1"> Allow friends to reshare request </label>
+        </div>
+        <br>
+
           <%= f.submit "Add friends", class: 'btn btn-primary' %>
         <% end %>
       <% end %>

@@ -224,8 +224,16 @@
             <li class="btn-offer btn-success btn white-link blue-hover"><%= link_to "Make an offer", new_request_offer_path(@request) %></li>
           </ul>
         </div>
-
-
+      <% if @request.privacy_level %>
+        <%= link_to "Reshare request", new_request_private_share_path(@request) %>
+      <% else %>
+        <p><%= @request.user.first_name  %> doesn't want you to share this request with your friends. </p>
+      <% end %>
+      <% if @request.offers.any? { |offer| offer.creator_id == current_user.id } %>
+        <p>You already made an offer.</p>
+      <% else %>
+        <%= link_to "Make an offer", new_request_offer_path(@request) %>
+      <% end %>
     </div>
   <% end %>
 
