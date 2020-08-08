@@ -218,7 +218,9 @@
           </tbody>
         </table>
       </div>
-      <%= link_to "Reshare request", new_request_private_share_path(@request) %>
+      <% if @request.privacy_level %>
+        <%= link_to "Reshare request", new_request_private_share_path(@request) %>
+      <% end %>
       <%= link_to "Make an offer", new_request_offer_path(@request) %>
     </div>
   <% end %>

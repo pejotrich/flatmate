@@ -9,8 +9,12 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
     @request.user_id = current_user.id
+    
     if @request.save
       redirect_to request_path(@request)
+    else
+      @show_modal = true
+     
     end
     authorize @request
   end
