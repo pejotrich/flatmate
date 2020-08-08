@@ -11,20 +11,25 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
     <li>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
           Create room request
         </button></li>
 
       <% if user_signed_in? %>
 
         <% @user = current_user %>
-
+      <div class="icons-wrapper">
         <li class="nav-item active">
-          <%= link_to "Home", dashboard_path, class: "nav-link" %>
+          <%= link_to dashboard_path, class: "nav-link" do %>
+            <i class="fa fa-home" aria-hidden="true" style="font-size: 40px; color: white";></i>
+          <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
+          <%= link_to dashboard_path, class: "nav-link" do %>
+          <i class="fa fa-envelope" aria-hidden="true" style="font-size: 40px; color: white";></i>
+          <% end %>
         </li>
+        </div>
         <li class="nav-item dropdown">
           <% if @user.photo %>
             <%= image_tag @user.photo, class: "avatar dropdown-toggle mask", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>

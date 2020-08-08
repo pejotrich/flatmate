@@ -29,8 +29,12 @@
 
 .nav-item active {
   color: whitesmoke;
-}
 
+}
+.icons-wrapper {
+  display: flex;
+  margin-right: 20px;
+}
 .mask {
   display: inline-block;
   width: 50px;
