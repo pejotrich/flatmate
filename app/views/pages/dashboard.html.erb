@@ -1,71 +1,67 @@
-
+<% @user = current_user %>
 <div class="container">
 
-    <div class="card1">
-      <h3>Your open requests</h3>
-      <% if @my_requests.empty? %>
-        <p>You haven't created any requests yet.</p>
+  <div class="card1">
+    <h3>Your open requests</h3>
+    <% if @my_requests.empty? %>
+      <p>You haven't created any requests yet.</p>
       <%# @my_requests.each do |request| %>
-      <% else %>
+    <% else %>
       <% request = @my_requests.last %>
         <p>Location: <%= request.city %></p>
         <p>Max. price: <%= request.budget %></p>
         <%= link_to "See more", request_path(request) %>
       <%# end %>
-       <% end %>
-     
-    </div>
+      <% end %>
+  </div>
 
-    <div class="cards">
-      <div class="card2">
-        <h3>Your offers</h3>
 
-        <%# @my_offers.flatten.each do |offer| %>
-        <% if @my_requests.empty? %>
-          <p>You don't have any offers yet.</p>
-          <% else %>
+  <div class="cards">
+    <div class="card2">
+      <h3>Your offers</h3>
+      <%# @my_offers.flatten.each do |offer| %>
+      <% if @my_requests.empty? %>
+        <p>You don't have any offers yet.</p>
+      <% else %>
         <% offers = request.offers %>  
-          <% if offers.empty?  %>
-            <p>You don't have any offers yet.</p>
-          <% else %>
+        <% if offers.empty?  %>
+          <p>You don't have any offers yet.</p>
+        <% else %>
           <% offers.each do |offer| %>
             <p></p>
             <p>Offer by: <%= User.find(offer.creator_id).first_name %> <%= User.find(offer.creator_id).last_name %></p>
             <p>Offer created at: <%= offer.created_at %></p>
             <p>Offer status: <%= offer.status %></p>
             <%= link_to "View offer", request_offer_path(offer.request, offer) %>
-
           <% end %>
-          <% end %>
-       <% end %>
-      </div>
+        <% end %>
+      <% end %>
+    </div>
 
-      <div class="card3">
-        <h3>Friends asking for help</h3>
-       <% @user = current_user %>
-        <% shares = @user.private_shares %>
-        <% if shares.empty? %>
-          <p>Nobody has asked you for help yet. </p>
-          <% else %>
-          <% shares.each do |share| %>
-            <% request = share.request %>
-            <div class="card-friend pb-2">
-           
-              <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
-            
+    <div class="card3">
+      <h3>Friends asking for help</h3>
+      <% shares = @user.private_shares %>
+      <% if shares.empty? %>
+        <p>Nobody has asked you for help yet. </p>
+      <% else %>
+        <% shares.each do |share| %>
+          <% request = share.request %>
+          <div class="card-friend pb-2">
+            <% if share.request.user.photo %>
+              <%= image_tag share.request.user.photo %>
+            <% else %>
+            <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
+            <% end %>
             <div class="card-friend-infos">
               <p><strong><%= share.request.user.first_name %> <%= share.request.user.last_name %></strong> is looking for a room.</p>
               <p>Can you help?</p>
               <p><%= link_to "View request", request_path(request) %></p>
             </div>
           </div>
-            
-            
-            
-          <% end %>
-        
         <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
+
+
