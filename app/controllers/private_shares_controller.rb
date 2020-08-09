@@ -24,7 +24,7 @@ class PrivateSharesController < ApplicationController
   private
 
   def mark_as_shared
-    puts "shared"
+    
   end
 
   def set_request

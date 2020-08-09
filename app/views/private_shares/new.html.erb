@@ -18,38 +18,32 @@
       <br>
         <p>You don't have any friends yet. <%= link_to "Find friends now", root_path %></p>
         <br>
-      <% elsif array.empty?  %>
-        <%= simple_form_for [ @request, @private_share ] do |f| %>
-        <%= f.input :user do %>
-          <%= f.select :user_id, friends.map{ |l| ["#{l.first_name} #{l.last_name} (lives in #{l.city}, has #{l.friends.where(city: @request.city).count} friends in #{@request.city})", l.id, {:first_name => l.first_name}] }, { :prompt => false},
-         { :multiple => true } %>
-        <% end %> 
-        <div class="custom-control custom-switch">
-            <%= f.input_field :privacy_level, class: "custom-control-input", id: "customSwitch1"   %>
-          <label class="custom-control-label" for="customSwitch1"> Allow friends to reshare request </label>
-        </div>
-        <br>
-        <%= f.submit "Add friends", class: 'btn btn-primary' %>
-        <% end %>
       <% else %>
         <%= simple_form_for [ @request, @private_share ] do |f| %>
-          <br>
-          <%= f.label "Choose friends who live in #{@request.city} or have friends there:" %>
-          <%= f.input :user , label: false do %>
-            <%= f.select :user_id, array.sort_by { |hsh| hsh[:city] }.map{ |l| ["#{l.first_name} #{l.last_name} (lives in #{l.city}, has #{l.friends.where(city: @request.city).count} friends in #{@request.city})", l.id, {:first_name => l.first_name}] }, { :prompt => false},
-          { :multiple => true, class: "select-checkbox" } %>
+          <% if array.empty?  %>
+            <%= f.input :user do %>
+              <%= f.select :user_id, friends.map{ |l| ["#{l.first_name} #{l.last_name} (lives in #{l.city}, has #{l.friends.where(city: @request.city).count} friends in #{@request.city})", l.id, {:first_name => l.first_name}] }, { :prompt => false},
+              { :multiple => true } %>
+            <% end %> 
+          <% else %>
+            <br>
+            <%= f.label "Choose friends who live in #{@request.city} or have friends there:" %>
+            <%= f.input :user , label: false do %>
+              <%= f.select :user_id, array.sort_by { |hsh| hsh[:city] }.map{ |l| ["#{l.first_name} #{l.last_name} (lives in #{l.city}, has #{l.friends.where(city: @request.city).count} friends in #{@request.city})", l.id, {:first_name => l.first_name}] }, { :prompt => false},
+              { :multiple => true, class: "select-checkbox" } %>
+            <% end %>
           <% end %> 
-        <% if @request.user == current_user %> <%# Only request-maker can set privacy level  %>
-          <div class="custom-control custom-switch">
-            <%= f.input_field :privacy_level, class: "custom-control-input", id: "customSwitch1"   %>
-          <label class="custom-control-label" for="customSwitch1"> Allow friends to reshare request </label>
-        </div>
-        <% end %> 
-        <br>
-
+          <% if @request.user == current_user %> <%# Only request-maker can set privacy level  %>
+            <div class="custom-control custom-switch">
+              <%= f.input_field :privacy_level, class: "custom-control-input", id: "customSwitch1"   %>
+              <label class="custom-control-label" for="customSwitch1"> Allow friends to reshare request </label>
+            </div>
+          <% end %> 
+          <br>
           <%= f.submit "Add friends", class: 'btn btn-primary' %>
         <% end %>
       <% end %>
+      
     </div>
   </div>
 </div>
