@@ -1,0 +1,68 @@
+<div class="request-table">
+  <br>
+  <br>
+  <table class="table table-hover">
+
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td><strong>City</strong></td>
+      <td><%= @request.city %></td>
+    </tr>
+
+    <tr>
+      <th scope="row"></th>
+      <td><strong>Budget</strong></td>
+      <td><%= @request.budget %> €</td>
+    </tr>
+    <% if @request.move_in_date_earliest %>
+        <tr>
+        <th scope="row"></th>
+        <td><strong>Earliest move-in date</strong></td>
+        <td><%= @request.move_in_date_earliest %></td>
+      </tr>
+    <% end %>
+
+      <% if @request.move_in_date_latest %>
+        <tr>
+        <th scope="row"></th>
+        <td><strong>Latest move-in date </strong></td>
+        <td><%= @request.move_in_date_earliest %></td>
+      </tr>
+    <% end %>
+
+    <% unless @request.address == "" || @request.address == nil %>
+
+        <tr>
+        <th scope="row"></th>
+        <td><strong>Address</strong></td>
+        <td><%= @request.address %></td>
+      </tr>
+    <% end %>
+
+      <% if @request.radius%>
+        <tr>
+        <th scope="row"></th>
+        <td><strong>Radius</strong></td>
+        <td><%= @request.radius %> km</td>
+      </tr>
+    <% end %>
+
+    <% if @request.no_of_flat_mates%>
+        <tr>
+        <th scope="row"></th>
+        <td><strong>Max. number of flatmates</strong></td>
+        <td><%= @request.no_of_flat_mates %></td>
+      </tr>
+    <% end %>
+
+      <% if @request.size%>
+        <tr>
+        <th scope="row"></th>
+        <td><strong>Min. room size</strong></td>
+        <td><%= @request.size %> sqm</td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

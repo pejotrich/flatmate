@@ -1,0 +1,20 @@
+<% creator = User.find_by_id(@offer.creator_id) %>
+<div class="connection-chain">
+      <% private_share = @offer.request.private_shares.where(user: creator)[0] %>
+      <div class="person">
+        <%= image_tag current_user.photo, class: "avatar-bordered", alt: "avatar-bordered" %>
+        <p> You </p>
+      </div>
+      <p>|</p>
+      <% if private_share.sharer_id != current_user.id %>
+        <div class="person">
+          <%= image_tag User.find(private_share.sharer_id).photo, class: "avatar-bordered ", alt: "avatar-bordered" %>
+          <p> <%= User.find(private_share.sharer_id).first_name %></p>
+        </div>
+        <p>|</p>
+      <% end %>
+      <div class="person">
+        <%= image_tag creator.photo, class: "avatar-bordered", alt: "avatar-bordered" %>
+        <p><%= creator.first_name %></p>
+      </div>
+    </div>
