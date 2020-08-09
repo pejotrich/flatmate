@@ -10,76 +10,9 @@
           data: { confirm: "Are you sure?" } %></div></h1>
         </div>
 
-      <div class="request-table">
-        <br>
-        <br>
-        <table class="table table-hover">
+       <%= render "request_table" %>
 
-        <tbody>
-          <tr>
-            <th scope="row"></th>
-            <td><strong>City</strong></td>
-            <td><%= @request.city %></td>
-          </tr>
-
-          <tr>
-            <th scope="row"></th>
-            <td><strong>Budget</strong></td>
-            <td><%= @request.budget %> €</td>
-          </tr>
-        <% if @request.move_in_date_earliest %>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Earliest move-in date</strong></td>
-            <td><%= @request.move_in_date_earliest %></td>
-          </tr>
-        <% end %>
-
-          <% if @request.move_in_date_latest %>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Latest move-in date </strong></td>
-            <td><%= @request.move_in_date_earliest %></td>
-          </tr>
-        <% end %>
-
-        <% unless @request.address == "" || @request.address == nil %>
-
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Address</strong></td>
-            <td><%= @request.address %></td>
-          </tr>
-        <% end %>
-
-          <% if @request.radius%>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Radius</strong></td>
-            <td><%= @request.radius %> km</td>
-          </tr>
-        <% end %>
-
-        <% if @request.no_of_flat_mates%>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Max. number of flatmates</strong></td>
-            <td><%= @request.no_of_flat_mates %></td>
-          </tr>
-        <% end %>
-
-          <% if @request.size%>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Min. room size</strong></td>
-            <td><%= @request.size %> sqm</td>
-          </tr>
-        <% end %>
-          </tbody>
-        </table>
-      </div>
-
-
+    
 
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
       Edit request
@@ -146,8 +79,7 @@
         </div>
       </div>
     </div>
-  <% else %> <%# view for non-request-maker %>
-    <% private_share = current_user.private_shares.where(request: @request)[0] %>
+  <% else %> <%# if current user is not request-maker %>
     <div class="container">
       <div class="d-flex justify-content-around align-items-center">
         <h1>Room Search from <%= @request.user.first_name %> <%= @request.user.last_name %></h1>
@@ -155,87 +87,20 @@
       <div>
         <br>
         <br>
-        <table class="table table-hover">
+       <%= render "request_table" %>
 
-        <tbody>
-          <tr>
-            <th scope="row"></th>
-            <td><strong>City</strong></td>
-            <td><%= @request.city %></td>
-          </tr>
-
-          <tr>
-            <th scope="row"></th>
-            <td><strong>Budget</strong></td>
-            <td><%= @request.budget %> €</td>
-          </tr>
-        <% if @request.move_in_date_earliest %>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Earliest move-in date</strong></td>
-            <td><%= @request.move_in_date_earliest %></td>
-          </tr>
-        <% end %>
-
-          <% if @request.move_in_date_latest %>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Latest move-in date </strong></td>
-            <td><%= @request.move_in_date_earliest %></td>
-          </tr>
-        <% end %>
-
-        <% unless @request.address == "" || @request.address == nil %>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Address</strong></td>
-            <td><%= @request.address %></td>
-          </tr>
-        <% end %>
-
-          <% if @request.radius%>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Radius</strong></td>
-            <td><%= @request.radius %> km</td>
-          </tr>
-        <% end %>
-
-        <% if @request.no_of_flat_mates%>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Max. number of flatmates</strong></td>
-            <td><%= @request.no_of_flat_mates %></td>
-          </tr>
-        <% end %>
-
-          <% if @request.size%>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Min. room size</strong></td>
-            <td><%= @request.size %> sqm</td>
-          </tr>
-        <% end %>
-          </tbody>
-        </table>
-      </div>
-
-  <div class="d-flex">
-      <ul style="list-style: none; margin-top: 0px;">
-        <% if private_share.privacy_level %>
-          <li class="btn-offer btn-success btn white-link" style="margin-right: 0.5rem;"><%= link_to "Reshare request", new_request_private_share_path(@request) %></li>
-        <% else %>
-          <li style="margin-right: 0.5rem;"><%= @request.user.first_name  %> doesn't want you to share this request with your friends. </li>
-        <% end %>
-       <% if @request.offers.any? { |offer| offer.creator_id == current_user.id } %>
-          <li>You already made an offer.</li>
-        <% else %>
-          <li class="btn-offer btn-success btn white-link blue-hover"><%= link_to "Make an offer", new_request_offer_path(@request) %></li>
-        <% end %>
-      </ul>
-  </div>
-</div>
-<% end %>
+      <% if @request.privacy_level %>
+        <%= link_to "Reshare request", new_request_private_share_path(@request) %>
+      <% else %>
+        <p><%= @request.user.first_name  %> doesn't want you to share this request with your friends. </p>
+      <% end %>
+      <% if @request.offers.any? { |offer| offer.creator_id == current_user.id } %>
+        <p>You already made an offer.</p>
+      <% else %>
+        <%= link_to "Make an offer", new_request_offer_path(@request) %>
+      <% end %>
+    </div>
+  <% end %>
 
 
 
@@ -254,7 +119,7 @@
           <div class="modal-body">
             <div class="container">
 
-                <% @user = @current_user %>
+                <% @user = @request.user %>
       <% friends = @user.friends %>
 
       <% array = [] %>
