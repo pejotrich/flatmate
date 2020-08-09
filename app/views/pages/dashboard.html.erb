@@ -48,7 +48,7 @@
           <% request = share.request %>
           <% sharer = User.find(share.sharer_id)%>
           <% reshare = sharer != request.user %>
-          <div class="card-friend pb-2">
+          <div class="card-friend pb-2 status-notification">
             <% if share.request.user.photo %>
               <%= image_tag share.request.user.photo %>
             <% else %>
@@ -57,9 +57,9 @@
             <div class="card-friend-infos">
               <%# Request is new or offer has been made already? %>
               <% if request.offers.any? { |offer| offer.creator_id == @user.id } %>
-                <p>contacted</p>
+                <span class="status-label orange">contacted</span>
               <% else %>
-                <p>new</p>
+                <span class="status-label green">new</span>
               <% end %>
               <%#  %>
               <% if reshare %>
