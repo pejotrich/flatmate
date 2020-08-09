@@ -24,7 +24,9 @@ class PrivateSharesController < ApplicationController
   private
 
   def mark_as_shared
-    
+    first_private_share = PrivateShare.where(request: @request, user: current_user).first
+    first_private_share.shared = true
+    first_private_share.save
   end
 
   def set_request

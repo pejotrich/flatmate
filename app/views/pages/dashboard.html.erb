@@ -57,9 +57,11 @@
             <div class="card-friend-infos">
               <%# Request is new or offer has been made already? %>
               <% if request.offers.any? { |offer| offer.creator_id == @user.id } %>
-                <span class="status-label orange">contacted</span>
+                <span class="status-label orange">CONTACTED</span>
+              <% elsif share.shared %>
+                <span class="status-label orange">SHARED</span>
               <% else %>
-                <span class="status-label green">new</span>
+                <span class="status-label green">NEW</span>
               <% end %>
               <%#  %>
               <% if reshare %>
