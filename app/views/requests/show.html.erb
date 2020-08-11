@@ -1,4 +1,6 @@
 <div class="container">
+<%# ---------------------------------%>
+<%# if current user is request-maker %>
   <% if @request.user == current_user %>
     <div class="show-container">
       <div class=" room-request d-flex align-items-center">
@@ -10,94 +12,24 @@
           data: { confirm: "Are you sure?" } %></div></h1>
         </div>
 
-      <div class="request-table">
-        <br>
-        <br>
-        <table class="table table-hover">
-
-        <tbody>
-          <tr>
-            <th scope="row"></th>
-            <td><strong>City</strong></td>
-            <td><%= @request.city %></td>
-          </tr>
-
-          <tr>
-            <th scope="row"></th>
-            <td><strong>Budget</strong></td>
-            <td><%= @request.budget %> €</td>
-          </tr>
-        <% if @request.move_in_date_earliest %>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Earliest move-in date</strong></td>
-            <td><%= @request.move_in_date_earliest %></td>
-          </tr>
-        <% end %>
-
-          <% if @request.move_in_date_latest %>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Latest move-in date </strong></td>
-            <td><%= @request.move_in_date_earliest %></td>
-          </tr>
-        <% end %>
-
-        <% unless @request.address == "" || @request.address == nil %>
-
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Address</strong></td>
-            <td><%= @request.address %></td>
-          </tr>
-        <% end %>
-
-          <% if @request.radius%>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Radius</strong></td>
-            <td><%= @request.radius %> km</td>
-          </tr>
-        <% end %>
-
-        <% if @request.no_of_flat_mates%>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Max. number of flatmates</strong></td>
-            <td><%= @request.no_of_flat_mates %></td>
-          </tr>
-        <% end %>
-
-          <% if @request.size%>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Min. room size</strong></td>
-            <td><%= @request.size %> sqm</td>
-          </tr>
-        <% end %>
-          </tbody>
-        </table>
-      </div>
-
-    
+       <%= render "request_table" %>
 
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
       Edit request
       </button>
       <br>
       <br>
+
       <div class="row">
         <div class="column">
-          <% if @request.private_shares.empty? %>
           <h4>Friends helping you</h4>
             <br>
             <br>
-            <p>You haven't asked your friends for help yet. Do it now and let them connect you with people you'll love. </p>
-            <%= link_to "Ask friends for help", new_request_private_share_path(@request)  %>
-          <% else %>
-            <h4>Friends helping you</h4>
-            <br><br>
-            <div class="scroll-friends">
+            <% if @request.private_shares.empty? %>
+              <p>You haven't asked your friends for help yet. Do it now and let them connect you with people you'll love. </p>
+              <%= link_to "Ask friends for help", new_request_private_share_path(@request)  %>
+            <% else %>
+              <div class="scroll-friends">
               <% private_shares = @request.private_shares %>
               <% private_shares.each do |share| %>
                 <div class="card-friend">
@@ -115,9 +47,9 @@
                 <br>
               <% end %>
             </div>
-          <br>
-          <%= link_to "Ask more friends for help", new_request_private_share_path(@request)  %>
-          <% end %>
+              <br>
+              <%= link_to "Ask more friends for help", new_request_private_share_path(@request)  %>
+            <% end %>
         </div>
         <div class="column ml-3">
           <h4>Offers</h4>
@@ -128,25 +60,26 @@
           <% else %>
             <% offers = @request.offers %>
             <% offers.each do |offer| %>
-
-            <div class="card-friend">
-              <% creator = User.find_by_id(offer.creator_id) %>
-              <% if creator.photo%>
-                <%= image_tag creator.photo %>
-              <% else %>
-              <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-              <% end %>
-              <div class="card-friend-infos">
-                <h2><%= creator.first_name %> <%= creator.last_name %> sent you an offer.</h2>
-                <%= link_to "Check it out", request_offer_path(@request, offer) %>
+              <div class="card-friend">
+                <% creator = User.find_by_id(offer.creator_id) %>
+                <% if creator.photo%>
+                  <%= image_tag creator.photo %>
+                <% else %>
+                  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+                <% end %>
+                <div class="card-friend-infos">
+                  <h2><%= creator.first_name %> <%= creator.last_name %> sent you an offer.</h2>
+                  <%= link_to "Check it out", request_offer_path(@request, offer) %>
+                </div>
               </div>
-            </div>
             <% end %>
           <% end %>
         </div>
       </div>
     </div>
-  <% else %>
+  <%# ---------------------------------%>
+  <%# if current user is not request-maker %>
+  <% else %> 
     <div class="container">
       <div class="d-flex justify-content-around align-items-center">
         <h1>Room Search from <%= @request.user.first_name %> <%= @request.user.last_name %></h1>
@@ -154,183 +87,69 @@
       <div>
         <br>
         <br>
-        <table class="table table-hover">
-
-        <tbody>
-          <tr>
-            <th scope="row"></th>
-            <td><strong>City</strong></td>
-            <td><%= @request.city %></td>
-          </tr>
-
-          <tr>
-            <th scope="row"></th>
-            <td><strong>Budget</strong></td>
-            <td><%= @request.budget %> €</td>
-          </tr>
-        <% if @request.move_in_date_earliest %>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Earliest move-in date</strong></td>
-            <td><%= @request.move_in_date_earliest %></td>
-          </tr>
-        <% end %>
-
-          <% if @request.move_in_date_latest %>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Latest move-in date </strong></td>
-            <td><%= @request.move_in_date_earliest %></td>
-          </tr>
-        <% end %>
-
-        <% unless @request.address == "" || @request.address == nil %>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Address</strong></td>
-            <td><%= @request.address %></td>
-          </tr>
-        <% end %>
-
-          <% if @request.radius%>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Radius</strong></td>
-            <td><%= @request.radius %> km</td>
-          </tr>
-        <% end %>
-
-        <% if @request.no_of_flat_mates%>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Max. number of flatmates</strong></td>
-            <td><%= @request.no_of_flat_mates %></td>
-          </tr>
-        <% end %>
-
-          <% if @request.size%>
-            <tr>
-            <th scope="row"></th>
-            <td><strong>Min. room size</strong></td>
-            <td><%= @request.size %> sqm</td>
-          </tr>
-        <% end %>
-          </tbody>
-        </table>
+       <%= render "request_table" %>
+      <% private_share = current_user.private_shares.where(request: @request)[0] %>
+      <div class="d-flex">
+        <ul style="list-style: none;">
+          <% if private_share.privacy_level %>
+            <li class="btn-offer btn-success btn white-link" style="margin-right: 0.5rem;"><%= link_to "Reshare request", new_request_private_share_path(@request) %></li>
+          <% else %>
+            <p><%= @request.user.first_name  %> doesn't want you to share this request with your friends. </p>
+          <% end %>
+          <% if @request.offers.any? { |offer| offer.creator_id == current_user.id } %>
+            <p>You already made an offer.</p>
+          <% else %>
+            <li class="btn-offer btn-success btn white-link blue-hover"><%= link_to "Make an offer", new_request_offer_path(@request) %></li>
+          <% end %>
+        </ul>
       </div>
-      <% if @request.privacy_level %>
-        <%= link_to "Reshare request", new_request_private_share_path(@request) %>
-      <% else %>
-        <p><%= @request.user.first_name  %> doesn't want you to share this request with your friends. </p>
-      <% end %>
-      <% if @request.offers.any? { |offer| offer.creator_id == current_user.id } %>
-        <p>You already made an offer.</p>
-      <% else %>
-        <%= link_to "Make an offer", new_request_offer_path(@request) %>
-      <% end %>
     </div>
   <% end %>
 
+<%# -------------------------  %>
+<%# edit request modal  %>
 
-
-
-
-    <!-- Modal -->
-    <div class="modal" id="friendsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Choose friends</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-
-                <% @user = @request.user %>
-      <% friends = @user.friends %>
-
-      <% array = [] %>
-
-      <% friends.each do |friend| %>
-        <% if friend.friends.where(city: @request.city).count > 1 || friend.city == @request.city %>
-          <% array << friend %>
-        <% end %>
-      <% end %>
-
-      <% array.each do |friend| %>
-
-          <div class="card-friend">
-          <% if friend.photo  %>
-            <%= image_tag friend.photo if friend.photo %>
-          <% else %>
-            <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
-          <% end %>
-            <div class="card-friend-infos">
-              <h2><%= friend.first_name %> <%= friend.last_name %></h2>
-              <p>Lives in <strong><%= friend.city %></strong></p>
-              <p>Has <%= friend.friends.where(city: @request.city).count %> friends in <%= @request.city %></p>
-            </div>
-
-            <h2><i class="check-friend fas fa-check-circle "></i></h2>
-
+  <div class="modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit room request</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
         </div>
-        <br>
-
-        <% end %>
-
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit room request</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <%= simple_form_for @request do |f| %>
-              <%= f.input :city , :placeholder => "e.g. Berlin" %>
-              <%= f.input :budget, :placeholder => "max. price/month in €" %>
-              <%#= f.collection_select(:user_id, User.all, :city, :first_name, {:prompt => "Please Select at least one friend"}, {:multiple => true}) %>
-              <div class="accordion" id="accordionExample">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      More criteria
-                </button>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                  <strong><%= f.label "Move-in Date" %> </strong>
-                  <br>
-                  <%= f.label "Earliest" %>
-                  <%= f.input :move_in_date_earliest, as: :string, input_html: { class: "flatpickr" }, label: false%>
-                  <%= f.label "Latest" %>
-                  <%= f.input :move_in_date_latest, as: :string, input_html: { class: "flatpickr" }, label: false  %>
-                  <%= f.input :address , input_html: {value: ""} , :placeholder => "Wanna live close to a specific place?" %>
-                  <%= f.input :radius, input_html: {value: ""}, :placeholder => "What's your maximum radius? " %>
-                  <%= f.input :no_of_flat_mates, input_html: {value: ""}, :placeholder => "What's your maximum number of flatmates?" %>
-                  <%= f.input :size, input_html: {value: ""} , :placeholder => "What's the minimum size your room should have?" %>
-                </div>
+        <div class="modal-body">
+          <%= simple_form_for @request do |f| %>
+            <%= f.input :city , :placeholder => "e.g. Berlin" %>
+            <%= f.input :budget, :placeholder => "max. price/month in €" %>
+            <div class="accordion" id="accordionExample">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    More criteria
+              </button>
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <strong><%= f.label "Move-in Date" %> </strong>
+                <br>
+                <%= f.label "Earliest" %>
+                <%= f.input :move_in_date_earliest, as: :string, input_html: { class: "flatpickr" }, label: false%>
+                <%= f.label "Latest" %>
+                <%= f.input :move_in_date_latest, as: :string, input_html: { class: "flatpickr" }, label: false  %>
+                <%= f.input :address , input_html: {value: ""} , :placeholder => "Wanna live close to a specific place?" %>
+                <%= f.input :radius, input_html: {value: ""}, :placeholder => "What's your maximum radius? " %>
+                <%= f.input :no_of_flat_mates, input_html: {value: ""}, :placeholder => "What's your maximum number of flatmates?" %>
+                <%= f.input :size, input_html: {value: ""} , :placeholder => "What's the minimum size your room should have?" %>
               </div>
-              <%= f.submit "Submit", class: "btn btn-primary" %>
-            <% end %>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#friendsModal">
-              Choose friends
-            </button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
+            </div>
+            <%= f.submit "Submit", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#friendsModal">
+            Choose friends
+          </button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
+  </div>
 
 </div>

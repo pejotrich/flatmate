@@ -9,6 +9,10 @@ class OfferPolicy < ApplicationPolicy
     true
   end
 
+  def decline?
+    true
+  end
+
   def new?
     true
   end
@@ -19,6 +23,10 @@ class OfferPolicy < ApplicationPolicy
 
   def destroy?
     record.user == user
+  end
+
+  def accept?
+    true
   end
 
   def show?
