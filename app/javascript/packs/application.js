@@ -48,14 +48,19 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
 });
 
-const circles = document.querySelectorAll(".check-friend");
+const users = document.querySelectorAll(".sharing")
 
-
-circles.forEach((item) => {
-  item.addEventListener("click", (event) => {
-    item.classList.toggle("active");
+users.forEach((user) => {
+  const circle = user.querySelector(".check-friend");
+  circle.addEventListener("click", (event) => {
+    circle.classList.toggle("active")
+    const userId = (user.querySelector(".user_id").innerHTML)
+    const option = document.querySelector(`option[value=${CSS.escape(userId)}]`)
+    console.log(option)
+    option.toggleAttribute("selected")
   })
 })
+
 
 import 'select2/dist/css/select2.css';
 import { multipleSelect } from "../components/select";
