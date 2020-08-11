@@ -1,11 +1,9 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-<<<<<<< HEAD
-  <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "https://p.kindpng.com/picc/s/421-4212623_gd-avatar-alien-circle-hd-png-download.png" %>
-    <% end %>
-=======
-<%= link_to root_path, class: "navbar-brand" %>
->>>>>>> 1cf8cc7ad0a86ec2f7e0763fe294812db52c23a6
+  <%= link_to root_path, class: "navbar-brand" %>
+
+  <%= link_to root_path do %>
+   <%= image_tag "logo_roof.png", class: "roof-logo", alt: "Flatmate", width: 200 %>
+  <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -15,7 +13,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
     <li>
-          <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal">
+
+        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal">
           Create room request
         </button></li>
 
@@ -86,14 +85,14 @@
         </div>
       </div>
 
-      <%= f.submit "Submit", class: "btn btn-secondary" %>
+      <%= f.submit "Submit", class: "btn btn-light" %>
 
     <% end %>
 
       </div>
       <div class="modal-footer">
 
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
 
       </div>
     </div>
