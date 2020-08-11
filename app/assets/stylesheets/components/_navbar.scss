@@ -16,6 +16,11 @@
   color: whitesmoke !important;
 }
 
+.navbar-links-right {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .navbar-lewagon .navbar-brand img {
   width: 230px;
 }

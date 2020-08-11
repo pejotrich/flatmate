@@ -10,7 +10,7 @@
   </button>
 
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse navbar-links-right" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
     <li>
 
@@ -23,7 +23,9 @@
         <% @user = current_user %>
 
         <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
+          <%= link_to "#", class: "nav-link" do %>
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+          <% end %>
         </li>
         <li class="nav-item dropdown">
           <% if @user.photo %>
