@@ -1,9 +1,26 @@
 <div class="container">
-  <div class="card">
-    <%= simple_form_for [@request, @offer] do |f| %>
-      <%= f.input :first_message %>
-      <%= f.submit "Submit", class: "btn btn-primary" %>
-    <% end %>
+  <div class="d-flex">
+    <div class="request-card">
+      <div class="image-placeholder">
+        <div style="padding-top: 100%; background-color: rgb(218, 210, 209);">
+          <picture nopin="nopin">
+            <%= image_tag @request.user.photo %>
+          </picture>
+        </div>
+      </div>
+      <h3><%= @request.user.first_name %> <%= @request.user.last_name %></h3>
+      <h4>Is looking for a room in <%= @request.city %></h4>
+      <%= render "/requests/request_table" %>
+    </div>
+    <div class="card card-make-offer">
+      <h3>Make an offer</h3>
+      <div class="">
+        <%= simple_form_for [@request, @offer] do |f| %>
+          <%= f.input :first_message, :label => "Send a message", :input_html => {:rows => 10}%>
+          <%= f.submit "Submit", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 
