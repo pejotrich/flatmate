@@ -1,19 +1,9 @@
 <div class="container">
-  <div class="card-friend-offer" >
-    <% if @offer.status == "pending"  %>
-      <% creator = User.find_by_id(@offer.creator_id) %>
-      <%= image_tag creator.photo%>
-      <div class="class-friend-offer-infos" style="padding-left: 1rem; padding-right: 1rem;">
-        <h2><%= creator.first_name %> <%= creator.last_name %> sent you an offer!</h2>
-        <h5><%= @offer.first_message %></h5>
-        <div class="d-flex">
-          <ul style="list-style: none;">
-            <li class="btn-offer btn-danger btn-lg white-link" style="margin-right: 0.5rem;"><%= link_to "Decline",  request_offer_decline_path(@request, @offer), method: :post%></li>
-            <li class="btn-offer btn-success btn-lg white-link blue-hover"><%= link_to "Accept",  request_offer_accept_path(@request, @offer), method: :post%></li>
-          </ul>
-        </div>
-      <%  else %>
-        <% creator = User.find_by_id(@offer.creator_id) %>
+  <div class="offer-show">
+    <% creator = User.find_by_id(@offer.creator_id) %>  
+    <%= render "connection_chain" %>
+    <div class="card-friend-offer" >
+      <% if @offer.status == "pending"  %>
         <%= image_tag creator.photo%>
         <div class="class-friend-offer-infos" style="padding-left: 1rem; padding-right: 1rem;">
           <h2><%= creator.first_name %> <%= creator.last_name %> sent you an offer!</h2>
@@ -24,7 +14,20 @@
               <li class="btn-offer btn-success btn-lg white-link blue-hover"><%= link_to "Accept",  request_offer_accept_path(@request, @offer), method: :post%></li>
             </ul>
           </div>
-        <% end %>
+        <%  else %>
+          <% creator = User.find_by_id(@offer.creator_id) %>
+          <%= image_tag creator.photo%>
+          <div class="class-friend-offer-infos" style="padding-left: 1rem; padding-right: 1rem;">
+            <h2><%= creator.first_name %> <%= creator.last_name %> sent you an offer!</h2>
+            <h5><%= @offer.first_message %></h5>
+            <div class="d-flex">
+              <ul style="list-style: none;">
+                <li class="btn-offer btn-danger btn-lg white-link" style="margin-right: 0.5rem;"><%= link_to "Decline",  request_offer_decline_path(@request, @offer), method: :post%></li>
+                <li class="btn-offer btn-success btn-lg white-link blue-hover"><%= link_to "Accept",  request_offer_accept_path(@request, @offer), method: :post%></li>
+              </ul>
+            </div>
+          <% end %>
+      </div>
     </div>
   </div>
 </div>
