@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_092204) do
+ActiveRecord::Schema.define(version: 2020_08_09_150416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,8 @@ ActiveRecord::Schema.define(version: 2020_08_08_092204) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "privacy_level", default: false
+    t.integer "sharer_id"
+    t.boolean "shared", default: false
     t.index ["request_id"], name: "index_private_shares_on_request_id"
     t.index ["user_id"], name: "index_private_shares_on_user_id"
   end
@@ -127,6 +129,7 @@ ActiveRecord::Schema.define(version: 2020_08_08_092204) do
   add_foreign_key "offers", "users", column: "creator_id"
   add_foreign_key "private_shares", "requests"
   add_foreign_key "private_shares", "users"
+  add_foreign_key "private_shares", "users", column: "sharer_id"
   add_foreign_key "requests", "users"
   add_foreign_key "users", "flats"
 end
