@@ -1,0 +1,23 @@
+.status-notification {
+  
+  position: relative;
+
+}
+
+.status-notification .status-label {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  padding: 0px 8px;
+  border-radius: 2px;
+  color: white;
+  font-size: 12px;
+}
+
+.orange{
+  background-color: orange;
+}
+
+.green{
+  background-color: green;
+}
