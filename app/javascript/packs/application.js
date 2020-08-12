@@ -48,16 +48,30 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
 });
 
+
+//new private-shares
+
 const users = document.querySelectorAll(".sharing")
 
 users.forEach((user) => {
   const circle = user.querySelector(".check-friend");
-  circle.addEventListener("click", (event) => {
+  user.addEventListener("click", (event) => {
     circle.classList.toggle("active")
     const userId = (user.querySelector(".user_id").innerHTML)
     const option = document.querySelector(`option[value=${CSS.escape(userId)}]`)
-    console.log(option)
     option.toggleAttribute("selected")
+  })
+})
+
+users.forEach((user) => {
+  user.addEventListener("mouseenter", (event) => {
+    user.classList.toggle("darker")
+  })
+})
+
+users.forEach((user) => {
+  user.addEventListener("mouseleave", (event) => {
+    user.classList.toggle("darker")
   })
 })
 
