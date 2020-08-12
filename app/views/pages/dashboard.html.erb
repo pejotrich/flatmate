@@ -49,13 +49,7 @@
           <% sharer = User.find(share.sharer_id)%>
           <% reshare = sharer != request.user %>
           <div class="card-friend status-notification">
-            <% if share.request.user.photo %>
-              <%= image_tag share.request.user.photo %>
-            <% else %>
-            <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
-            <% end %>
-            <div class="card-friend-infos">
-              <%# Request is new or offer has been made already? %>
+            <%# Request is new or offer has been made already? %>
               <% if request.offers.any? { |offer| offer.creator_id == @user.id } %>
                 <span class="status-label orange">CONTACTED</span>
               <% elsif share.shared %>
@@ -64,6 +58,12 @@
                 <span class="status-label green">NEW</span>
               <% end %>
               <%#  %>
+            <% if share.request.user.photo %>
+              <%= image_tag share.request.user.photo %>
+            <% else %>
+            <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
+            <% end %>
+            <div class="card-friend-infos">
               <% if reshare %>
                 <p><%= sharer.first_name %> thinks you could help <strong><%= share.request.user.first_name %></strong> find a room.</p>
                 <p><%= link_to "View request", request_path(request) %></p>
