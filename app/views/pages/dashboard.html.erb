@@ -48,7 +48,7 @@
           <% request = share.request %>
           <% sharer = User.find(share.sharer_id)%>
           <% reshare = sharer != request.user %>
-          <div class="card-friend pb-2 status-notification">
+          <div class="card-friend status-notification">
             <% if share.request.user.photo %>
               <%= image_tag share.request.user.photo %>
             <% else %>

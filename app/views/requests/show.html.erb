@@ -29,26 +29,30 @@
               <p>You haven't asked your friends for help yet. Do it now and let them connect you with people you'll love. </p>
               <%= link_to "Ask friends for help", new_request_private_share_path(@request)  %>
             <% else %>
-              <div class="scroll-friends">
+
               <% private_shares = @request.private_shares %>
-              <% private_shares.each do |share| %>
-                <div class="card-friend">
-                  <% if share.user.photo %>
-                    <%= image_tag share.user.photo %>
-                  <% else %>
-                    <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
-                  <% end %>
-                  <div class="card-friend-infos">
-                    <h2><%= share.user.first_name %> <%= share.user.last_name %></h2>
-                    <p>Lives in <strong><%= share.user.city %></strong></p>
-                    <p>Has <%= share.user.friends.where(city: @request.city).count %> friends in <%= @request.city %></p>
+                <div class="grid" >
+                  <div class="scroll-friends-help">
+                    <div class="row row-grid">
+                      <% private_shares.each do |share| %>  
+                        <% if share.user.photo %>
+                          <div class="profile">
+                            <div class="imgBx">
+                              <%= image_tag share.user.photo %>
+                            </div>
+                            <div class="details">
+                              <h2><%= share.user.first_name %> <%= share.user.last_name %></h2>
+                              <p>Lives in <strong><%= share.user.city %></strong></p>
+                              <p>Has <%= share.user.friends.where(city: @request.city).count %> friends in <%= @request.city %></p>
+                            </div>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
-                <br>
-              <% end %>
-            </div>
+                <%= link_to "Ask more friends for help", new_request_private_share_path(@request)  %>
               <br>
-              <%= link_to "Ask more friends for help", new_request_private_share_path(@request)  %>
             <% end %>
         </div>
         <div class="column ml-3">
