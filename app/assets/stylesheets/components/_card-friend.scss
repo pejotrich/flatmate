@@ -67,3 +67,17 @@ i:hover {
 /* .active:hover {
   color: darkgray;
 } */
+.grid {
+  display: flex;
+}
+.square {
+  width: 200px;
+  height: 200%;
+  position: relative;
+}
+.square > img {
+  height: 200px;
+  width: 100%;
+  position: relative;
+  object-fit: cover;
+}

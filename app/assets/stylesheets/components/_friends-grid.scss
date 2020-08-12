@@ -1,0 +1,111 @@
+
+.box{
+  width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 0;
+  margin: 0 auto;
+}
+.profile{
+  position: relative;
+  width: 150px;
+  height: 150px;
+  background: #fff;
+  margin: 0;
+  border-radius: 4px;
+
+}
+.profile:before,
+.profile:after
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background: #fff;
+  transition: 0.5s;
+  z-index:-1;
+}
+.profile:hover:before{
+
+box-shadow: 0 2px 20px rgba(0,0,0,.2);
+}
+.profile:hover:after{
+
+box-shadow: 0 2px 20px rgba(0,0,0,.2);
+}
+.profile .imgBx{
+position: absolute;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+background: #222;
+transition: 0.5s;
+z-index: 1;
+}
+
+.profile:hover .imgBx
+{
+  bottom: 80px;
+}
+
+.profile .imgBx img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile .details{
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    height: 50px;
+    text-align: left;
+}
+
+.profile .details h2{
+ margin: 0;
+ padding: 0;
+ margin-bottom: 5px;
+ font-weight: 400;
+ font-size: 12px;
+ color: #777;
+
+} 
+
+.profile .details p{
+  margin: 0;
+  padding: 0;
+  padding-bottom: 2px;
+  font-weight: 400;
+  font-size: 10px;
+  color: #777;
+
+ } 
+
+.profile .details h2 span{
+font-weight: 500;
+font-size: 16px;
+color: #f38695;
+display: block;
+margin-top: 5px;
+ } 
+
+ .scroll-friends-help {
+  overflow: scroll;
+  block-size: 450px;
+  padding: 0;
+  border-radius: 3px;
+  width: fit-content;
+}
+
+.scroll-friends-help>.row {
+  padding: 0;
+}
