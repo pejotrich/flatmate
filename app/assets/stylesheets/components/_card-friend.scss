@@ -5,6 +5,7 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
+  width: 450px;
 }
 
 .card-friend img {
@@ -59,6 +60,24 @@ i:hover {
   color: cornflowerblue;
 }
 
+.darker {
+  background: lightgray;
+}
+
 /* .active:hover {
   color: darkgray;
 } */
+.grid {
+  display: flex;
+}
+.square {
+  width: 200px;
+  height: 200%;
+  position: relative;
+}
+.square > img {
+  height: 200px;
+  width: 100%;
+  position: relative;
+  object-fit: cover;
+}

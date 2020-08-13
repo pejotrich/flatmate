@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to root_path, class: "navbar-brand" %>
 
-  <%= link_to root_path do %>
+  <%= link_to dashboard_path do %>
    <%= image_tag "logo_roof.png", class: "roof-logo", alt: "Flatmate", width: 200 %>
   <% end %>
 
@@ -14,7 +14,7 @@
     <ul class="navbar-nav mr-auto">
     <li>
 
-        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="navbar-button" data-toggle="modal" data-target="#exampleModal">
           Create room request
         </button></li>
 
