@@ -53,9 +53,7 @@ class OffersController < ApplicationController
 
   def show1
     @offer = Offer.find(params[:offer_id])
-    # @user = User.find(@offer.creator_id)
-    # @message = Message.new()
-    # @message.offer = @offer
+    @message = Message.new()
     authorize @offer
   end
 
