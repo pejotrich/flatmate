@@ -9,6 +9,7 @@
   height: 500px;
   border-radius: 5px;
   text-align: center;
+  box-shadow: 0 0 6px rgba(0,0,0,0.19), 0 0px 1px rgba(0,0,0,0.23);
 }
 
 .card1 .row {
@@ -24,13 +25,16 @@
 .content {
   margin: 16px;
   padding: 16px;
+  margin-top: 55px;
+  padding-bottom: 0;
+  margin-bottom: 0;
   font-weight: 500;
   text-transform: uppercase;
 }
 
 .card1 .content-analytics {
   position: absolute;
-  bottom: 0;
+  top: 0;
   text-align: end;
   right: 30px;
 }
