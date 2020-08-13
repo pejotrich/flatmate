@@ -1,6 +1,6 @@
 <div class="container">
   <div class="offer-show">
-    <% creator = User.find_by_id(@offer.creator_id) %>  
+    <% creator = User.find_by_id(@offer.creator_id) %>
     <%= render "connection_chain" %>
     <div class="card-friend-offer" >
       <% if @offer.status == "pending"  %>

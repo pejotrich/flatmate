@@ -44,10 +44,16 @@ class OffersController < ApplicationController
     @user = User.find(@offer.creator_id)
     if @user.friend_request(@request.user)
       @request.user.accept_request(@user)
-      redirect_to root_path
+      redirect_to offer_show1_path(@offer)
     else
-      redirect_to root_path
+      redirect_to offer_show1_path(@offer)
     end
+    authorize @offer
+  end
+
+  def show1
+    @offer = Offer.find(params[:offer_id])
+    @message = Message.new()
     authorize @offer
   end
 

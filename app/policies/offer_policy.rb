@@ -17,6 +17,10 @@ class OfferPolicy < ApplicationPolicy
     true
   end
 
+  def show1?
+    true
+  end
+
   def update?
     record.user == user
   end
