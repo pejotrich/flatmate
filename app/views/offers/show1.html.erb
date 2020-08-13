@@ -1,8 +1,8 @@
 <div class="chatroom">
-  <h1><%= @offer.first_message %></h1>
 
   <div>
     <div id="messages" data-chatroom-id="<%= @offer.id %>">
+      <%= @offer.first_message %>
       <% @offer.messages.each do |message| %>
         <%= render "messages/message", message: message %>
       <% end %>
