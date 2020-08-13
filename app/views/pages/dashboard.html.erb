@@ -1,36 +1,53 @@
 <% @user = current_user %>
 <div class="container">
-  <div class="row">
-    <div class="column">
-      <div class="card1">
-        <div class="heading">
-          <h3>Your open request</h3>
-        </div>
-        <% if @my_requests.empty? %>
-          <p>You haven't created any requests yet.</p>
-          <%# @my_requests.each do |request| %>
-        <% else %>
+  <div class="card1">
+    <div class="heading">
+      <h3>Your open request</h3>
+    </div>
+    <% if @my_requests.empty? %>
+      <p>You haven't created any requests yet.</p>
+      <%# @my_requests.each do |request| %>
+    <% else %>
+      <div class="row">
+        <div class="column">
           <div class="content align-items-end">
             <% request = @my_requests.last %>
             <div class="d-flex justify-content-start align-items-center mb-5">
               <i class="fas fa-map-marked-alt mr-3"></i><p><%= request.city %></p>
-              </div>
-              <div class="d-flex justify-content-start align-items-center">
+            </div>
+            <div class="d-flex justify-content-start align-items-center">
               <i class="fas fa-coins mr-4"></i><p><%= request.budget %> €</p>
-              </div>
+            </div>
             <%# end %>
           </div>
-            <div class="d-flex justify-content-center mt-6">
-              <%= link_to "See more", request_path(request)%>
+        </div>
+        <div class="column">
+          <div class="content-analytics">
+            <p><%= request.private_shares.count %> people are helping you:</p>
+              <% private_shares = request.private_shares %>
+              <ul id="helping-friends">
+                <% private_shares.each do |share| %>
+                  <li>
+                    <% if share.user.photo %>
+                      <%= image_tag share.user.photo %>
+                    <% else %>
+                      <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
             </div>
-          <% end %>
-      </div>
-    </div>
-  <div class="column">
-  
+          </div>
+        </div>
+           
+            <%= link_to "See more", request_path(request)%>
+         
+    <% end %>
+  </div>  
+  <div class="cards">
     <div class="card2">
       <h3>Your offers</h3>
-      <%# @my_offers.flatten.each do |offer| %>
+        <%# @my_offers.flatten.each do |offer| %>
       <% if @my_requests.empty? %>
         <p>You don't have any offers yet.</p>
       <% else %>
@@ -38,54 +55,47 @@
         <% if offers.empty?  %>
           <p>You don't have any offers yet.</p>
         <% else %>
-        
           <% offers.each do |offer| %>
-            <div class="card-friend">
-                <% creator = User.find_by_id(offer.creator_id) %>
-                <% if creator.photo%>
-                  <%= image_tag creator.photo %>
-                <% else %>
-                  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-                <% end %>
-                <div class="card-friend-infos">
-                  <p><%= creator.first_name %> <%= creator.last_name %> sent you an offer.</p>
-                   <p><%= link_to "View offer", request_offer_path(offer.request, offer) %></p>
-                </div>
+            <div class="card-friend mb-3">
+              <% creator = User.find_by_id(offer.creator_id) %>
+              <% if creator.photo%>
+                <%= image_tag creator.photo %>
+              <% else %>
+                <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
+              <% end %>
+              <div class="card-friend-infos">
+                <p><%= creator.first_name %> <%= creator.last_name %> sent you an offer.</p>
+                <p><%= link_to "View offer", request_offer_path(offer.request, offer) %></p>
               </div>
-            
-           
+            </div>
           <% end %>
-          
         <% end %>
       <% end %>
     </div>
-
     <div class="card3">
       <h3>Friends asking for help</h3>
-       
       <% shares = @user.private_shares %>
       <% if shares.empty? %>
         <p>Nobody has asked you for help yet. </p>
       <% else %>
-     
         <% shares.each do |share| %>
           <% request = share.request %>
           <% sharer = User.find(share.sharer_id)%>
           <% reshare = sharer != request.user %>
-          <div class="card-friend status-notification">
+          <div class="card-friend status-notification mb-3">
             <%# Request is new or offer has been made already? %>
-              <% if request.offers.any? { |offer| offer.creator_id == @user.id } %>
-                <span class="status-label orange">CONTACTED</span>
-              <% elsif share.shared %>
-                <span class="status-label orange">SHARED</span>
-              <% else %>
-                <span class="status-label green">NEW</span>
-              <% end %>
-              <%#  %>
+            <% if request.offers.any? { |offer| offer.creator_id == @user.id } %>
+              <span class="status-label orange">CONTACTED</span>
+            <% elsif share.shared %>
+              <span class="status-label orange">SHARED</span>
+            <% else %>
+              <span class="status-label green">NEW</span>
+            <% end %>
+            <%#  %>
             <% if share.request.user.photo %>
               <%= image_tag share.request.user.photo %>
             <% else %>
-            <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
+              <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
             <% end %>
             <% if reshare %>
               <div class="image-placeholder-reshare">
@@ -109,11 +119,8 @@
           </div>
         <% end %>
       <% end %>
-     
-    </div>
- 
-</div>
-</div>
+    </div>  
+  </div>
 </div>
 
 
