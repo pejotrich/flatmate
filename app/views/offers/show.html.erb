@@ -4,7 +4,11 @@
     <%= render "connection_chain" %>
     <div class="card-friend-offer" >
       <% if @offer.status == "pending"  %>
-        <%= image_tag creator.photo%>
+        <% if creator.photo %>
+          <%= image_tag creator.photo%>
+        <% else %>
+          <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
+        <% end %>
         <div class="class-friend-offer-infos" style="padding-left: 1rem; padding-right: 1rem;">
           <h2><%= creator.first_name %> <%= creator.last_name %> sent you an offer!</h2>
           <h5><%= @offer.first_message %></h5>
@@ -16,7 +20,11 @@
           </div>
         <%  else %>
           <% creator = User.find_by_id(@offer.creator_id) %>
+           <% if creator.photo %>
           <%= image_tag creator.photo%>
+          <% else %>
+            <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
+          <% end %>
           <div class="class-friend-offer-infos" style="padding-left: 1rem; padding-right: 1rem;">
             <h2><%= creator.first_name %> <%= creator.last_name %> sent you an offer!</h2>
             <h5><%= @offer.first_message %></h5>
