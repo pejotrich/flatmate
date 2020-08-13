@@ -6,24 +6,125 @@
 
 .card1 {
   background-color: white;
-  margin-top: 100px;
-  padding: 40px;
+  height: 500px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 0 6px rgba(0,0,0,0.19), 0 0px 1px rgba(0,0,0,0.23);
+}
+
+.card1 .row {
+  padding-top: 0;
+  margin-bottom: 30px;
+}
+
+.card1 .column {
+  padding-top: 0;
+  position: relative;
+}
+
+.content {
+  margin: 16px;
+  padding: 16px;
+  margin-top: 55px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.card1 .content-analytics {
+  position: absolute;
+  top: 0;
+  text-align: end;
+  right: 30px;
+}
+
+.content p {
+  margin-bottom: 0;
 }
 
 .card2 {
   background-color: white;
   padding: 40px;
-  width: 500px;
+  width: 518px;
+  height: 400px;
+  margin-bottom: 20px;
+  border-top: solid 8px rgb(47, 42, 79);
+  border-radius: 5px;
+  max-height: 400px;
+  overflow-y: scroll;
+  float: left;
 
 }
+
 
 
 .card3 {
   background-color: white;
   padding: 40px;
-  width: 500px;
-  height: 700px
+  width: 518px;
+  height: 400px;
+  border-top: solid 8px rgb(225, 150, 38);
+  border-radius: 5px;
+  max-height: 400px;
+  overflow-y: scroll;
+  float: left;
+}
+
+.card2, .card3 h3 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.card2 h3 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.heading {
+  padding: 16px;
+  margin-bottom: 0;
+  height: 188px;
+  background-image: url(https://img.freepik.com/free-vector/silhouette-skyline-illustration_53876-78786.jpg?size=626&ext=jpg);
+  background-position: 150px -39px;
+  background-repeat: no-repeat;
+  text-align: center;
+  background-color: #EFEFED;
+  border-radius: 5px;
+}
+
+.heading h3 {
+  margin-top: 20px;
+}
+
+.scroll-offers {
+  overflow: scroll;
+  block-size: 200px;
+  border: solid 1px lightgray;
+  padding: 14px;
+  border-radius: 3px;
+  width: fit-content;
 
 }
 
+#helping-friends img {
+  border-radius: 50%;
+  border: 3px solid white;
+  width: 50px;
+  height: 100%;
+  object-fit: cover;
+}
 
+#helping-friends {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+#helping-friends li {
+  margin-right: -1.3em;
+  width: 50px;
+  height: 50px;
+}
