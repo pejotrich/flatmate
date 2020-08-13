@@ -1,8 +1,12 @@
 <div class="chatroom">
-
+  <% @user = User.find(@offer.creator_id) %>
   <div>
     <div id="messages" data-chatroom-id="<%= @offer.id %>">
-      <%= @offer.first_message %>
+      <i class="author">
+        <span><%= @user.first_name%></span>
+        <small><%= @offer.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+      </i>
+      <p style="font-weight:bold">Initial Message: <%= @offer.first_message %></p>
       <% @offer.messages.each do |message| %>
         <%= render "messages/message", message: message %>
       <% end %>
