@@ -20,10 +20,11 @@
     <div class="card2">
       <h3>Your offers</h3>
       <%# @my_offers.flatten.each do |offer| %>
-      <% if @my_requests.empty? %>
+      <div class="subcard1">
+        <% if @my_requests.empty? %>
         <p>You don't have any offers yet.</p>
       <% else %>
-        <% offers = request.offers %>  
+        <% offers = request.offers %>
         <% if offers.empty?  %>
           <p>You don't have any offers yet.</p>
         <% else %>
@@ -36,11 +37,13 @@
           <% end %>
         <% end %>
       <% end %>
+      </div>
     </div>
 
     <div class="card3">
       <h3>Friends asking for help</h3>
-      <% shares = @user.private_shares %>
+      <div class="subcard2">
+        <% shares = @user.private_shares %>
       <% if shares.empty? %>
         <p>Nobody has asked you for help yet. </p>
       <% else %>
@@ -76,6 +79,7 @@
           </div>
         <% end %>
       <% end %>
+      </div>
     </div>
   </div>
 </div>
