@@ -28,7 +28,7 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
     @request.destroy
 
-    redirect_to root_path
+    redirect_to dashboard_path
     authorize @request
 
   end
