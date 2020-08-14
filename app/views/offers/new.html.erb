@@ -4,7 +4,11 @@
       <div class="image-placeholder">
         <div style="padding-top: 100%; background-color: rgb(218, 210, 209);">
           <picture nopin="nopin">
-            <%= image_tag @request.user.photo %>
+            <% if @request.user.photo %>
+              <%= image_tag @request.user.photo%>
+            <% else %>
+              <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
+            <% end %>
           </picture>
         </div>
       </div>

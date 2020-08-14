@@ -27,7 +27,9 @@
             <br>
             <% if @request.private_shares.empty? %>
               <p>You haven't asked your friends for help yet. Do it now and let them connect you with people you'll love. </p>
-              <%= link_to "Ask friends for help", new_request_private_share_path(@request)  %>
+              <button type="button btn-primary" class="btn btn-primary" data-toggle="modal" data-target="#friendsModal">
+                Ask friends for help
+              </button>
             <% else %>
 
               <% private_shares = @request.private_shares %>
@@ -51,7 +53,9 @@
                     </div>
                   </div>
                 </div>
-                <%= link_to "Ask more friends for help", new_request_private_share_path(@request)  %>
+                <button type="button btn-primary" class="btn btn-primary" data-toggle="modal" data-target="#friendsModal">
+                  Ask more friends for help
+                </button>
               <br>
             <% end %>
         </div>
@@ -156,4 +160,26 @@
     </div>
   </div>
 
+</div>
+
+<!-- Modal -->
+<div class="modal" id="friendsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ask friends for help</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+        <%= render "shared/friends" %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
