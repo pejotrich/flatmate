@@ -64,7 +64,7 @@
           <br><br>
           <% if @request.offers.empty? %>
             <p>You don't have any offers yet. Have a coffee while waiting and help someone else in the meantime for some good karma.</p>
-            <%= link_to "Help friends", root_path %>
+            <%= link_to "Help friends", dashboard_path %>
           <% else %>
             <% offers = @request.offers %>
             <% offers.each do |offer| %>

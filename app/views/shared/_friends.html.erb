@@ -29,7 +29,7 @@
       <div hidden>
         <% if friends.empty? %>
           <br>
-          <p>You don't have any friends yet. <%= link_to "Find friends now", root_path %></p>
+          <p>You don't have any friends yet. <%= link_to "Find friends now", dashboard_path %></p>
           <br>
         <% else %>
           <%= simple_form_for [ @request, @private_share ] do |f| %>
