@@ -1,0 +1,110 @@
+<% @user = current_user %>
+<% @private_share = PrivateShare.new %>
+<% friends = @user.friends %>
+<% friends_in_city = [] %>
+<% friends_with_friends = [] %>
+<% others = [] %>
+<% friends.each do |friend| %>
+  <% if friend.city == @request.city %>
+    <% friends_in_city << friend %>
+  <% end %>
+<% end %>
+
+<% friends.each do |friend| %>
+  <% if friend.friends.where(city: @request.city).count > 5 && friend.city != @request.city%>
+    <% friends_with_friends << friend %>
+  <% end %>
+<% end %>
+
+
+<% friends.each do |friend| %>
+  <% if friend.friends.where(city: @request.city).count < 5 && friend.city != @request.city %>
+    <% others << friend %>
+  <% end %>
+<% end %>
+
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8">
+      <div hidden>
+        <% if friends.empty? %>
+          <br>
+          <p>You don't have any friends yet. <%= link_to "Find friends now", root_path %></p>
+          <br>
+        <% else %>
+          <%= simple_form_for [ @request, @private_share ] do |f| %>
+            <%= f.input :user do %>
+              <%= f.select :user_id, friends.map{ |l| ["#{l.first_name} #{l.last_name} (lives in #{l.city}, has #{l.friends.where(city: @request.city).count} friends in #{@request.city})", l.id, {:first_name => l.first_name}] }, { :prompt => false},
+              { :multiple => true } %>
+            <% end %> 
+          
+      </div>
+      <div class="scroll-friends">
+        <% friends_in_city.each do |friend| %>
+          <div class="card-friend sharing">
+            <% if friend.photo %>
+              <%= image_tag friend.photo %>
+            <% else %>
+              <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
+            <% end %>
+            <div class="card-friend-infos">
+              <p class="user_id" hidden><%= friend.id %></p>
+              <h2><%= friend.first_name %> <%= friend.last_name %></h2>
+              <p>Lives in <strong><%= friend.city %></strong></p>
+              <p>Has <%= friend.friends.where(city: @request.city).count %> friends in <%= @request.city %></p>
+            </div>
+            <h2><i class="check-friend fas fa-check-circle "></i></h2>
+          </div>
+          <br>
+        <% end %>
+        <% friends_with_friends.each do |friend| %>
+          <div class="card-friend sharing">
+            <% if friend.photo %>
+              <%= image_tag friend.photo %>
+            <% else %>
+              <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
+            <% end %>
+            <div class="card-friend-infos">
+              <p class="user_id" hidden><%= friend.id %></p>
+              <h2><%= friend.first_name %> <%= friend.last_name %></h2>
+              <p>Lives in <strong><%= friend.city %></strong></p>
+              <p>Has <%= friend.friends.where(city: @request.city).count %> friends in <%= @request.city %></p>
+            </div>
+            <h2><i class="check-friend fas fa-check-circle "></i></h2>
+          </div>
+          <br>
+        <% end %>
+          <% others.each do |friend| %>
+          <div class="card-friend sharing">
+            <% if friend.photo %>
+              <%= image_tag friend.photo %>
+            <% else %>
+              <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
+            <% end %>
+            <div class="card-friend-infos">
+              <p class="user_id" hidden><%= friend.id %></p>
+              <h2><%= friend.first_name %> <%= friend.last_name %></h2>
+              <p>Lives in <strong><%= friend.city %></strong></p>
+              <p>Has <%= friend.friends.where(city: @request.city).count %> friends in <%= @request.city %></p>
+            </div>
+            <h2><i class="check-friend fas fa-check-circle "></i></h2>
+          </div>
+          <br>
+        <% end %>
+      </div>
+          <% if @request.user == current_user %> <%# Only request-maker can set privacy level  %>
+          <br>
+              <div class="custom-control custom-switch">
+                <%= f.input_field :privacy_level, class: "custom-control-input", id: "customSwitch1"   %>
+                <label class="custom-control-label" for="customSwitch1"> Allow friends to reshare request </label>
+              </div>
+          <% end %> 
+          <br>
+          <%= f.submit "Add friends", class: 'btn btn-primary' %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+ 
+  
