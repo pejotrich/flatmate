@@ -6,7 +6,10 @@
   display: flex;
   align-items: center;
   width: 450px;
+
 }
+
+
 
 .card-friend img {
   height: 100%;
@@ -30,6 +33,10 @@
 
 .card-friend .card-friend-infos {
   padding: 16px;
+  padding-left: 45px;
+  padding-right: 10px;
+  /* position: absolute; */
+  /* right: 95px; */
 }
 
 .check-icon {
@@ -80,4 +87,9 @@ i:hover {
   width: 100%;
   position: relative;
   object-fit: cover;
+}
+
+.sharing {
+  justify-content: space-between;
+  padding-right: 20px;
 }
