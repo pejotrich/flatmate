@@ -44,9 +44,9 @@ class OffersController < ApplicationController
     @user = User.find(@offer.creator_id)
     if @user.friend_request(@request.user)
       @request.user.accept_request(@user)
-      redirect_to request_offer_path(@request, @offer)
+      # redirect_to request_offer_path(@request, @offer)
     else
-      redirect_to request_offer_path(@request, @offer)
+      # redirect_to request_offer_path(@request, @offer)
     end
     authorize @offer
   end

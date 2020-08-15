@@ -20,9 +20,9 @@
 
               <%= simple_form_for [ @offer, @message ], remote: true do |f| %>
                 <%= f.input :content, label: false %>
-                <div class="flex" style="justify-content: flex-end; margin-top: 8px;">
-                  <%= f.button :submit, "Decline", name: "status", value: "declined", class: "btn-offer btn-danger btn-lg white-link"%>
-                  <%= f.button :submit, "Connect", name: "status", value: "accepted", class: "btn-offer btn-success btn-lg white-link"%>
+                <div class="d-flex" style="justify-content: flex-end; margin-top: 8px;">
+                  <button value="declined" name="status" class="btn-offer btn-danger btn-lg white-link" style="justify-content: flex-end;">Decline</button>
+                  <button value="accepted" name="status" class="btn-offer btn-success btn-lg white-link" style="justify-content: flex-end; margin-left: 4px">Accept</button>
                 </div>
               <% end %>
             </div>
@@ -59,6 +59,14 @@
               <%= f.button :submit, "Send Message", class: "btn btn-message" %>
             <% end %>
           <% end %>
+
+          <% if @offer.status.nil? %>
+            <%= simple_form_for [ @offer, @message ], remote: true do |f| %>
+              <%= f.input :content, label: false %>
+              <%= f.button :submit, "Send Message", class: "btn btn-message" %>
+            <% end %>
+          <% end %>
+
         </div>
       </div>
     </div>
