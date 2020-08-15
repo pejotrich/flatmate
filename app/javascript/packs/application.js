@@ -50,6 +50,9 @@ document.addEventListener('turbolinks:load', () => {
 
 
 //new private-shares
+particlesJS.load('particles-js', 'assets/particles.json', function() {
+  console.log('callback - particles.js config loaded');
+});
 
 const users = document.querySelectorAll(".sharing")
 
