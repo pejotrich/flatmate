@@ -13,4 +13,9 @@ Rails.application.routes.draw do
      end
     resources :private_shares, only: [ :new, :create ]
   end
+
+  resources :offers, only: :show1 do
+    get :show1
+    resources :messages, only: [ :create]
+  end
 end
