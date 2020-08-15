@@ -1,0 +1,28 @@
+.request-view {
+  padding-bottom: 90px;
+  width: 33%;
+  background: #fff;
+  -webkit-box-shadow: 0 10px 20px 5px rgba(0,0,0,.05);
+  box-shadow: 0 10px 20px 5px rgba(0,0,0,.05);
+  position: relative;
+  padding: 0;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding-bottom: 0px;
+  text-align: center;
+  height: 92%;
+
+}
+
+.request-view img {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-bottom: -50px;
+}
+
+.request-view .request-table {
+ padding: 0;
+ display: block;
+ text-align: left;
+}
