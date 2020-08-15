@@ -1,10 +1,15 @@
 // Specific CSS for your home-page
 .jumbotron {
-  background-image: asset-url('apartment.jpg');
-  background-size: cover;
+  background-image: asset-url('fm4.jpg');
   padding: 180px 0;
+  background-repeat: no-repeat;
+  background-size: 765px 500px;
 }
 
+.h1 {
+  display: flex;
+  justify-content: flex-end;
+}
 .cards {
   display: flex;
   justify-content: space-around;
@@ -46,4 +51,6 @@
   color: black;
   background-color: white;
 }
+
+
 
