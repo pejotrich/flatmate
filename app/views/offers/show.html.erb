@@ -17,13 +17,17 @@
                 <small><%= @offer.created_at.strftime("%a %b %e at %l:%M%p") %></small>
               </i>
               <p><%= @offer.first_message %></p>
-              <div class="d-flex">
-                <ul style="list-style: none;">
-                  <li class="btn-offer btn-danger btn-lg white-link" style="margin-right: 0.5rem;"><%= link_to "Decline",  request_offer_decline_path(@request, @offer), method: :post%></li>
-                  <li class="btn-offer btn-success btn-lg white-link blue-hover"><%= link_to "Accept", request_offer_accept_path(@request, @offer), method: :post%></li>
-                </ul>
-              </div>
+
+              <%= simple_form_for [ @offer, @message ], remote: true do |f| %>
+                <%= f.input :content, label: false %>
+                <div class="flex" style="justify-content: flex-end; margin-top: 8px;">
+                  <%= f.button :submit, "Decline", name: "status", value: "declined", class: "btn-offer btn-danger btn-lg white-link"%>
+                  <%= f.button :submit, "Connect", name: "status", value: "accepted", class: "btn-offer btn-success btn-lg white-link"%>
+                </div>
+              <% end %>
             </div>
+          </div>
+        </div>
           <% elsif @offer.status === "declined"%>
             <div id="messages" data-chatroom-id="<%= @offer.id %>">
               <i class="author">
@@ -31,6 +35,9 @@
                 <small><%= @offer.created_at.strftime("%a %b %e at %l:%M%p") %></small>
               </i>
               <p><%= @offer.first_message %></p>
+              <% @offer.messages.each do |message| %>
+                <%= render "messages/message", message: message %>
+              <% end %>
             </div>
             <p>THe offer was declined</p>
           <% elsif @offer.status === "accepted" %>
@@ -49,7 +56,7 @@
           <% if @offer.status == "accepted" %>
             <%= simple_form_for [ @offer, @message ], remote: true do |f| %>
               <%= f.input :content, label: false %>
-              <%= f.submit %>
+              <%= f.button :submit, "Send Message", class: "btn btn-message" %>
             <% end %>
           <% end %>
         </div>

@@ -16,13 +16,8 @@ ul {
   margin-top: 1rem;
 }
 
-.btn-success:hover {
-  background-color: #92BFE2;
-}
-
 .btn-offer {
   border-radius: 5px;
-  background-color: #3E2F5B;
   border-style: none;
 }
 
@@ -30,6 +25,13 @@ ul {
   height: 100%;
   width: 200px;
   object-fit: cover;
+}
+
+.btn-message {
+  margin-top: 4px;
+  border-radius: 5px;
+  border-style: none;
+  background-color: #8BE8CB;
 }
 
 .card-friend-offer h2 {
