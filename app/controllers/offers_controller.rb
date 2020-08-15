@@ -44,9 +44,9 @@ class OffersController < ApplicationController
     @user = User.find(@offer.creator_id)
     if @user.friend_request(@request.user)
       @request.user.accept_request(@user)
-      redirect_to offer_show1_path(@offer)
+      # redirect_to request_offer_path(@request, @offer)
     else
-      redirect_to offer_show1_path(@offer)
+      # redirect_to request_offer_path(@request, @offer)
     end
     authorize @offer
   end
@@ -65,9 +65,9 @@ class OffersController < ApplicationController
     @user = User.find(@offer.creator_id)
     if @user.friend_request(@request.user)
       @request.user.decline_request(@user)
-      redirect_to dashboard_path
+      redirect_to request_offer_path(@request, @offer)
     else
-      redirect_to dashboard_path
+      redirect_to request_offer_path(@request, @offer)
     end
     authorize @offer
   end
@@ -75,6 +75,7 @@ class OffersController < ApplicationController
   def show
     @request = Request.find(params[:request_id])
     @offer = Offer.find(params[:id])
+    @message = Message.new()
     authorize @offer
   end
 
