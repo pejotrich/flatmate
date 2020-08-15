@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: #e100ff;
+  background: #030B52;
 
 }
 
@@ -23,6 +23,8 @@
 
 .nav-link {
   color: whitesmoke !important;
+  font-family: "Noto Serif";
+  font-weight: 300;
 }
 
 .fa-envelope {
@@ -58,4 +60,10 @@
   border-radius: 50%;
   overflow: hidden;
 
+}
+
+.green-btn {
+  background-color: #8BE8BC;
+  padding: 5px 10px;
+  border-radius: 2px;
 }

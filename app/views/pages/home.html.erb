@@ -29,6 +29,14 @@
 
   <div class="text-box">
     <h1>Find a Flatmate within your circle of friends</h1>
+    <% if user_signed_in? %>
+      <button type="button" class="green-btn"
+      data-toggle="modal" data-target="#exampleModal">
+        Create room request
+      </button>
+    <% else %>
+      <%= link_to "Create room request", dashboard_path, class: "green-btn" %>
+    <% end %>
   </div>
 </div>
 
