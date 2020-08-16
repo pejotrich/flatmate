@@ -13,8 +13,39 @@
           <% request = share.request %>
           <% sharer = User.find(share.sharer_id)%>
           <% reshare = sharer != request.user %>
+         
+
+          <div class="timeline-item">
+            <div class="item-head">
+              <div class="image-placeholder-absolute">
+                <div style="padding-top: 100%; background-color: rgb(218, 210, 209);">
+                  <picture nopin="nopin">
+                    <%= image_tag sharer.photo %>
+                  </picture>
+                </div>
+              </div>
+              <div class="requester image-placeholder-absolute">
+                <div style="padding-top: 100%; background-color: rgb(218, 210, 209);">
+                  <picture nopin="nopin">
+                    <%= image_tag request.user.photo %>
+                  </picture>
+                </div>
+              </div>
+            </div>
+            <div class="content-wrapper">
+          <div class="news-card">
+            <div class="news-card__card-link"></div>
+            <%= image_tag "https://images.unsplash.com/photo-1597536077173-8dbd44f1eaa2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" %>
+            <div class="news-card__text-wrapper">
+             <i class="fas fa-map-marker">  <%= request.city %></i>
+            <p><%= sharer.first_name %> thinks you could help <strong><%= share.request.user.first_name %></strong> find a room.</p>
+            </div>
+          </div>
+        </div>
+          </div>
           <div class="timeline-item">
             <div class="card-asking status-notification mb-3">
+
               <%# Request is new or offer has been made already? %>
               <% if request.offers.any? { |offer| offer.creator_id == @user.id } %>
                 <span class="status-label orange">CONTACTED</span>
@@ -30,7 +61,7 @@
                 <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
               <% end %>
               <% if reshare %>
-              <div>
+           
                 <div class="image-placeholder-reshare">
                   <div style="padding-top: 100%; background-color: rgb(218, 210, 209);">
                     <picture nopin="nopin">
@@ -38,7 +69,7 @@
                     </picture>
                   </div>
                 </div>
-              </div>
+              
               <% end %>
               <div class="card-asking-infos">
                 <% if reshare %>
@@ -67,6 +98,8 @@
       <% move_to = move.city %>
       <% from_url = "https://source.unsplash.com/1200x630/?#{move_from},sights" %>
       <% to_url = "https://source.unsplash.com/1200x630/?#{move_to},sights" %>
+  
+
 
       <div class="timeline-item">
         <div class="content-wrapper">
