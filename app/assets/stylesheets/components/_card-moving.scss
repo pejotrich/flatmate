@@ -35,6 +35,9 @@
   z-index: 1;
   transition: all .5s ease-out;
   border: solid #F4F4F4 3px;
+  transform: scale(.84) translateX(15%) rotateZ(calc(-1 * (11 * 1deg)));
+  transform-origin: 0 100%;
+  transition: transform .2s ease-out;
 }
 
 
@@ -63,6 +66,8 @@ img {
 .image-placeholder-absolute>div>picture img {
   width: 100%;
   border-radius: 0;
+  transform: scale(1.2) rotateZ(calc(11 * 1deg));
+  transition: transform .2s ease-out;
 }
 
 .requester {
@@ -72,3 +77,20 @@ img {
 }
 
 
+.all-done>img {
+  height: 200px;
+  opacity: 45%;
+  margin: 0px 34%;
+}
+
+.all-done {
+
+padding: 0;
+margin-top: -20px;
+
+p {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 12px;
+
+}}
