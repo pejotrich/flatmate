@@ -24,7 +24,7 @@
             <% city = request.city %>
             <% city_url = "https://source.unsplash.com/1200x630/?#{city},sights" %>
             <div class="timeline-item">
-              <div class="item-head">
+              <div class="item-head higher">
                 <% if reshare %>
                   <div class="image-placeholder-absolute">
                     <div style="padding-top: 100%; background-color: rgb(218, 210, 209);">
@@ -41,6 +41,7 @@
                     </picture>
                   </div>
                 </div>
+                <i class="fas fa-map-marker">  <%= request.city %></i>
               </div>
               <div class="content-wrapper">
                 <%= link_to request_path(request) do %>
@@ -48,7 +49,6 @@
                     <div class="news-card__card-link"></div>
                     <%= image_tag city_url %>
                     <div class="news-card__text-wrapper">
-                    <i class="fas fa-map-marker">  <%= request.city %></i>
                     <% if reshare %>
                       <p><%= sharer.first_name %> thinks you could help <strong><%= share.request.user.first_name %></strong> find a room. </p>
                     <% else %>
@@ -64,7 +64,9 @@
         <% end %>   
       <% end %>
     <% end %>
-
+    <div class="timeline-item no-dot">
+      <hr class="solid">
+    </div>
     <% friends = @user.friends %>
     <% moves = [] %>
     <% friends.each do |friend| %>
@@ -76,28 +78,34 @@
       <% move_from = friend.city %>
       <% move_to = move.city %>
       <% from_url = "https://source.unsplash.com/1200x630/?#{move_from},sights" %>
-      <% to_url = "https://source.unsplash.com/1200x630/?#{move_to},sights" %>
-
-
+      <% to_url = "https://source.unsplash.com/1200x630/?#{move_to},city" %>
 
       <div class="timeline-item">
-        <div class="content-wrapper">
-          <div class="news-card">
-            <div class="news-card__card-link"></div>
-            <%= image_tag from_url %>
-            <div class="image-placeholder-reshare">
-              <div style="padding-top: 100%; background-color: rgb(218, 210, 209);">
-                <picture nopin="nopin">
-                  <%= image_tag friend.photo %>
-                </picture>
-              </div>
+        <div class="item-head">
+          <div class="friend image-placeholder-absolute">
+            <div style="padding-top: 100%; background-color: rgb(218, 210, 209);">
+              <picture nopin="nopin">
+                <%= image_tag friend.photo %>
+              </picture>
             </div>
-            <div class="news-card__text-wrapper">
-              <p class="news-card__title"><%= friend.first_name %> wants to move from <%= move_from %> to <%= move_to %> </p>
+          </div>
+          <div class="card-test">
+            <div class="details">
+              <h5 class="news-card__title"><%= friend.first_name %> wants to move from <%= move_from %> to <%= move_to %> </h5>
+             <%= link_to "Can you help?", request_path(move) %>
+            </div>
+            <div class="masked">
+              <%= image_tag from_url %>
+            </div>
+            <div class="masked-reverse">
+              <%= image_tag to_url %>
             </div>
           </div>
         </div>
       </div>
+
+      
+
     <% end %>
   </div>
   </div>
