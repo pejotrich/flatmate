@@ -64,21 +64,47 @@
       <% @request = Request.new %>
             <%= simple_form_for @request do |f| %>
       <%= f.input :city , input_html: {value: "", id: "city"}, :placeholder => "e.g. Berlin" %>
-      <%= f.input :budget, input_html: {value: ""}, :placeholder => "max. Price/month in €" %>
+      <div class="form-group integer required request_budget">
+        <label class="integer required" for="request_budget">Budget 
+          <abbr title="required">*</abbr>
+        </label>
+        <div class="range-slider">
+          <input class="form-control numeric integer required range-slider__range" value="0" placeholder="max. Price/month in €" type="range" step="1" min="0" max="2000" name="request[budget]" id="request_budget">
+          <span class="range-slider__value">500</span><p>€</p>
+        </div>
+      </div>
+        <hr class="solid">
+      <%#= f.input :budget, input_html: {value: ""}, :placeholder => "max. Price/month in €" %>
       <%#= f.collection_select(:user_id, User.all, :city, :first_name, {:prompt => "Please Select at least one friend"}, {:multiple => true}) %>
       <div class="accordion" id="accordionExample">
         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               More criteria
         </button>
+          <hr class="solid">
         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
           <strong><%= f.label "Move-in Date" %> </strong>
           <br>
-          <%= f.label "Earliest" %>
-          <%= f.input :move_in_date_earliest, as: :string, input_html: { class: "flatpickr" }, label: false%>
-          <%= f.label "Latest" %>
-          <%= f.input :move_in_date_latest, as: :string, input_html: { class: "flatpickr" }, label: false  %>
+          <div class="move-in">
+            <div class="space">
+              <%= f.input :move_in_date_earliest, as: :string, input_html: { class: "flatpickr" }, label: false%>
+              <%= f.label "Earliest" %>
+            </div>
+            <div>
+              <%= f.input :move_in_date_latest, as: :string, input_html: { class: "flatpickr" }, label: false  %>
+              <%= f.label "Latest" %>
+            </div>
+          </div>
+          <hr class="solid">
           <%= f.input :address , input_html: {value: ""} , input_html: { id: "address-input" }, :placeholder => "Wanna live close to a specific place?" %>
-          <%= f.input :radius, input_html: {value: ""}, :placeholder => "What's your maximum radius? " %>
+          <%#= f.input :radius, input_html: {value: ""}, :placeholder => "What's your maximum radius? " %>
+          <div class="form-group integer request_radius">
+            <label class="integer" for="request_radius">Radius </label>
+            <div class="range-slider">
+              <input class="form-control numeric integer required range-slider__range" value="0" placeholder="What's your maximum radius?" type="range" step="1" min="0" max="50" name="request[radius]" id="request_radius">
+              <span class="range-slider__value">5</span><p>km</p>
+            </div>
+          </div>
+          <hr class="solid">
           <%= f.input :no_of_flat_mates, input_html: {value: ""}, :placeholder => "What's your maximum number of flatmates?", :label => "No. of flatmates" %>
           <%= f.input :size, input_html: {value: ""} , :placeholder => "What's the minimum size your room should have?" %>
 
