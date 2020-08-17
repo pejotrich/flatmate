@@ -1,128 +1,114 @@
 <% @user = current_user %>
+<% shares = @user.private_shares %>
 <div class="container">
-  <div class="card1">
-    <div class="heading">
-      <h3>Your open request</h3>
-    </div>
-    <% if @my_requests.empty? %>
-      <p>You haven't created any requests yet.</p>
-      <%# @my_requests.each do |request| %>
-    <% else %>
-      <div class="row">
-        <div class="column">
-          <div class="content align-items-end">
-            <% request = @my_requests.last %>
-            <div class="d-flex justify-content-start align-items-center mb-5">
-              <i class="fas fa-map-marked-alt mr-3"></i><p><%= request.city %></p>
-            </div>
-            <div class="d-flex justify-content-start align-items-center">
-              <i class="fas fa-coins mr-4"></i><p><%= request.budget %> €</p>
-            </div>
-            <%# end %>
-          </div>
+<h1>Newsfeed</h1>
+  <div class="container">
+    <% unless shares.empty? %>
+      <div class="timeline-item no-dot">
+        <div class="section-headline">
+          <h3>Friends asking you for help</h3>
         </div>
-        <div class="column">
-          <div class="content-analytics">
-            <% private_shares = request.private_shares %>
-              <ul id="helping-friends">
-                <% private_shares.each do |share| %>
-                  <li>
-                    <% if share.user.photo %>
-                      <%= image_tag share.user.photo %>
-                    <% else %>
-                      <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
-                    <% end %>
-                  </li>
-                <% end %>
-              </ul>
-              <p><%= request.private_shares.count %> people are helping you</p>
-            </div>
-          </div>
-        </div>
-           
-            <%= link_to "See more", request_path(request)%>
-         
-    <% end %>
-  </div>  
-  <div class="cards">
-    <div class="card2">
-      <h3>Your offers</h3>
-        <%# @my_offers.flatten.each do |offer| %>
-      <% if @my_requests.empty? %>
-        <p>You don't have any offers yet.</p>
+      </div>
+      <% shares = @user.private_shares %>
+      <% if shares.all? { |share| (share.request.offers.any? { |offer| offer.creator_id == @user.id }) || share.shared } %>
+      <div class="timeline-item no-dot all-done ">
+        <%= image_tag "helper.svg" %>
+        <p>Wonderful, you have helped all your friends</p>
+      </div>
       <% else %>
-        <% offers = request.offers %>  
-        <% if offers.empty?  %>
-          <p>You don't have any offers yet.</p>
-        <% else %>
-          <% offers.each do |offer| %>
-            <div class="card-friend mb-3">
-              <% creator = User.find_by_id(offer.creator_id) %>
-              <% if creator.photo%>
-                <%= image_tag creator.photo %>
-              <% else %>
-                <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
-              <% end %>
-              <div class="card-friend-infos">
-                <p><%= creator.first_name %> <%= creator.last_name %> sent you an offer.</p>
-                <p><%= link_to "View offer", request_offer_path(offer.request, offer) %></p>
+        <% shares.each do |share| %>
+          <% unless share.request.offers.any? { |offer| offer.creator_id == @user.id } || share.shared  %>
+            <% request = share.request %>
+            <% sharer = User.find(share.sharer_id)%>
+            <% reshare = sharer != request.user %>
+            <% city = request.city %>
+            <% city_url = "https://source.unsplash.com/1200x630/?#{city},sights" %>
+            <div class="timeline-item">
+              <div class="item-head higher">
+                <% if reshare %>
+                  <div class="image-placeholder-absolute">
+                    <div style="padding-top: 100%; background-color: rgb(218, 210, 209);">
+                      <picture nopin="nopin">
+                        <%= image_tag sharer.photo %>
+                      </picture>
+                    </div>
+                  </div>
+                <% end %>
+                <div class="requester image-placeholder-absolute">
+                  <div style="padding-top: 100%; background-color: rgb(218, 210, 209);">
+                    <picture nopin="nopin">
+                      <%= image_tag request.user.photo %>
+                    </picture>
+                  </div>
+                </div>
+                <i class="fas fa-map-marker">  <%= request.city %></i>
+              </div>
+              <div class="content-wrapper">
+                <%= link_to request_path(request) do %>
+                  <div class="news-card">
+                    <div class="news-card__card-link"></div>
+                    <%= image_tag city_url %>
+                    <div class="news-card__text-wrapper">
+                    <% if reshare %>
+                      <p><%= sharer.first_name %> thinks you could help <strong><%= share.request.user.first_name %></strong> find a room. </p>
+                    <% else %>
+                      <p> <strong><%= share.request.user.first_name %></strong> wants your help finding a room.  </p>
+                    <% end %>
+                    <h5>View request</h5>
+                    </div>
+                  </div>
+                <% end %>
               </div>
             </div>
           <% end %>
-        <% end %>
+        <% end %>   
       <% end %>
+    <% end %>
+    <div class="timeline-item no-dot">
+      <hr class="solid">
     </div>
-    <div class="card3">
-      <h3>Friends asking for help</h3>
-      <% shares = @user.private_shares %>
-      <% if shares.empty? %>
-        <p>Nobody has asked you for help yet. </p>
-      <% else %>
-        <% shares.each do |share| %>
-          <% request = share.request %>
-          <% sharer = User.find(share.sharer_id)%>
-          <% reshare = sharer != request.user %>
-          <div class="card-friend status-notification mb-3">
-            <%# Request is new or offer has been made already? %>
-            <% if request.offers.any? { |offer| offer.creator_id == @user.id } %>
-              <span class="status-label orange">CONTACTED</span>
-            <% elsif share.shared %>
-              <span class="status-label orange">SHARED</span>
-            <% else %>
-              <span class="status-label green">NEW</span>
-            <% end %>
-            <%#  %>
-            <% if share.request.user.photo %>
-              <%= image_tag share.request.user.photo %>
-            <% else %>
-              <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
-            <% end %>
-            <% if reshare %>
-            <div>
-              <div class="image-placeholder-reshare">
-                <div style="padding-top: 100%; background-color: rgb(218, 210, 209);">
-                  <picture nopin="nopin">
-                    <%= image_tag sharer.photo %>
-                  </picture>
-                </div>
-              </div>
-            </div>
-            <% end %>
-            <div class="card-friend-infos">
-              <% if reshare %>
-                <p><%= sharer.first_name %> thinks you could help <strong><%= share.request.user.first_name %></strong> find a room.</p>
-                <p><%= link_to "View request", request_path(request) %></p>
-              <% else %>
-                <p><strong><%= share.request.user.first_name %> <%= share.request.user.last_name %></strong> is looking for a room.</p>
-                <p>Can you help?</p>
-                <p><%= link_to "View request", request_path(request) %></p>
-              <% end %>
+    <% friends = @user.friends %>
+    <% moves = [] %>
+    <% friends.each do |friend| %>
+      <% moves << friend.requests.last if friend.requests.last %>
+    <% end %>
+
+    <% moves.each do |move| %>
+      <% friend = move.user %>
+      <% move_from = friend.city %>
+      <% move_to = move.city %>
+      <% from_url = "https://source.unsplash.com/1200x630/?#{move_from},sights" %>
+      <% to_url = "https://source.unsplash.com/1200x630/?#{move_to},city" %>
+
+      <div class="timeline-item">
+        <div class="item-head">
+          <div class="friend image-placeholder-absolute">
+            <div style="padding-top: 100%; background-color: rgb(218, 210, 209);">
+              <picture nopin="nopin">
+                <%= image_tag friend.photo %>
+              </picture>
             </div>
           </div>
-        <% end %>
-      <% end %>
-    </div>  
+          <div class="card-test">
+            <div class="details">
+              <h5 class="news-card__title"><%= friend.first_name %> wants to move from <%= move_from %> to <%= move_to %> </h5>
+             <%= link_to "Can you help?", request_path(move) %>
+            </div>
+            <div class="masked">
+              <%= image_tag from_url %>
+            </div>
+            <div class="masked-reverse">
+              <%= image_tag to_url %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+    <% end %>
   </div>
-</div>
+  </div>
+
 
 

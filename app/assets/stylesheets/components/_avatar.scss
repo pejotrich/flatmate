@@ -41,14 +41,15 @@
   display: block;
   margin: 0 auto 30px;
   width: 74px;
-  border-radius: 50%;
+  border-radius: 8px;
   position: absolute;
   z-index: 1;
   transition: all .5s ease-out;
-  right: 294px;
+  right: 245px;
   top: 39px;
-  border: solid lightgray 1px;
+  border: solid #F4F4F4 3px;
 }
+
 
 .image-placeholder-reshare>div {
   overflow: hidden;
@@ -74,4 +75,5 @@ img {
 
 .image-placeholder-reshare>div>picture img {
   width: 100%;
+  border-radius: 0;
 }
