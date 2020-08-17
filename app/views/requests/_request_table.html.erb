@@ -1,32 +1,26 @@
 <div class="request-table">
-  <br>
-  <br>
   <table class="table table-hover">
 
   <tbody>
     <tr>
-      <th scope="row"></th>
-      <td><strong>City</strong></td>
+      <th scope="row">City</th>
       <td><%= @request.city %></td>
     </tr>
 
     <tr>
-      <th scope="row"></th>
-      <td><strong>Budget</strong></td>
+      <th scope="row">Budget</th>
       <td><%= @request.budget %> €</td>
     </tr>
     <% if @request.move_in_date_earliest %>
         <tr>
-        <th scope="row"></th>
-        <td><strong>Earliest move-in date</strong></td>
+        <th scope="row">Earliest move-in date</th>
         <td><%= @request.move_in_date_earliest %></td>
       </tr>
     <% end %>
 
       <% if @request.move_in_date_latest %>
         <tr>
-        <th scope="row"></th>
-        <td><strong>Latest move-in date </strong></td>
+        <th scope="row">Latest move-in date </th>
         <td><%= @request.move_in_date_latest %></td>
       </tr>
     <% end %>
@@ -34,35 +28,63 @@
     <% unless @request.address == "" || @request.address == nil %>
 
         <tr>
-        <th scope="row"></th>
-        <td><strong>Address</strong></td>
+        <th scope="row">Address</th>
         <td><%= @request.address %></td>
       </tr>
     <% end %>
 
       <% if @request.radius%>
         <tr>
-        <th scope="row"></th>
-        <td><strong>Radius</strong></td>
+        <th scope="row">Radius</th>
         <td><%= @request.radius %> km</td>
       </tr>
     <% end %>
 
     <% if @request.no_of_flat_mates%>
         <tr>
-        <th scope="row"></th>
-        <td><strong>Max. number of flatmates</strong></td>
+        <th scope="row">Max. number of flatmates</th>
         <td><%= @request.no_of_flat_mates %></td>
       </tr>
     <% end %>
 
       <% if @request.size%>
         <tr>
-        <th scope="row"></th>
-        <td><strong>Min. room size</strong></td>
+        <th scope="row">Min. room size</th>
         <td><%= @request.size %> sqm</td>
       </tr>
     <% end %>
+
+    <tr>
+      <th scope="row">Friends</th>
+      <td>
+        <% if @request.private_shares.empty? %>
+          <p>You haven't asked your friends for help yet</p>
+          <button type="button" class="blue-button" data-toggle="modal" data-target="#friendsModal">
+            Ask friends for help
+          </button>
+        <% else %>
+        <% private_shares = @request.private_shares %>
+          <div class="grid" >
+            <div class="scroll-friends-help">
+              <div class="row row-grid">
+                <% private_shares.each do |share| %>
+                  <% if share.user.photo %>
+                    <div class="profile">
+                      <div class="imgBx">
+                        <%= image_tag share.user.photo %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="blue-button" data-toggle="modal" data-target="#friendsModal">
+            Ask more friends for help
+          </button>
+        <% end %>
+      </td>
+    </tr>
     </tbody>
   </table>
 </div>

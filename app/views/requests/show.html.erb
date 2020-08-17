@@ -3,71 +3,29 @@
 <%# if current user is request-maker %>
   <% if @request.user == current_user %>
     <div class="show-container">
-      <h1>Your Room Search for <%= @request.city %></h1>
-      <div class=" room-request d-flex align-items-center">  
-        <div class="request-view">
-          <div>
-          <%= image_tag "https://source.unsplash.com/1200x630/?berlin,sights" %>
-          </div>
-          <%= render "/requests/request_table" %>
+      <div class="request-title">
+        <h1>My Room Request</h1>
+        <button type="button" class="no-style-button" data-toggle="modal" data-target="#editModal"><i class="fas fa-pen"></i></button>
+        <div>
+          <%= link_to request_path(@request), method: :delete, data: { confirm: "Are you sure?" } do %>
+           <i class="fas fa-trash"></i>
+          <% end %>
+        </div>
+      </div>
+
+      <div>
+        <div class="request-image" style="background-image: url(https://source.unsplash.com/1200x630/?<%=@request.city%>,sights);">
         </div>
         <div>
-          <%= link_to "Delete request",
-          request_path(@request),
-          method: :delete,
-          data: { confirm: "Are you sure?" } %></div></h1>
+          <%= render "/requests/request_table" %>
         </div>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
-      Edit request
-      </button>
-      <br>
-      <br>
+      </div>
 
-      <div class="row">
+       <div class="row">
         <div class="column">
-          <h4>Friends helping you</h4>
-            <br>
-            <br>
-            <% if @request.private_shares.empty? %>
-              <p>You haven't asked your friends for help yet. Do it now and let them connect you with people you'll love. </p>
-              <button type="button btn-primary" class="btn btn-primary" data-toggle="modal" data-target="#friendsModal">
-                Ask friends for help
-              </button>
-            <% else %>
-
-              <% private_shares = @request.private_shares %>
-                <div class="grid" >
-                  <div class="scroll-friends-help">
-                    <div class="row row-grid">
-                      <% private_shares.each do |share| %>  
-                        <% if share.user.photo %>
-                          <div class="profile">
-                            <div class="imgBx">
-                              <%= image_tag share.user.photo %>
-                            </div>
-                            <div class="details">
-                              <h2><%= share.user.first_name %> <%= share.user.last_name %></h2>
-                              <p>Lives in <strong><%= share.user.city %></strong></p>
-                              <p>Has <%= share.user.friends.where(city: @request.city).count %> friends in <%= @request.city %></p>
-                            </div>
-                          </div>
-                        <% end %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-                <button type="button btn-primary" class="btn btn-primary" data-toggle="modal" data-target="#friendsModal">
-                  Ask more friends for help
-                </button>
-              <br>
-            <% end %>
-        </div>
-        <div class="column ml-3">
-          <h4>Offers</h4>
-          <br><br>
+          <h4> Your Offers</h4>
           <% if @request.offers.empty? %>
-            <p>You don't have any offers yet. Have a coffee while waiting and help someone else in the meantime for some good karma.</p>
-            <%= link_to "Help friends", dashboard_path %>
+            <p>Sorry, no offers yet, but why not help some friends around the world?<i class="fas fa-globe-americas"></i></p>
           <% else %>
             <% offers = @request.offers %>
             <% offers.each do |offer| %>
@@ -88,9 +46,10 @@
         </div>
       </div>
     </div>
+  </div>
   <%# ---------------------------------%>
   <%# if current user is not request-maker %>
-  <% else %> 
+  <% else %>
     <div class="container">
       <div class="d-flex justify-content-around align-items-center">
         <h1>Room Search from <%= @request.user.first_name %> <%= @request.user.last_name %></h1>
@@ -150,14 +109,14 @@
                 <%= f.input :size, input_html: {value: ""} , :placeholder => "What's the minimum size your room should have?" %>
               </div>
             </div>
-            <%= f.submit "Submit", class: "btn btn-primary" %>
+            <%= f.submit "Submit", class: "blue-button" %>
           <% end %>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#friendsModal">
+          <button type="button" class="blue-button" data-toggle="modal" data-target="#friendsModal">
             Choose friends
           </button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="grey-button" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -181,7 +140,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="blue-button" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
