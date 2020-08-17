@@ -388,9 +388,8 @@ $border-color: rgba(black, .3);
   top: -33px;
 
   i {
-    position: relative;
-    top: 38px;
-    right: -537px;
+    font-size: 26px;
+    right: 0px;
     z-index: 1;
     color: midnightblue;
 }
@@ -511,4 +510,7 @@ hr.solid {
 
 .higher {
   margin-top: -55px;
+  height: 0px;
+  width: 98%;
+  justify-content: flex-end;
 }
