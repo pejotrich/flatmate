@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :private_shares, only: [ :new, :create ]
   end
 
-  resources :offers, only: :show1 do
+  resources :offers, only: [ :index, :show1 ] do
     get :show1
     resources :messages, only: [ :create]
   end

@@ -1,0 +1,63 @@
+<div class="container">
+<% @user = current_user %>
+<% @request = @user.requests.last %>
+<% @my_offers = @request.offers %>
+<% @offers_other = Offer.all.where(creator_id: @user.id) %>
+
+<h1>My conversations</h1>
+
+
+  <div class="row rounded-lg overflow-hidden shadow">
+    <!-- Users box-->
+    <div class="col-12 px-0">
+      <div class="bg-white">
+      <div class="messages-box">
+        <div class="list-group rounded-0">
+          <% if @request %>
+            <h3>Conversations regarding my request</h3>
+            <% @my_offers.each do |offer| %>
+              <%= link_to request_offer_path(@request, offer) do %>
+                <div class="list-group-item list-group-item-action active text-white rounded-0">
+                  <div class="media"><%= image_tag User.find(offer.creator_id).photo, class: "rounded-circle", size: "50x50" %> 
+                    <div class="media-body ml-4">
+                      <div class="d-flex align-items-center justify-content-between mb-1">
+                        <h6 class="mb-0"><%= User.find(offer.creator_id).first_name %> <%= User.find(offer.creator_id).last_name %></h6><small class="small font-weight-bold">25 Dec</small>
+                      </div>
+                      <p class="font-italic mb-0 text-small"><%= User.find(offer.creator_id).first_name %> sent you an offer.</p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+            
+
+          <% if @offers_other.empty? && @request == nil %>
+            <p>Oh, you don't have any conversations yet...</p>
+          <% else %>
+
+            <h3>Offers I made</h3>
+            <% @offers_other.each do |offer| %>
+              <%= link_to request_offer_path(@request, offer) do %>
+                <div class="list-group-item list-group-item-action active text-white rounded-0">
+                  <div class="media"><%= image_tag offer.request.user.photo, class: "rounded-circle", size: "50x50" %> 
+                    <div class="media-body ml-4">
+                      <div class="d-flex align-items-center justify-content-between mb-1">
+                        <h6 class="mb-0"><%= offer.request.user.first_name %> <%= offer.request.user.last_name %></h6><small class="small font-weight-bold">25 Dec</small>
+                      </div>
+                      <p class="font-italic mb-0 text-small">You contacted <%= offer.request.user.first_name %>.</p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

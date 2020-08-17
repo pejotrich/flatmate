@@ -1,4 +1,9 @@
 class OffersController < ApplicationController
+  def index
+    @offers = Offer.all
+    skip_policy_scope
+  end
+
   def new
     @request = Request.find(params[:request_id])
     @offer = Offer.new
