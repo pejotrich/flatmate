@@ -1,10 +1,15 @@
 // Specific CSS for your home-page
-.jumbotron {
-  background-image: asset-url('apartment.jpg');
-  background-size: cover;
+/* .jumbotron {
+  background-image: asset-url('intersect.png');
   padding: 180px 0;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
+.h1 {
+  display: flex;
+  justify-content: flex-end;
+}
 .cards {
   display: flex;
   justify-content: space-around;
@@ -18,6 +23,7 @@
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 0%;
+  background-image: url('water.jpg');
 
 
 }
@@ -45,5 +51,50 @@
   padding: 15px 32px;
   color: black;
   background-color: white;
+} */
+
+.image-box {
+  background-image: asset-url('intersect.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 50vw;
+  height: 500px;
 }
+
+.flex-container-top {
+  display: flex;
+}
+
+.flex-container-bottom {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+
+.text-box {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+}
+
+.explanation-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.image-text-box {
+  /* width: 30vw; */
+  p {
+    width: 302px;
+    padding: 10px;
+  }
+  margin:10px;
+}
+
+
 

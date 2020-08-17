@@ -1,7 +1,11 @@
-<header class="jumbotron">
+<%# <header class="jumbotron">
   <div class="container-fluid text-center">
-    <h1>Find a Roommate within your circle of friends</h1>
-    <p>Find trustworthy flatmates by connecting with friends and friends of friends</p>
+    <div class="h1">
+      <h1>Find a Flatmate <br> within your circle of friends</h1>
+    </div>
+    <div class="flat-card">
+      <button type="button" class="button1">Find a Flatmate</button>
+    </div>
   </div>
 </header>
 
@@ -10,10 +14,7 @@
 
 <div class="container">
   <div class="cards">
-    <div class="flat-card">
-      <h4>Find a Flat</h4>
-      <button type="button" class="button1">Request a Room</button>
-    </div>
+
 
     <div class="roommate-card">
       <h4>Find a Roommate</h4>
@@ -22,4 +23,40 @@
   </div>
 </div>
 
-</body>
+</body> %>
+<div class="flex-container-top">
+  <div class="image-box"></div>
+
+  <div class="text-box">
+    <h1>Find a Flatmate within your circle of friends</h1>
+    <% if user_signed_in? %>
+      <button type="button" class="green-btn"
+      data-toggle="modal" data-target="#exampleModal">
+        Create room request
+      </button>
+    <% else %>
+      <%= link_to "Create room request", dashboard_path, class: "green-btn" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="explanation-box">
+  <h1>How it works</h1>
+  <div class="flex-container-bottom">
+    <div class="image-text-box">
+      <%= image_tag "card1.png"%>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dui felis, posuere sed sollicitudin et, consequat a erat. Vivamus quis fringilla nisl, molestie suscipit odio. Etiam vulputate turpis sed purus ultricies dignissim.</p>
+    </div>
+
+    <div class="image-text-box">
+      <%= image_tag "card2.png"%>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dui felis, posuere sed sollicitudin et, consequat a erat. Vivamus quis fringilla nisl, molestie suscipit odio. Etiam vulputate turpis sed purus ultricies dignissim.</p>
+    </div>
+
+    <div class="image-text-box">
+      <%= image_tag "card3.png"%>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dui felis, posuere sed sollicitudin et, consequat a erat. Vivamus quis fringilla nisl, molestie suscipit odio. Etiam vulputate turpis sed purus ultricies dignissim.</p>
+    </div>
+  </div>
+
+</div>
