@@ -26,6 +26,7 @@ $teal: #1abc9c !default;
     /* padding-top: 16px; */
     background: #2D3E4F;
     padding: 3px;
+    padding-right: 8px;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
     margin-left: -8px;
@@ -148,20 +149,6 @@ input::-moz-focus-outer {
   border: 0; 
 }
 
-.move-in {
-  display: flex;
-  width:100%;
-  justify-content: space-between;
-  margin-bottom: 28px;
 
-  label {
-    padding-top: 0;
-    margin-top: 0;
-  }
-}
-
-.space {
-  margin-right: 20px;
-}
 
 

@@ -105,9 +105,19 @@
             </div>
           </div>
           <hr class="solid">
-          <%= f.input :no_of_flat_mates, input_html: {value: ""}, :placeholder => "What's your maximum number of flatmates?", :label => "No. of flatmates" %>
-          <%= f.input :size, input_html: {value: ""} , :placeholder => "What's the minimum size your room should have?" %>
-
+           <%= f.label "Flatmates" %>
+          <div class="radio-toolbar form-inline">
+         
+          <%= f.input_field :no_of_flat_mates, as: :radio_buttons, collection: 1..6, input_html: {value: ""}, :placeholder => "What's your maximum number of flatmates?", :label => "No. of flatmates" %>
+          </div>
+          <%#= f.input :size, input_html: {value: ""} , :placeholder => "What's the minimum size your room should have?" %>
+          <div class="form-group integer request_size">
+            <label class="integer" for="request_radius">Minimum room size </label>
+            <div class="range-slider">
+              <input class="form-control numeric integer required range-slider__range" value="0" placeholder="What's your minimum room size?" type="range" step="1" min="0" max="50" name="request[size]" id="request_size">
+              <span class="range-slider__value">5</span><p>sqm</p>
+            </div>
+          </div>
 
         </div>
       </div>
