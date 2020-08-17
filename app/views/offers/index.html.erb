@@ -13,24 +13,26 @@
       <div class="bg-white">
       <div class="messages-box">
         <div class="list-group rounded-0">
-          <% if @offers_other.empty? && @request == nil %>
+          <% if (@offers_other.empty? && @request == nil) || (@offers_other.empty? && @my_offers.empty?) %>
             <p>Oh, you don't have any conversations yet...</p>
           <% else %>
 
             <% if @request %>
+            <% unless @my_offers.empty? %> 
               <h3>Conversations regarding my request</h3>
-              <% @my_offers.each do |offer| %>
-                <%= link_to request_offer_path(@request, offer) do %>
-                  <div class="list-group-item list-group-item-action active text-white rounded-0">
-                    <div class="media"><%= image_tag User.find(offer.creator_id).photo, class: "rounded-circle", size: "50x50" %> 
-                      <div class="media-body ml-4">
-                        <div class="d-flex align-items-center justify-content-between mb-1">
-                          <h6 class="mb-0"><%= User.find(offer.creator_id).first_name %> <%= User.find(offer.creator_id).last_name %></h6><small class="small font-weight-bold">25 Dec</small>
+                <% @my_offers.each do |offer| %>
+                  <%= link_to request_offer_path(@request, offer) do %>
+                    <div class="list-group-item list-group-item-action active text-white rounded-0">
+                      <div class="media"><%= image_tag User.find(offer.creator_id).photo, class: "rounded-circle", size: "50x50" %> 
+                        <div class="media-body ml-4">
+                          <div class="d-flex align-items-center justify-content-between mb-1">
+                            <h6 class="mb-0"><%= User.find(offer.creator_id).first_name %> <%= User.find(offer.creator_id).last_name %></h6><small class="small font-weight-bold">25 Dec</small>
+                          </div>
+                          <p class="font-italic mb-0 text-small"><%= User.find(offer.creator_id).first_name %> sent you an offer.</p>
                         </div>
-                        <p class="font-italic mb-0 text-small"><%= User.find(offer.creator_id).first_name %> sent you an offer.</p>
                       </div>
                     </div>
-                  </div>
+                  <% end %>
                 <% end %>
               <% end %>
             <% end %>
