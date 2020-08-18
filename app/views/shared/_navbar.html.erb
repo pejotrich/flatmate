@@ -19,7 +19,7 @@
           <li class="nav-item" style="margin-right: 25px;">
             <%= link_to "My request", request_path(@user.requests.last), class: "nav-link" %>
           </li>
-         
+
 
         <% else %>
           <li>
@@ -44,7 +44,7 @@
           </div>
         </li>
       <% else %>
-        <li class="nav-item green-btn">
+        <li class="nav-item pb-3">
           <%= link_to "Login", new_user_session_path, class: "nav-link " %>
         </li>
       <% end %>
@@ -69,7 +69,7 @@
             <%= simple_form_for @request do |f| %>
       <%= f.input :city , input_html: {value: "", id: "city"}, :placeholder => "e.g. Berlin" %>
       <div class="form-group integer required request_budget">
-        <label class="integer required" for="request_budget">Budget 
+        <label class="integer required" for="request_budget">Budget
           <abbr title="required">*</abbr>
         </label>
         <div class="range-slider">
@@ -111,7 +111,7 @@
           <hr class="solid">
            <%= f.label "Flatmates" %>
           <div class="radio-toolbar form-inline">
-         
+
           <%= f.input_field :no_of_flat_mates, as: :radio_buttons, collection: 1..6, input_html: {value: ""}, :placeholder => "What's your maximum number of flatmates?", :label => "No. of flatmates" %>
           </div>
           <%#= f.input :size, input_html: {value: ""} , :placeholder => "What's the minimum size your room should have?" %>
