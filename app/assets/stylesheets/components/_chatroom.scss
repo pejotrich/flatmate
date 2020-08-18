@@ -1,5 +1,4 @@
 .chatroom {
-  background: white;
   // height: calc(100vh - 66px);
   display: flex;
   flex-direction: column;
@@ -10,6 +9,12 @@
     padding: 0.5rem 1rem;
     border-bottom: 1px solid $gray-200;
     margin-bottom: 0;
+  }
+
+  img {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
   }
 }
 
