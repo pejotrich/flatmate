@@ -54,10 +54,10 @@
 } */
 
 .image-box {
-  background-image: asset-url('intersect.png');
+  background-image: asset-url('home_pic.png');
   background-repeat: no-repeat;
   background-size: cover;
-  width: 50vw;
+  width: 130vw;
   height: 500px;
 }
 
@@ -68,7 +68,6 @@
 .flex-container-bottom {
   display: flex;
   justify-content: space-between;
-
 }
 
 
@@ -78,6 +77,13 @@
   flex-direction: column;
   justify-content: center;
   padding: 50px;
+}
+
+.green-btn {
+  background-color: #8BE8BC;
+  padding: 5px 10px;
+  border-radius: 2px;
+  margin-top: 15px;
 }
 
 .explanation-box {
@@ -92,6 +98,12 @@
   p {
     width: 302px;
     padding: 10px;
+  }
+
+  img {
+    height: 200px;
+    width: 200px;
+    margin-bottom: 20px;
   }
   margin:10px;
 }
