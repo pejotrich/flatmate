@@ -380,6 +380,9 @@ $border-color: rgba(black, .3);
   padding-top: 0;
 }
 
+.first {
+  padding-top: 0;
+}
 
 .item-head {
   position: relative;
@@ -405,6 +408,7 @@ $border-color: rgba(black, .3);
   width: 74px;
   border-radius: 8px;
   position: absolute;
+  left: 10px;
   z-index: 1;
   transition: all .5s ease-out;
   border: solid #F4F4F4 3px;
@@ -471,7 +475,37 @@ p {
 
 .masked {
   clip-path: polygon(0 0, 59% 0, 35% 0, 60% 52%, 35% 100%, 0 100%);
-  margin-right: -630px;
+  margin-right: -740px;
+
+  i {
+
+      position: absolute;
+      top: 201px;
+      z-index: 14;
+      left: 13px;
+      font-size: 50px;
+      color: white;
+      text-shadow: 3px 4px 0px rgba(0,0,0,0.5);
+  
+  }
+}
+
+
+.masked-reverse {
+  clip-path: polygon(100% 0, 59% 0, 35% 0, 60% 52%, 35% 100%, 100% 100%);
+
+  i {
+
+    position: absolute;
+    top: 201px;
+    z-index: 14;
+    right: 27px;
+    font-size: 50px;
+    color: white;
+    text-shadow: 3px 4px 0px rgba(0,0,0,0.5);
+
+}
+
 }
 
 .friend {

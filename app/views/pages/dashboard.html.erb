@@ -4,7 +4,7 @@
 <h1>Newsfeed</h1>
   <div class="container">
     <% unless shares.empty? %>
-      <div class="timeline-item no-dot">
+      <div class="timeline-item no-dot first">
         <div class="section-headline">
           <h3>Friends asking you for help</h3>
         </div>
@@ -95,9 +95,11 @@
              <%= link_to "Can you help?", request_path(move) %>
             </div>
             <div class="masked">
+                <i class="fas fa-map-marker">  <%= move_from %></i>
               <%= image_tag from_url %>
             </div>
             <div class="masked-reverse">
+                <i class="fas fa-map-marker">  <%= move_to %></i>
               <%= image_tag to_url %>
             </div>
           </div>
