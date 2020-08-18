@@ -30,9 +30,13 @@ body {
 }
 
 .request-table {
-  padding-top: 55px;
   display: flex;
   justify-content: space-around;
+
+  th {
+    width: 300px;
+
+  }
 }
 
 .table {
