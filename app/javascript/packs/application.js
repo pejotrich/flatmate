@@ -32,10 +32,13 @@ require("channels")
 // External imports
 import "bootstrap";
 
+import { rowColors } from "../components/rows";
+
 import flatpickr from 'flatpickr';
 require("flatpickr/dist/flatpickr.min.css");
 
 document.addEventListener("turbolinks:load", () => {
+  rowColors();
   flatpickr(".flatpickr", {
     minDate: "today",
 
@@ -45,10 +48,6 @@ document.addEventListener("turbolinks:load", () => {
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
-document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
-});
 
 
 //new private-shares
@@ -124,7 +123,7 @@ var rangeSlider = function(){
   var slider = $('.range-slider'),
       range = $('.range-slider__range'),
       value = $('.range-slider__value');
-    
+
   slider.each(function(){
 
     value.each(function(){
