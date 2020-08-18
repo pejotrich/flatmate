@@ -63,9 +63,21 @@
 
 .green-btn {
   background-color: #8BE8BC;
-  padding: 5px 10px;
-  border-radius: 2px;
+  padding: 10px;
+  border-radius: 4px;
+  width: 200px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  color: #030b52;
 }
+
+.green-btn:hover {
+  text-decoration: none;
+  box-shadow: 1px 1px 20px rgba(0,0,0,0.1);
+  color: #030b52;
+}
+
 .navbar-nav {
   align-items: center;
 }
