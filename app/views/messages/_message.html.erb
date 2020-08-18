@@ -1,7 +1,17 @@
-<div class="message-container" id="message-<%= message.id %>">
-  <i class="author">
-    <span><%= message.sender.first_name%></span>
-    <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-  </i>
-  <p><%= message.content %></p>
+<div class="d-flex justify-space-between align-items-start bg-white shadow-sm mb-3 p-3 rounded" id="message-<%= message.id %>">
+  <% if message.sender == current_user %>
+    <div class="flex-grow-1 mr-3">
+      <span class="text-muted mb-2"><%= message.sender.first_name%></span>
+      <p><%= message.content %></p>
+      <small class="text-muted"><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+    </div>
+    <%= image_tag message.sender.photo, class: "rounded", alt: "avatar-bordered" %>
+  <% else %>
+    <%= image_tag message.sender.photo, class: "rounded mr-3", alt: "avatar-bordered" %>
+    <div class="flex-grow-1">
+      <span class="text-muted mb-2"><%= message.sender.first_name%></span>
+      <p><%= message.content %></p>
+      <small class="text-muted"><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+    </div>
+  <% end %>
 </div>
