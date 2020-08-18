@@ -25,7 +25,7 @@
         <div class="column">
           <h4>My Responses</h4>
           <% if @request.offers.empty? %>
-            <p>Sorry, no offers yet, but why not help some friends around the world?<i class="fas fa-globe-americas"></i></p>
+            <p>Sorry, no responses yet, but why not help some friends around the world?<i class="fas fa-globe-americas"></i></p>
           <% else %>
             <% offers = @request.offers %>
             <% offers.each do |offer| %>
