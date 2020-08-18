@@ -1,5 +1,5 @@
 .footer {
-  background: whitesmoke;
+  background: rgba(3, 11, 82, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,10 +7,10 @@
   padding: 0px 50px;
   color: rgba(0,0,0,0.3);
   bottom: 0;
-    position: relative;
-    height: 100px;
-    margin-top: 0px;
-    bottom: 0;
+  position: relative;
+  height: 100px;
+  margin-top: 0px;
+  bottom: 0;
 }
 
 .footer-links {
