@@ -63,22 +63,20 @@
             Ask friends for help
           </button>
         <% else %>
-        <% private_shares = @request.private_shares %>
-          <div class="grid" >
-            <div class="scroll-friends-help">
-              <div class="row row-grid">
-                <% private_shares.each do |share| %>
-                  <% if share.user.photo %>
-                    <div class="profile">
-                      <div class="imgBx">
-                        <%= image_tag share.user.photo %>
-                      </div>
-                    </div>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
+
+          <div class="show-friends">
+            <% private_shares = @request.private_shares %>
+            <% private_shares.each do |share| %>
+              <% if share.user.photo %>
+                <div class="profile">
+                  <div class="imgBx">
+                    <%= image_tag share.user.photo %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
           </div>
+
           <button type="button" class="blue-button" data-toggle="modal" data-target="#friendsModal">
             Ask more friends for help
           </button>
