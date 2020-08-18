@@ -1,7 +1,10 @@
 const rowColors = () => {
   const rows = document.querySelectorAll('tr')
   const table = document.querySelector('table')
-  table.style.border = "none";
+  if (table) {
+    table.style.border = "none";
+  }
+  
   rows.forEach((row, index) => {
 
     if (index % 2 == 0) {
