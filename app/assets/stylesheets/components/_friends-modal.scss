@@ -29,11 +29,15 @@
   align-items: center;
 }
 
-.modal-content {
+#friendsModal .modal-content {
   border-radius: 10px;
   width: fit-content;
 }
 
 .modal-buttons {
   margin-left: 20px;
+}
+
+.modal-content {
+  border-radius: 10px;
 }
