@@ -92,6 +92,7 @@
           <br>
         <% end %>
       </div>
+        <div class="modal-buttons">
           <% if @request.user == current_user %> <%# Only request-maker can set privacy level  %>
           <br>
               <div class="custom-control custom-switch">
@@ -101,10 +102,11 @@
           <% end %> 
           <br>
           <%= f.submit "Add friends", class: 'btn btn-primary' %>
-        <% end %>
+        </div>
       <% end %>
-    </div>
+    <% end %>
   </div>
+</div>
 
  
   
