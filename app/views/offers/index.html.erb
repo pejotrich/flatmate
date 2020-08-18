@@ -1,8 +1,8 @@
 <div class="container index">
 <% @user = current_user %>
 <% @request = @user.requests.last %>
-<% @my_offers = @request.offers if @request %>
-<% @offers_other = Offer.all.where(creator_id: @user.id) %>
+<% @my_offers = (@request.offers.sort_by &:created_at).reverse if @request %>
+<% @offers_other = (Offer.all.where(creator_id: @user.id).sort_by &:created_at).reverse %>
 
 <h1>My conversations</h1>
 
