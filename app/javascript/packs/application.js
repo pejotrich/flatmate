@@ -43,6 +43,35 @@ document.addEventListener("turbolinks:load", () => {
     minDate: "today",
 
   })
+
+
+  const users = document.querySelectorAll(".sharing")
+
+  users.forEach((user) => {
+    const circle = user.querySelector(".check-friend");
+    user.addEventListener("click", (event) => {
+      circle.classList.toggle("active")
+      const userId = (user.querySelector(".user_id").innerHTML)
+      const option = document.querySelector(`option[value=${CSS.escape(userId)}]`)
+      option.toggleAttribute("selected")
+    })
+  })
+  
+  users.forEach((user) => {
+    user.addEventListener("mouseenter", (event) => {
+      user.classList.toggle("darker")
+    })
+  })
+  
+  users.forEach((user) => {
+    user.addEventListener("mouseleave", (event) => {
+      user.classList.toggle("darker")
+    })
+  })
+
+
+
+
 })
 
 // Internal imports, e.g:
@@ -53,29 +82,6 @@ document.addEventListener("turbolinks:load", () => {
 //new private-shares
 
 
-const users = document.querySelectorAll(".sharing")
-
-users.forEach((user) => {
-  const circle = user.querySelector(".check-friend");
-  user.addEventListener("click", (event) => {
-    circle.classList.toggle("active")
-    const userId = (user.querySelector(".user_id").innerHTML)
-    const option = document.querySelector(`option[value=${CSS.escape(userId)}]`)
-    option.toggleAttribute("selected")
-  })
-})
-
-users.forEach((user) => {
-  user.addEventListener("mouseenter", (event) => {
-    user.classList.toggle("darker")
-  })
-})
-
-users.forEach((user) => {
-  user.addEventListener("mouseleave", (event) => {
-    user.classList.toggle("darker")
-  })
-})
 
 
 import 'select2/dist/css/select2.css';
