@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container show-request">
 <%# ---------------------------------%>
 <%# if current user is request-maker %>
   <% if @request.user == current_user %>
@@ -57,13 +57,75 @@
       <div>
         <br>
         <br>
-       <%= render "request_table" %>
+      <div class="request-table">
+      <div>
+        <%= image_tag "https://source.unsplash.com/1200x630/?#{@request.city},sights" %>
+      </div>
+        <table class="table table-hover">
+          <tbody>
+            <tr style="background: rgba(3, 11, 82, 0.02)">
+              <th scope="row">City</th>
+              <td><%= @request.city %></td>
+            </tr>
+
+            <tr>
+              <th scope="row">Budget</th>
+              <td><%= @request.budget %> €</td>
+            </tr>
+            <% if @request.move_in_date_earliest %>
+                <tr>
+                <th scope="row">Earliest move-in date</th>
+                <td><%= @request.move_in_date_earliest %></td>
+              </tr>
+            <% end %>
+
+              <% if @request.move_in_date_latest %>
+                <tr>
+                <th scope="row">Latest move-in date </th>
+                <td><%= @request.move_in_date_latest %></td>
+              </tr>
+            <% end %>
+
+            <% unless @request.address == "" || @request.address == nil %>
+
+                <tr>
+                <th scope="row">Address</th>
+                <td><%= @request.address %></td>
+              </tr>
+            <% end %>
+
+              <% if @request.radius%>
+                <tr>
+                <th scope="row">Radius</th>
+                <td><%= @request.radius %> km</td>
+              </tr>
+            <% end %>
+
+            <% if @request.no_of_flat_mates%>
+                <tr>
+                <th scope="row">Max. number of flatmates</th>
+                <td><%= @request.no_of_flat_mates %></td>
+              </tr>
+            <% end %>
+
+              <% if @request.size%>
+                <tr>
+                <th scope="row">Min. room size</th>
+                <td><%= @request.size %> sqm</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
       <% private_share = current_user.private_shares.where(request: @request)[0] %>
       <div class="d-flex">
         <ul style="list-style: none;">
           <% if private_share %>
-          <% if private_share.privacy_level %>
-            <li class="btn-offer btn-success btn white-link" style="margin-right: 0.5rem;"><%= link_to "Reshare request", new_request_private_share_path(@request) %></li>
+            <% if private_share.privacy_level %>
+              <li class="btn-offer btn-success btn white-link" style="margin-right: 0.5rem;"><%= link_to "Reshare request", new_request_private_share_path(@request) %></li>
+            <% else %>
+              <p><%= @request.user.first_name  %> doesn't want you to share this request with your friends. </p>
+            <% end %>
           <% else %>
             <p><%= @request.user.first_name  %> doesn't want you to share this request with your friends. </p>
           <% end %>
@@ -71,9 +133,6 @@
             <p>You already made an offer.</p>
           <% else %>
             <li class="btn-offer btn-success btn white-link blue-hover"><%= link_to "Make an offer", new_request_offer_path(@request) %></li>
-          <% end %>
-          <% else %>
-            <p><%= @request.user.first_name  %> doesn't want you to share this request with your friends. </p>
           <% end %>
         </ul>
       </div>
