@@ -43,6 +43,9 @@
 
 .request-title {
   display: flex;
+  top: 10px;
+  right: 10px;
+  opacity: 0.5;
   * {
     font-size: 15px;
   }
@@ -58,6 +61,10 @@
 
 .show-container {
   color: #030B52;
+
+  i {
+    color: white;
+  }
 
   .column {
     float: left;
@@ -104,7 +111,7 @@
 
 
 .right {
-  padding-top: 37px;
+  padding-top: 12px;
   width: 33%;
   text-align: center;
 
@@ -120,4 +127,12 @@
 
 .left {
   width: 66%;
+}
+
+table tr:last-child th:first-child {
+    border-bottom-left-radius: 8px;
+}
+
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
 }

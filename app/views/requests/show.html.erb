@@ -4,28 +4,28 @@
 <% if @request.user == current_user %>
   <div class="container show-container">
     <h1>My Room Request</h1>
-    <div class="row">
+    <div class="row" style="<%= "width: 80% !important" if !@request.offers.empty? %>">
       <div class="column left">
-        <div class="request-title">
-        
-          <button type="button" class="no-style-button" data-toggle="modal" data-target="#editModal"><i class="fas fa-pen"></i></button>
-          <div>
-            <%= link_to request_path(@request), method: :delete, data: { confirm: "Are you sure?" } do %>
-              <i class="fas fa-trash"></i>
-            <% end %>
-          </div>
-        </div>
 
-        <div>
+        <div class="position-relative">
+          <div class="request-title position-absolute">
+
+            <button type="button" class="no-style-button" data-toggle="modal" data-target="#editModal"><i class="fas fa-pen"></i></button>
+            <div>
+              <%= link_to request_path(@request), method: :delete, data: { confirm: "Are you sure?" } do %>
+                <i class="fas fa-trash"></i>
+              <% end %>
+            </div>
+          </div>
           <div class="request-image" style="background-image: url(https://source.unsplash.com/1200x630/?<%=@request.city%>,sights);"></div>
           <div>
             <%= render "/requests/request_table" %>
           </div>
         </div>
       </div>
-    
+
       <div class="column right">
-        <h4>My Responses</h4>
+        <h4 style="<%= "text-align: left" if !@request.offers.empty? %>">My Responses</h4>
         <% if @request.offers.empty? %>
           <p>Sorry, no responses yet, but why not help some friends around the world?<i class="fas fa-globe-americas"></i></p>
         <% else %>
@@ -49,7 +49,7 @@
     </div>
   </div>
 
- 
+
   <%# ---------------------------------%>
   <%# if current user is not request-maker %>
 <% else %>
