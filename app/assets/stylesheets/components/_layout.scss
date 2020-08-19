@@ -77,8 +77,33 @@ column-50 {
     margin-top: 30px;
 }
 
+.index {
+
+  h4 {
+    text-align: center;
+
+  }
+
+.request-table {
+ 
+  padding: 0;
+  display: block;
+  text-align: left;
+  min-height: 196px;
+
+  
+  
+  
+  img {
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    height: 200px;
+  }
+}
+
 .show-request .request-table img {
   width: 100%;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-}
+}}

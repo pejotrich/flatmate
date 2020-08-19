@@ -7,33 +7,130 @@
 <h1>My conversations</h1>
 
 
-  <div>
-    <!-- Users box-->
-    <div class="col-12 px-0">
-      <div class="bg-white">
-      <div class="messages-box">
-        <div class="list-group rounded-0">
-          <% if (@offers_other.empty? && @request == nil) || (@offers_other.empty? && @my_offers.empty?) %>
-            <p>Oh, you don't have any conversations yet...</p>
-          <% else %>
+  <div class="row">
+    <% if @request %>
+      <div class="column left">
+      <h4>My Request</h4>
+        <div class="request-table">
+        <div>
+          <%= image_tag "https://source.unsplash.com/1200x630/?#{@request.city},sights" %>
+        </div>
+          <table class="table table-hover">
+            <tbody>
+              <tr style="background: rgba(3, 11, 82, 0.02)">
+                <th scope="row">City</th>
+                <td><%= @request.city %></td>
+              </tr>
 
-            <% if @request %>
-            <% unless @my_offers.empty? %> 
-              <h5 class="mt-3">Conversations regarding my request</h5>
-                <% @my_offers.each do |offer| %>
+              <tr>
+                <th scope="row">Budget</th>
+                <td><%= @request.budget %> €</td>
+              </tr>
+              <% if @request.move_in_date_earliest %>
+                  <tr>
+                  <th scope="row">Earliest move-in date</th>
+                  <td><%= @request.move_in_date_earliest %></td>
+                </tr>
+              <% end %>
+
+                <% if @request.move_in_date_latest %>
+                  <tr>
+                  <th scope="row">Latest move-in date </th>
+                  <td><%= @request.move_in_date_latest %></td>
+                </tr>
+              <% end %>
+
+              <% unless @request.address == "" || @request.address == nil %>
+
+                  <tr>
+                  <th scope="row">Address</th>
+                  <td><%= @request.address %></td>
+                </tr>
+              <% end %>
+
+                <% if @request.radius%>
+                  <tr>
+                  <th scope="row">Radius</th>
+                  <td><%= @request.radius %> km</td>
+                </tr>
+              <% end %>
+
+              <% if @request.no_of_flat_mates%>
+                  <tr>
+                  <th scope="row">Max. number of flatmates</th>
+                  <td><%= @request.no_of_flat_mates %></td>
+                </tr>
+              <% end %>
+
+                <% if @request.size%>
+                  <tr>
+                  <th scope="row">Min. room size</th>
+                  <td><%= @request.size %> sqm</td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        </div>
+    <% end %>
+    <div class="column">
+      <!-- Users box-->
+      <div class="col-12 px-0">
+        <div class="bg-white">
+        <div class="messages-box">
+          <div class="list-group rounded-0">
+            <% if (@offers_other.empty? && @request == nil) || (@offers_other.empty? && @my_offers.empty?) %>
+              <p>Oh, you don't have any conversations yet...</p>
+            <% else %>
+
+              <% if @request %>
+              <% unless @my_offers.empty? %> 
+                <h5 class="mt-0">Responses regarding my request</h5>
+                  <% @my_offers.each do |offer| %>
+                    <%= link_to request_offer_path(@request, offer) do %>
+                      <div class="list-group-item list-group-item-action active rounded-0">
+                        <div class="media"><%= image_tag User.find(offer.creator_id).photo, class: "rounded-circle", size: "50x50" %> 
+                          <div class="media-body ml-4">
+                            <div class="d-flex align-items-center justify-content-between mb-1">
+                              <h6 class="mb-0"><%= User.find(offer.creator_id).first_name %> <%= User.find(offer.creator_id).last_name %></h6><small class="small font-weight-bold"><%= Date::MONTHNAMES[offer.created_at.month] %> <%= offer.created_at.day %></small>
+                            </div>
+                            <% if offer.messages.last %>
+                              <div class="d-flex">
+                                <% if offer.messages.last.sender_id == current_user.id %>
+                                  <p>You: </p>
+                                <% else %>
+                                  <p> <%= User.find(offer.messages.last.sender_id).first_name %> </p>
+                                <% end %>
+                                <p class="font-italic mb-0 text-small"> <%= offer.messages.last.content %> </p>
+                              </div>
+                              <% else %>
+                              <div class="d-flex">
+                                <p class="font-italic mb-0 text-small">You: <%= offer.first_message %></p>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+              <% unless @offers_other.empty? %>
+                <h5>Offers I made</h5>
+                <% @offers_other.each do |offer| %>
                   <%= link_to request_offer_path(@request, offer) do %>
                     <div class="list-group-item list-group-item-action active rounded-0">
-                      <div class="media"><%= image_tag User.find(offer.creator_id).photo, class: "rounded-circle", size: "50x50" %> 
+                      <div class="media"><%= image_tag offer.request.user.photo, class: "rounded-circle", size: "50x50" %> 
                         <div class="media-body ml-4">
                           <div class="d-flex align-items-center justify-content-between mb-1">
-                            <h6 class="mb-0"><%= User.find(offer.creator_id).first_name %> <%= User.find(offer.creator_id).last_name %></h6><small class="small font-weight-bold"><%= Date::MONTHNAMES[offer.created_at.month] %> <%= offer.created_at.day %></small>
+                            <h6 class="mb-0"><%= offer.request.user.first_name %> <%= offer.request.user.last_name %></h6><small class="small font-weight-bold"><%= Date::MONTHNAMES[offer.created_at.month] %> <%= offer.created_at.day %></small>
                           </div>
                           <% if offer.messages.last %>
                             <div class="d-flex">
                               <% if offer.messages.last.sender_id == current_user.id %>
                                 <p>You: </p>
                               <% else %>
-                                <p> <%= User.find(offer.messages.last.sender_id).first_name %> </p>
+                                <p><%= User.find(offer.messages.last.sender_id).first_name %></p>
                               <% end %>
                               <p class="font-italic mb-0 text-small"> <%= offer.messages.last.content %> </p>
                             </div>
@@ -42,6 +139,7 @@
                               <p class="font-italic mb-0 text-small">You: <%= offer.first_message %></p>
                             </div>
                           <% end %>
+                            
                         </div>
                       </div>
                     </div>
@@ -49,44 +147,13 @@
                 <% end %>
               <% end %>
             <% end %>
-            <% unless @offers_other.empty? %>
-              <h5>Offers I made</h5>
-              <% @offers_other.each do |offer| %>
-                <%= link_to request_offer_path(@request, offer) do %>
-                  <div class="list-group-item list-group-item-action active rounded-0">
-                    <div class="media"><%= image_tag offer.request.user.photo, class: "rounded-circle", size: "50x50" %> 
-                      <div class="media-body ml-4">
-                        <div class="d-flex align-items-center justify-content-between mb-1">
-                          <h6 class="mb-0"><%= offer.request.user.first_name %> <%= offer.request.user.last_name %></h6><small class="small font-weight-bold"><%= Date::MONTHNAMES[offer.created_at.month] %> <%= offer.created_at.day %></small>
-                        </div>
-                        <% if offer.messages.last %>
-                          <div class="d-flex">
-                            <% if offer.messages.last.sender_id == current_user.id %>
-                              <p>You: </p>
-                            <% else %>
-                              <p><%= User.find(offer.messages.last.sender_id).first_name %></p>
-                            <% end %>
-                            <p class="font-italic mb-0 text-small"> <%= offer.messages.last.content %> </p>
-                          </div>
-                          <% else %>
-                          <div class="d-flex">
-                            <p class="font-italic mb-0 text-small">You: <%= offer.first_message %></p>
-                          </div>
-                        <% end %>
-                          
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-              <% end %>
-            <% end %>
-          <% end %>
 
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+
     </div>
-
-
   </div>
