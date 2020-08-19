@@ -30,12 +30,12 @@
   <div class="text-box">
     <h1 class="mb-3">Find a Flatmate within your circle of friends</h1>
     <% if user_signed_in? %>
-      <button type="button" class="green-btn"
+      <button type="button" class="green-btn py-2 font-weight-bold"
       data-toggle="modal" data-target="#exampleModal">
         Make a room request
       </button>
     <% else %>
-      <%= link_to "Make a room request", dashboard_path, class: "green-btn" %>
+      <%= link_to "Make a room request", dashboard_path, class: "py-2 green-btn font-weight-bold" %>
     <% end %>
   </div>
 </div>
