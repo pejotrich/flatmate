@@ -16,6 +16,12 @@
 }
  */
 .request-table {
+  table {
+    width: 100% !important;
+  }
+  td {
+    width: 70%;
+  }
  padding: 0;
  display: block;
  text-align: left;
@@ -90,6 +96,8 @@
 
 .show-friends {
   display: flex;
+  width: 100% !important;
+  flex-wrap: wrap;
 }
 
 .profile {
