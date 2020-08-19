@@ -16,6 +16,12 @@
 }
  */
 .request-table {
+  table {
+    width: 100% !important;
+  }
+  td {
+    width: 70%;
+  }
  padding: 0;
  display: block;
  text-align: left;
@@ -27,9 +33,11 @@
 
 .request-image {
   width: 100%;
-  height: 400px;
+  height: 250px;
   background-size: cover;
   background-repeat: no-repeat;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .no-style-button {
@@ -41,6 +49,9 @@
 
 .request-title {
   display: flex;
+  top: 10px;
+  right: 10px;
+  opacity: 0.5;
   * {
     font-size: 15px;
   }
@@ -56,6 +67,19 @@
 
 .show-container {
   color: #030B52;
+
+  i {
+    color: white;
+  }
+
+  .column {
+    float: left;
+    flex: auto;
+  }
+
+  h1 {
+    text-align: center;
+  }
 }
 
 .blue-button {
@@ -72,6 +96,8 @@
 
 .show-friends {
   display: flex;
+  width: 100% !important;
+  flex-wrap: wrap;
 }
 
 .profile {
@@ -82,4 +108,39 @@
 
 .btn-link {
   color: #030B52;
+}
+
+.green-button {
+  color: white;
+  background-color: #8BE8BC;
+  padding: 8px 16px;
+  border: none;
+}
+
+
+.right {
+  padding-top: 12px;
+  width: 33%;
+  text-align: center;
+
+  .fas {
+    margin: 0;
+    margin-top: 26px;
+  }
+
+  h4 {
+    margin-bottom: 26px;;
+  }
+}
+
+.left {
+  width: 66%;
+}
+
+table tr:last-child th:first-child {
+    border-bottom-left-radius: 8px;
+}
+
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
 }
