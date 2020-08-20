@@ -1,6 +1,13 @@
-<div class="container">
+<div class="offer container">
   <% creator = User.find_by_id(@offer.creator_id) %>
   <% @user = User.find(@offer.creator_id) %>
+  <%= @request.user.first_name %>
+  <% if current_user == @request.user %>
+    <h1><%= @user.first_name %> has responded to your request</h1>
+  <% else %>
+  
+    <h1>You're helping <%= @request.user.first_name %> find a room in <%= @request.city %></h1>
+  <% end %>
   <div class="row">
     <div class="col">
       <div class="connection-chain flex">
@@ -99,7 +106,7 @@
                 <%= simple_form_for [ @offer, @message ], remote: true do |f| %>
                   <%= f.input :content, label: false %>
                   <div class="d-flex" style="justify-content: flex-end; margin-top: 8px;">
-                    <button value="declined" name="status" class="btn-offer btn-danger btn-lg white-link" style="justify-content: flex-end;">Decline</button>
+                    <button value="declined" name="status" class="btn-offer btn-lg white-link" style="justify-content: flex-end;">Decline</button>
                     <button value="accepted" name="status" class="btn-offer btn-success btn-lg white-link" style="justify-content: flex-end; margin-left: 4px">Accept</button>
                   </div>
                 <% end %>
@@ -117,7 +124,7 @@
               <%= render "messages/message", message: message %>
             <% end %>
           </div>
-          <p>THe offer was declined</p>
+          <p>The offer was declined</p>
         <% elsif @offer.status === "accepted" %>
           <div id="messages" data-chatroom-id="<%= @offer.id %>">
             <div class="d-flex justify-space-between align-items-start bg-white shadow-sm mb-3 p-3 rounded">
