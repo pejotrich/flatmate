@@ -44,7 +44,7 @@
                 <i class="fas fa-map-marker">  <%= request.city %></i>
               </div>
               <div class="content-wrapper">
-                <%= link_to request_path(request) do %>
+                
                   <div class="news-card">
                     <div class="news-card__card-link"></div>
                     <%= image_tag city_url %>
@@ -54,10 +54,10 @@
                     <% else %>
                       <p> <strong><%= share.request.user.first_name %></strong> wants your help finding a room.  </p>
                     <% end %>
-                    <h5>View request</h5>
+                    <%= link_to "View request", request_path(request), class: "btn btn-secondary" %>
                     </div>
                   </div>
-                <% end %>
+              
               </div>
             </div>
           <% end %>
