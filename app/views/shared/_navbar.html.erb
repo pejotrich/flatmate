@@ -19,7 +19,9 @@
 
           <li class="nav-item" style="margin-right: 25px;">
             <%= link_to "My Request", request_path(@user.requests.last), class: "nav-link" %>
-            <span class="badge">1</span>
+            <% if @user.requests.last.offers.any?%>
+              <span class="badge">1</span>
+            <% end %>
           </li>
 
 
