@@ -81,3 +81,16 @@
 .navbar-nav {
   align-items: center;
 }
+
+
+
+.badge {
+  position: absolute;
+  top: 20px;
+  right: 276px;
+  padding: 4px 7px;
+  border-radius: 50%;
+  background: #8ce8cb;
+  color: midnightblue;
+  z-index: 0;
+}
