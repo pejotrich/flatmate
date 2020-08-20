@@ -59,7 +59,7 @@
       <td>
         <% if @request.private_shares.empty? %>
           <p>You haven't asked your friends for help yet</p>
-          <button type="button" class="blue-button" data-toggle="modal" data-target="#friendsModal">
+          <button type="button" class="blue-button rounded" data-toggle="modal" data-target="#friendsModal">
             Ask friends for help
           </button>
         <% else %>
@@ -77,7 +77,7 @@
             <% end %>
           </div>
 
-          <button type="button" class="green-button" data-toggle="modal" data-target="#friendsModal">
+          <button type="button" class="green-button rounded mt-2" data-toggle="modal" data-target="#friendsModal">
             Ask more friends for help
           </button>
         <% end %>

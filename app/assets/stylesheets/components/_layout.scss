@@ -31,11 +31,9 @@ button:focus {
   display: flex;
   justify-content: space-evenly;
 }
-
 .request-table {
   display: flex;
   justify-content: space-around;
-
   th {
     width: 300px;
 
@@ -72,7 +70,7 @@ column-50 {
 }
 
 .new-request .request-table {
- 
+
     padding: 0;
     display: block;
     text-align: left;
@@ -88,15 +86,15 @@ column-50 {
   }
 
 .request-table {
- 
+
   padding: 0;
   display: block;
   text-align: left;
   min-height: 196px;
 
-  
-  
-  
+
+
+
   img {
     width: 100%;
     border-top-left-radius: 8px;
@@ -112,6 +110,7 @@ column-50 {
   height: 400px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+
 }
 
 .show-request {
