@@ -113,3 +113,23 @@ column-50 {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
+
+.show-request {
+
+  ul {
+    justify-content: flex-end;
+
+    li {
+      margin-left: 2px;
+    }
+  }
+
+
+  .image-placeholder-absolute   {
+    left: 311px;
+    top: 200px;
+    width: 150px;
+  }
+
+}
+
