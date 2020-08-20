@@ -39,8 +39,8 @@
                 <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
               <% end %>
               <div class="card-friend-infos">
-                <p><%= creator.first_name %> <%= creator.last_name %> sent you an offer.</p>
-                <p><%= link_to "Check it out", request_offer_path(@request, offer) %></p>
+                <p><%= creator.first_name %> <%= creator.last_name %> sent you a response.</p>
+                <p><%= link_to "Check it out", request_offer_path(@request, offer), class: "btn btn-secondary" %></p>
               </div>
             </div>
           <% end %>
@@ -53,17 +53,38 @@
   <%# ---------------------------------%>
   <%# if current user is not request-maker %>
 <% else %>
-    <div class="container">
+    <div class="show-request container ">
       <div class="d-flex justify-content-around align-items-center">
-        <h1>Room Search from <%= @request.user.first_name %> <%= @request.user.last_name %></h1>
+        <h1>Help <%= @request.user.first_name %> <%= @request.user.last_name %> find a room</h1>
       </div>
       <div>
         <br>
         <br>
+        <ul>
+        <div class="image-placeholder-absolute">
+                    <div style="padding-top: 100%; background-color: rgb(218, 210, 209);">
+                      <picture nopin="nopin">
+                        <%= image_tag @request.user.photo %>
+                      </picture>
+                    </div>
+                  </div>
+        <% private_share = current_user.private_shares.where(request: @request)[0] %>
+           <% if private_share %>
+            <% if @request.offers.any? { |offer| offer.creator_id == current_user.id } %>
+              <p>You already made an offer.</p>
+            <% else %>
+            <li class="btn-offer btn-success btn white-link blue-hover"><%= link_to "Make an offer", new_request_offer_path(@request) %></li>
+          <% end %>
+            <% if private_share.privacy_level %>
+              <li class="btn-offer btn-primary btn white-link" style="margin-right: 0.5rem;"><%= link_to "Reshare request", new_request_private_share_path(@request) %></li>
+            <% end %>
+          <% end %>
+          </ul>
+          
       <div class="request-table">
-      <div>
+   
         <%= image_tag "https://source.unsplash.com/1200x630/?#{@request.city},sights" %>
-      </div>
+
         <table class="table table-hover">
           <tbody>
             <tr style="background: rgba(3, 11, 82, 0.02)">
@@ -119,25 +140,6 @@
             <% end %>
           </tbody>
         </table>
-      </div>
-      <% private_share = current_user.private_shares.where(request: @request)[0] %>
-      <div class="d-flex">
-        <ul style="list-style: none;">
-          <% if private_share %>
-            <% if private_share.privacy_level %>
-              <li class="btn-offer btn-success btn white-link" style="margin-right: 0.5rem;"><%= link_to "Reshare request", new_request_private_share_path(@request) %></li>
-            <% else %>
-              <p><%= @request.user.first_name  %> doesn't want you to share this request with your friends. </p>
-            <% end %>
-          <% else %>
-            <p><%= @request.user.first_name  %> doesn't want you to share this request with your friends. </p>
-          <% end %>
-          <% if @request.offers.any? { |offer| offer.creator_id == current_user.id } %>
-            <p>You already made an offer.</p>
-          <% else %>
-            <li class="btn-offer btn-success btn white-link blue-hover"><%= link_to "Make an offer", new_request_offer_path(@request) %></li>
-          <% end %>
-        </ul>
       </div>
     </div>
   <% end %>
