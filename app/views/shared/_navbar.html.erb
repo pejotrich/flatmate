@@ -74,7 +74,7 @@
           <abbr title="required">*</abbr>
         </label>
         <div class="range-slider">
-          <input class="form-control numeric integer required range-slider__range" value="0" placeholder="max. Price/month in €" type="range" step="1" min="0" max="2000" name="request[budget]" id="request_budget">
+          <input class="form-control numeric integer required range-slider__range" value="0" placeholder="max. Price/month in €" type="range" step="10" min="0" max="2000" name="request[budget]" id="request_budget">
           <span class="range-slider__value">500</span><p>€</p>
         </div>
       </div>
@@ -126,16 +126,11 @@
 
         </div>
       </div>
-
-      <%= f.submit "Submit", class: "btn btn-light" %>
-
-    <% end %>
-
       </div>
       <div class="modal-footer">
 
-        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-
+        <%= f.submit "Make Request", class: "btn btn-secondary" %>
+ <% end %>
       </div>
     </div>
   </div>

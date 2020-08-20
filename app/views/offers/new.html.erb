@@ -1,7 +1,7 @@
 <div class="container new-request">
   <div class="d-flex">
     <div class="request-card">
-      <div class="image-placeholder">
+      <div class="image-placeholder-absolute">
         <div style="padding-top: 100%; background-color: rgb(218, 210, 209);">
           <picture nopin="nopin">
             <% if @request.user.photo %>
@@ -77,7 +77,7 @@
       <div class="">
         <%= simple_form_for [@request, @offer] do |f| %>
           <%= f.input :first_message, :label => "Send a message", :input_html => {:rows => 10}%>
-          <%= f.submit "Submit", class: "btn btn-primary" %>
+          <%= f.submit "Send", class: "btn btn-secondary" %>
         <% end %>
       </div>
     </div>
