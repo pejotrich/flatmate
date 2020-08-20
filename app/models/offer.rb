@@ -6,6 +6,6 @@ class Offer < ApplicationRecord
   validates :first_message, presence: true
   validates :request, presence: true
 
-  has_many :messages
+  has_many :messages, dependent: :destroy
 
 end
