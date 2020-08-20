@@ -82,8 +82,10 @@
           </ul>
           
       <div class="request-table">
-   
-        <%= image_tag "https://source.unsplash.com/1200x630/?#{@request.city},sights" %>
+
+      <div>
+        <%= image_tag "https://source.unsplash.com/1200x630/?#{@request.city},sights", class: "request-image h-100" %>
+      </div>
 
         <table class="table table-hover">
           <tbody>
