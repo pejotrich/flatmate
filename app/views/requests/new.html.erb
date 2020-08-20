@@ -1,5 +1,5 @@
 
- 
+
   <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#friendsModal">
   Launch demo modal
@@ -10,7 +10,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Make a room request</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Make Request</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
@@ -23,12 +23,12 @@
   <% array = [] %>
 
   <% friends.each do |friend| %>
-  
+
     <% if friend.friends.where(city: @request.city).count > 1 || friend.city == @request.city %>
       <% array << friend %>
     <% end %>
   <% end %>
-  
+
     <% array.each do |friend| %>
       <p>Name: <%= friend.first_name %> <%= friend.last_name %></p>
       <p>Lives in <%= friend.city %></p>
