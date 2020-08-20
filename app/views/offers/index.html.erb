@@ -87,7 +87,7 @@
               <% unless @my_offers.empty? %> 
                 <h5 class="mt-0">Responses regarding my request</h5>
                   <% @my_offers.each do |offer| %>
-                    <%= link_to request_offer_path(@request, offer) do %>
+                    <%= link_to request_offer_path(offer.request, offer) do %>
                       <div class="list-group-item list-group-item-action active rounded-0">
                         <div class="media"><%= image_tag User.find(offer.creator_id).photo, class: "rounded-circle", size: "50x50" %> 
                           <div class="media-body ml-4">
@@ -118,7 +118,7 @@
               <% unless @offers_other.empty? %>
                 <h5>Offers I made</h5>
                 <% @offers_other.each do |offer| %>
-                  <%= link_to request_offer_path(@request, offer) do %>
+                  <%= link_to request_offer_path(offer.request, offer) do %>
                     <div class="list-group-item list-group-item-action active rounded-0">
                       <div class="media"><%= image_tag offer.request.user.photo, class: "rounded-circle", size: "50x50" %> 
                         <div class="media-body ml-4">

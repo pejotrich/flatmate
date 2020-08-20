@@ -1,3 +1,8 @@
+.offer {
+  h1 {
+    text-align: center;
+  }
+}
 a {
   color: white;
   font-weight: bold;
@@ -45,4 +50,88 @@ ul {
   margin: 20px;
   display: flex;
   padding: 20px;
+}
+.image-placeholder.left-side {
+  
+  transform: scale(0.84) translateX(15%) rotateZ(calc(-1 * (11 * 1deg)));
+  width: 150px;
+}
+
+.image-placeholder.right-side {
+  
+  transform: scale(0.84) translateX(15%) rotateZ(calc(-1 * (-11 * 1deg)));
+  width: 150px;
+  top: -24px;
+}
+
+.image-placeholder.middle {
+  
+  transform: scale(0.84) translateX(15%) rotateZ(calc(-1 * (0 * 1deg)));
+  width: 120px;
+  margin-left: 20px;
+  top: -23px;
+  left: 14px;
+}
+
+.connection-chain {
+ 
+
+.image-placeholder {
+  overflow: hidden;
+  display: inline-block;
+  /* width: 50px; */
+  /* height: 50px; */
+  display: block;
+  margin: 0 auto 30px;
+  
+  border-radius: 8px;
+  position: relative;
+
+  z-index: 1;
+  transition: all .5s ease-out;
+  border: solid #eae9e9 3px;
+  //transform: scale(.84) translateX(15%) rotateZ(calc(-1 * (11 * 1deg)));
+  transform-origin: 0 100%;
+  transition: transform .2s ease-out;
+}
+p {
+  text-align: center;
+  vertical-align: middle;
+}
+  
+}
+
+.row.chain {
+  padding-top: 18px;
+  width: 100%;
+  align-items: center;
+}
+
+.chatroom h4 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 15px;
+}
+
+.speech-bubble {
+	position: relative;
+	background: #8ce8cb;
+	border-radius: .4em;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-right-color: #8ce8cb;
+	border-left: 0;
+	border-bottom: 0;
+	margin-top: -10px;
+	margin-left: -20px;
 }

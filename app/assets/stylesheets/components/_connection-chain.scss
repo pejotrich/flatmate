@@ -1,4 +1,77 @@
 .connection-chain {
   text-align: center;
   margin-right: 50px;
+
+  .upper {
+    margin-top: -30px;
+  }
+}
+
+.connection {
+  width: 168px;
+  z-index: 0;
+  position: absolute;
+  top: -68px;
+  left: 16px;
+}
+.connection-left {
+  width: 155px;
+  z-index: 0;
+  position: absolute;
+  top: -18px;
+  left: -51px;
+}
+.connection-right {
+  width: 168px;
+  z-index: 0;
+  position: absolute;
+  top: -30px;
+  left: 64px;
+}
+
+.dot-left {
+  width: 115px;
+  z-index: 1;
+  position: absolute;
+  top: -52px;
+  right: 31px;
+}
+.dot {
+  width: 115px;
+  z-index: 2;
+  position: absolute;
+  top: -81px;
+  right: -120px;
+}
+
+.dot1 {
+  width: 101px;
+  z-index: 2;
+  position: absolute;
+  top: 39px;
+  left: -61px;
+}
+
+.dot2 {
+  width: 101px;
+  z-index: 2;
+  position: absolute;
+  top: -7px;
+  left: 6px;
+}
+
+.dot4 {
+  width: 101px;
+  z-index: 2;
+  position: absolute;
+  top: -36px;
+  right: -120px;
+}
+
+.dot3 {
+  width: 101px;
+  z-index: 2;
+  position: absolute;
+  top: 2px;
+  right: -49px;
 }
