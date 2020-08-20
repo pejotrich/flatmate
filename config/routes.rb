@@ -10,6 +10,7 @@ Rails.application.routes.draw do
      resources :offers do
       post :accept
       post :decline
+      resources :messages, only: [ :create]
      end
     resources :private_shares, only: [ :new, :create ]
   end
