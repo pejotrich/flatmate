@@ -147,13 +147,15 @@
 }
 
 .section-headline {
-  
-  height: 78px;
-
+  height: 23px;
   align-items: center;
   display: flex;
   justify-content: center;
   margin-left: -29px;
+
+  h3 {
+    font-size: 20px;
+  }
   
 
 
@@ -188,7 +190,7 @@ $card-height-mobile: 24rem;
   border: 0px solid aqua;
   margin: 0.5rem;
   position: relative;
-  height: $card-height-mobile;
+  height: 19rem;
   @mixin atLarge {
     height: $card-height-large-screen;
   }
@@ -219,7 +221,7 @@ $card-height-mobile: 24rem;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 0;
 /*     background: rgba(255,0,0,.5); */
   }
 
@@ -392,11 +394,14 @@ $border-color: rgba(black, .3);
   left: 15px;
   top: -33px;
 
-  i {
+   i {
     font-size: 26px;
-    right: 0px;
     z-index: 1;
-    color: midnightblue;
+    color: white;
+    position: absolute;
+    top: 48px;
+    right: 20px;
+    text-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5);
 }
 }
 
@@ -482,7 +487,7 @@ p {
   i {
 
       position: absolute;
-      top: 201px;
+      top: 130px;
       z-index: 14;
       left: 13px;
       font-size: 50px;
@@ -499,7 +504,7 @@ p {
   i {
 
     position: absolute;
-    top: 201px;
+    top: 130px;
     z-index: 14;
     right: 27px;
     font-size: 50px;
