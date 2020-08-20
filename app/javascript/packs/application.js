@@ -69,7 +69,13 @@ document.addEventListener("turbolinks:load", () => {
     })
   })
 
-
+  const badge = document.querySelector(".badge")
+  const link = document.querySelector(".request-link")
+  if (link) {
+  link.addEventListener("click", (event) => {
+    badge.classList.add("no-show")
+  })
+  }
 
 
 })
