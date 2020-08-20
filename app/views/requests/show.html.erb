@@ -24,10 +24,13 @@
         </div>
       </div>
 
-      <div class="column right">
+      <div class="column right offer-all">
         <h4 style="<%= "text-align: left" if !@request.offers.empty? %>">My Responses</h4>
         <% if @request.offers.empty? %>
-          <p>Sorry, no responses yet, but why not help some friends around the world?<i class="fas fa-globe-americas"></i></p>
+          <p>Sorry, no responses yet, but why not help some friends around the world?</p>
+          <%= link_to dashboard_path do %>
+          <%= image_tag "help.svg" %>
+          <% end %>
         <% else %>
           <% offers = @request.offers %>
           <% offers.each do |offer| %>
