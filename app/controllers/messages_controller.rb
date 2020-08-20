@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
           redirect_to request_offer_path(@request, @offer)
         elsif @offer.status == "accepted"
           request_offer_accept_path(@request, @offer)
-          redirect_to request_offer_path(@request, @offer)
+          redirect_to request_offer_path(@request, @offer, anchor: "message-#{@message.id}")
         else
           request_offer_accept_path(@request, @offer)
           redirect_to request_offer_path(@request, @offer)
