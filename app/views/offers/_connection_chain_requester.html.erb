@@ -1,6 +1,6 @@
 <% creator = User.find_by_id(@offer.creator_id) %>
           <div class="connection-chain flex">
-            <% private_share = @offer.request.private_shares.where(user: creator)[0] %>
+            <% private_share = @offer.request.private_shares.where(user: current_user)[0] %>
             <div class="row" style="align-items: center">
               <div class="col">
                 <div class="image-placeholder left-side ">
@@ -19,7 +19,7 @@
               </div>
               <div class="col">
               
-                <% if private_share.sharer_id != current_user.id %>
+                <% if private_share.sharer_id != @offer.request.user.id %>
                   <% sharer = User.find(private_share.sharer_id) %>
                   <%= image_tag "dot.png", class: "dot1"%>
                   <%= image_tag "kringel.png", class: "connection-left"%>
@@ -50,24 +50,23 @@
                 <% end %>
               </div>
               <div class="col">
-                <% offerer = User.find(@offer.creator_id) %>
+                <% requester = @offer.request.user %>
                  <div class="image-placeholder right-side">
                   <div style="padding-top: 100%; background-color: rgb(218, 210, 209);">
                     <picture nopin="nopin">
-                      <% if offerer.photo %>
-                        <%= image_tag offerer.photo%>
+                      <% if requester.photo %>
+                        <%= image_tag requester.photo%>
                       <% else %>
                         <img src="https://t4.ftcdn.net/jpg/00/64/67/63/240_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg">
                       <% end %>
                     </picture>
                   </div>
-                  <p><%= offerer.first_name %></p>
+                  <p><%= requester.first_name %></p>
                 </div> 
                 
               </div>
             </div>
-            <% if private_share.sharer_id != current_user.id %>
+            <% if private_share.sharer_id != @offer.request.user.id %>
               <p class="upper"><%= sharer.first_name %> connected you.</p>
             <% end %>
           </div>
-       
