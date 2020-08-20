@@ -27,7 +27,8 @@
       <div class="column right">
         <h4 style="<%= "text-align: left" if !@request.offers.empty? %>">My Responses</h4>
         <% if @request.offers.empty? %>
-          <p>Sorry, no responses yet, but why not help some friends around the world?<i class="fas fa-globe-americas"></i></p>
+          <p>Sorry, no responses yet, but why not help some friends around the world?</p>
+          <%= image_tag "help.svg" %>
         <% else %>
           <% offers = @request.offers %>
           <% offers.each do |offer| %>
