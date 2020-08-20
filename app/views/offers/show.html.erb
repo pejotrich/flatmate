@@ -1,35 +1,34 @@
 <div class="offer container">
   <% creator = User.find_by_id(@offer.creator_id) %>
   <% @user = User.find(@offer.creator_id) %>
-  <%= @request.user.first_name %>
+  <% user1 = @user %>
+  <% user2 = @offer.request.user%>
+
   <% if current_user == @request.user %>
     <h1><%= @user.first_name %> has responded to your request</h1>
+     <div class="row chain">
+        <%= render "connection_chain" %>
+      </div>
   <% else %>
-  
     <h1>You're helping <%= @request.user.first_name %> find a room in <%= @request.city %></h1>
+     <div class="row chain">
+      <%= render "connection_chain_requester" %>
+    </div>
   <% end %>
+
   <div class="row">
     <div class="col">
       <div class="connection-chain flex">
         <% private_share = @offer.request.private_shares.where(user: creator)[0] %>
-        <div class="row" style="align-items: center">
-        </div>
         <div class="d-flex align-items-center justify-content-center mb-3">
-          <div class="person mr-4">
-            <%= image_tag current_user.photo, class: "avatar-square--large rounded mb-2", alt: "avatar-bordered" %>
-            <p> You </p>
-          </div>
-          <div class="person ml-4">
-            <%= image_tag creator.photo, class: "avatar-square--large rounded mb-2", alt: "avatar-bordered" %>
-            <p><%= creator.first_name %></p>
-          </div>
+
         </div>
           <div class="col">
             <div class="request-table rounded">
               <table class="table table-hover rounded">
                 <tbody>
                   <tr>
-                    <th colspan="2" style="text-align:center; color:white; background-color: #0A1C52; font-weight: bold; font-style: normal;
+                    <th colspan="2" style="text-align:center; color:white; background-color: midnightblue; font-weight: bold; font-style: normal;
                       font-weight: bold; font-size: 20px;line-height: 33px;">Request Information</th>
                   </tr>
 
@@ -92,7 +91,13 @@
       </div>
 
       <div class="col">
+      
         <div class="chatroom">
+        <% if user1 == current_user %>
+          <h4>Strike up a conversation with <%= user2.first_name %> to see if it's a fit</h4>
+        <% else %>
+          <h4>Strike up a conversation with <%= user1.first_name %> to see if it's a fit</h4>
+        <% end %>
           <% @user = User.find(@offer.creator_id) %>
           <div>
             <% if @offer.status === "pending" %>
