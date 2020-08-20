@@ -39,8 +39,8 @@
                 <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
               <% end %>
               <div class="card-friend-infos">
-                <p><%= creator.first_name %> <%= creator.last_name %> sent you an offer.</p>
-                <p><%= link_to "Check it out", request_offer_path(@request, offer) %></p>
+                <p><%= creator.first_name %> <%= creator.last_name %> sent you a response.</p>
+                <p><%= link_to "Check it out", request_offer_path(@request, offer), class: "btn btn-secondary" %></p>
               </div>
             </div>
           <% end %>
@@ -53,17 +53,17 @@
   <%# ---------------------------------%>
   <%# if current user is not request-maker %>
 <% else %>
-    <div class="container">
+    <div class="show-request container ">
       <div class="d-flex justify-content-around align-items-center">
-        <h1>Room Search from <%= @request.user.first_name %> <%= @request.user.last_name %></h1>
+        <h1>Help <%= @request.user.first_name %> <%= @request.user.last_name %> find a room</h1>
       </div>
       <div>
         <br>
         <br>
       <div class="request-table">
-      <div>
+   
         <%= image_tag "https://source.unsplash.com/1200x630/?#{@request.city},sights" %>
-      </div>
+
         <table class="table table-hover">
           <tbody>
             <tr style="background: rgba(3, 11, 82, 0.02)">
