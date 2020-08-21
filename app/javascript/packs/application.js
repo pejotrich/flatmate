@@ -33,12 +33,14 @@ require("channels")
 import "bootstrap";
 
 import { rowColors } from "../components/rows";
+import { greyBackground } from "../components/greyBackground";
 
 import flatpickr from 'flatpickr';
 require("flatpickr/dist/flatpickr.min.css");
 
 document.addEventListener("turbolinks:load", () => {
   rowColors();
+  greyBackground();
   flatpickr(".flatpickr", {
     minDate: "today",
 
@@ -56,20 +58,26 @@ document.addEventListener("turbolinks:load", () => {
       option.toggleAttribute("selected")
     })
   })
-  
+
   users.forEach((user) => {
     user.addEventListener("mouseenter", (event) => {
       user.classList.toggle("darker")
     })
   })
-  
+
   users.forEach((user) => {
     user.addEventListener("mouseleave", (event) => {
       user.classList.toggle("darker")
     })
   })
 
-
+  const badge = document.querySelector(".badge")
+  const link = document.querySelector(".request-link")
+  if (link) {
+  link.addEventListener("click", (event) => {
+    badge.classList.add("no-show")
+  })
+  }
 
 
 })
