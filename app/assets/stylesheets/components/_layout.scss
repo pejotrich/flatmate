@@ -1,6 +1,10 @@
 body {
   display: flex;
   flex-direction: column;
+  
+  h1 {
+    color: midnightblue
+  }
 }
 .container {
   max-width: 1115px;
