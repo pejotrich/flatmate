@@ -4,13 +4,13 @@ const rowColors = () => {
   if (table) {
     table.style.border = "none";
   }
-  
+
   rows.forEach((row, index) => {
 
     if (index % 2 == 0) {
-      row.style.backgroundColor = 'rgba(3, 11, 82, 0.03)';
+      row.style.backgroundColor = '#f7f7f9';
     } else {
-      row.style.backgroundColor = 'rgba(3, 11, 82, 0.06)';
+      row.style.backgroundColor = '#ebecf1';
     }
   })
 }

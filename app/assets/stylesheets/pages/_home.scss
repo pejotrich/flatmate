@@ -93,7 +93,7 @@
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
-  background: rgba(3, 11, 82, 0.02);
+  background: #ebecf1;
   h1 {
     color: #030b52;
   }
@@ -114,5 +114,29 @@
   margin:10px;
 }
 
+.page-container {
+    position: relative;
+    overflow: hidden;
+}
 
+.page-container .bg {
+    z-index: -10;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+}
 
+.table th, .table td {
+  border-top: none !important;
+}
+
+// .table-column {
+//   filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.2));
+// }
+
+.table {
+  filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.2));
+}
