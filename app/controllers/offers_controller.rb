@@ -20,7 +20,7 @@ class OffersController < ApplicationController
       @user = User.find(@offer.creator_id)
       if @offer.save
         if @user.friends_with?(@request.user)
-          redirect_to request_path(@request)
+          redirect_to request_offer_path(@request, @offer)
         else
           current_user.friend_request(@request.user)
           redirect_to request_path(@request)
