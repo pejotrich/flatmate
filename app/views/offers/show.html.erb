@@ -15,7 +15,7 @@
       <%= render "connection_chain_requester" %>
     </div>
   <% end %>
-  
+
 
   <div class="row">
     <div class="col">
@@ -95,7 +95,7 @@
       </div>
 
       <div class="col">
-      
+
         <div class="chatroom">
         <% if user1 == current_user %>
           <h4>Strike up a conversation with <%= user2.first_name %> to see if it's a fit</h4>
@@ -135,7 +135,7 @@
           </div>
           <p>The offer was declined</p>
         <% elsif @offer.status === "accepted" %>
-          <div id="messages" data-chatroom-id="<%= @offer.id %>">
+          <div id="messages" data-chatroom-id="<%= @offer.id %>" >
             <div class="d-flex justify-space-between align-items-start bg-white shadow-sm mb-3 p-3 rounded">
               <% if @user == current_user %>
                 <div class="mr-3 flex-grow-1">

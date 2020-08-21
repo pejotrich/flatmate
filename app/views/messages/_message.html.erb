@@ -1,4 +1,4 @@
-<div class="d-flex justify-space-between align-items-start bg-white shadow-sm mb-3 p-3 rounded" id="message-<%= message.id %>">
+<div class="d-flex justify-space-between align-items-start bg-white shadow-sm mb-3 p-3 rounded" id="message-<%= message.id %>" data-user="<%= @offer.request.user.id %>">
   <% if message.sender == current_user %>
     <div class="flex-grow-1 mr-3">
       <span class="text-muted mb-2"><%= message.sender.first_name%></span>

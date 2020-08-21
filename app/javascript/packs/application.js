@@ -33,12 +33,16 @@ require("channels")
 import "bootstrap";
 
 import { rowColors } from "../components/rows";
+import { greyBackground } from "../components/greyBackground";
+import { initChatroomCable } from "../channels/chatroom_channel";
 
 import flatpickr from 'flatpickr';
 require("flatpickr/dist/flatpickr.min.css");
 
 document.addEventListener("turbolinks:load", () => {
   rowColors();
+  greyBackground();
+  initChatroomCable();
   flatpickr(".flatpickr", {
     minDate: "today",
 
@@ -56,13 +60,13 @@ document.addEventListener("turbolinks:load", () => {
       option.toggleAttribute("selected")
     })
   })
-  
+
   users.forEach((user) => {
     user.addEventListener("mouseenter", (event) => {
       user.classList.toggle("darker")
     })
   })
-  
+
   users.forEach((user) => {
     user.addEventListener("mouseleave", (event) => {
       user.classList.toggle("darker")
