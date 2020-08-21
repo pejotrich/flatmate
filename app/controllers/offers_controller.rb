@@ -23,7 +23,7 @@ class OffersController < ApplicationController
           redirect_to request_offer_path(@request, @offer)
         else
           current_user.friend_request(@request.user)
-          redirect_to request_path(@request)
+          redirect_to request_offer_path(@request, @offer)
         end
         @offer.status = 'send'
       else
