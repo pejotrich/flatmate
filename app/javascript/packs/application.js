@@ -36,6 +36,7 @@ import { rowColors } from "../components/rows";
 import { greyBackground } from "../components/greyBackground";
 import { initChatroomCable } from "../channels/chatroom_channel";
 
+
 import flatpickr from 'flatpickr';
 require("flatpickr/dist/flatpickr.min.css");
 
