@@ -5,9 +5,9 @@
   <div class="container show-container">
     <h1>My Room Request</h1>
     <div class="row" style="<%= "width: 80% !important" if !@request.offers.empty? %>">
-      <div class="column left">
+      <div class="column column50">
 
-        <div class="position-relative">
+        <div class="position-relative table-column">
           <div class="request-title position-absolute">
 
             <button type="button" class="no-style-button" data-toggle="modal" data-target="#editModal"><i class="fas fa-pen"></i></button>
@@ -29,7 +29,10 @@
         <% if @request.offers.empty? %>
           <p>Sorry, no responses yet, but why not help some friends around the world?</p>
           <%= link_to dashboard_path do %>
+          <br>
+          <br>
           <%= image_tag "help.svg" %>
+          <h6>Help friends</h6>
           <% end %>
         <% else %>
           <% offers = @request.offers %>
@@ -189,9 +192,13 @@
     </div>
   </div>
 </div>
-
+<% if @request.private_shares.empty? %>
+  <% @show_modal = "d-block" %>
+<% else %>
+  <% @show_modal = "modal" %>
+<% end %>
 <!-- Modal -->
-<div class="modal" id="friendsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal <%= @show_modal %>" id="friendsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
