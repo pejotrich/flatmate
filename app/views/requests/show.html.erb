@@ -3,7 +3,7 @@
 <%# if current user is request-maker %>
 <% if @request.user == current_user %>
   <div class="container show-container">
-    <h1>My Room Request</h1>
+    <h1><span class="underline--magical w-auto">My Room Request</span></h1>
     <div class="row" style="<%= "width: 80% !important" if !@request.offers.empty? %>">
       <div class="column column50">
 

@@ -1,13 +1,13 @@
-<div class="container index">
+<div class="container index conversations-page">
 <% @user = current_user %>
 <% @request = @user.requests.last %>
 <% @my_offers = (@request.offers.sort_by &:created_at).reverse if @request %>
 <% @offers_other = (Offer.all.where(creator_id: @user.id).sort_by &:created_at).reverse %>
 
-<h1>My conversations</h1>
+<h1><span class="underline--magical">My conversations</span></h1>
 
 
-  <div class="row">
+  <div class="row pt-0">
     <% if @request %>
       <div class="column left">
       <h4>My Request</h4>
@@ -84,12 +84,12 @@
             <% else %>
 
               <% if @request %>
-              <% unless @my_offers.empty? %> 
+              <% unless @my_offers.empty? %>
                 <h5 class="mt-0">Responses regarding my request</h5>
                   <% @my_offers.each do |offer| %>
                     <%= link_to request_offer_path(offer.request, offer) do %>
                       <div class="list-group-item list-group-item-action active rounded-0">
-                        <div class="media"><%= image_tag User.find(offer.creator_id).photo, class: "rounded-circle", size: "50x50" %> 
+                        <div class="media"><%= image_tag User.find(offer.creator_id).photo, class: "rounded-circle", size: "50x50" %>
                           <div class="media-body ml-4">
                             <div class="d-flex align-items-center justify-content-between mb-1">
                               <h6 class="mb-0"><%= User.find(offer.creator_id).first_name %> <%= User.find(offer.creator_id).last_name %></h6><small class="small font-weight-bold"><%= Date::MONTHNAMES[offer.created_at.month] %> <%= offer.created_at.day %></small>
@@ -120,7 +120,7 @@
                 <% @offers_other.each do |offer| %>
                   <%= link_to request_offer_path(offer.request, offer) do %>
                     <div class="list-group-item list-group-item-action active rounded-0">
-                      <div class="media"><%= image_tag offer.request.user.photo, class: "rounded-circle", size: "50x50" %> 
+                      <div class="media"><%= image_tag offer.request.user.photo, class: "rounded-circle", size: "50x50" %>
                         <div class="media-body ml-4">
                           <div class="d-flex align-items-center justify-content-between mb-1">
                             <h6 class="mb-0"><%= offer.request.user.first_name %> <%= offer.request.user.last_name %></h6><small class="small font-weight-bold"><%= Date::MONTHNAMES[offer.created_at.month] %> <%= offer.created_at.day %></small>
@@ -139,7 +139,7 @@
                               <p class="font-italic mb-0 text-small">You: <%= offer.first_message %></p>
                             </div>
                           <% end %>
-                            
+
                         </div>
                       </div>
                     </div>
