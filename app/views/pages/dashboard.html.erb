@@ -1,13 +1,13 @@
 <% @user = current_user %>
 <% shares = @user.private_shares %>
 <div class="container dashboard">
-<h1>Newsfeed</h1>
+<h1><span class="underline--magical">Newsfeed</span></h1>
 <h3>Friends asking you for help</h3>
   <div class="container">
     <% unless shares.empty? %>
       <div class="timeline-item no-dot first">
         <div class="section-headline">
-          
+
         </div>
       </div>
       <% shares = @user.private_shares %>
@@ -45,7 +45,7 @@
                 <i class="fas fa-map-marker">  <%= request.city %></i>
               </div>
               <div class="content-wrapper">
-                
+
                   <div class="news-card">
                     <div class="news-card__card-link"></div>
                     <%= image_tag city_url %>
@@ -58,11 +58,11 @@
                     <%= link_to "View request", request_path(request), class: "btn btn-secondary" %>
                     </div>
                   </div>
-              
+
               </div>
             </div>
           <% end %>
-        <% end %>   
+        <% end %>
       <% end %>
     <% end %>
     <div class="timeline-item no-dot">
@@ -107,7 +107,7 @@
         </div>
       </div>
 
-      
+
 
     <% end %>
   </div>

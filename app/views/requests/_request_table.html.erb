@@ -4,24 +4,24 @@
   <tbody>
     <tr style="background: rgba(3, 11, 82, 0.02)">
       <th scope="row">City</th>
-      <td><%= @request.city %></td>
+      <td class="push-right"><%= @request.city %></td>
     </tr>
 
     <tr>
       <th scope="row">Budget</th>
-      <td><%= @request.budget %> €</td>
+      <td class="push-right"><%= @request.budget %> €</td>
     </tr>
     <% if @request.move_in_date_earliest %>
         <tr>
         <th scope="row">Earliest move-in date</th>
-        <td><%= @request.move_in_date_earliest %></td>
+        <td class="push-right"><%= @request.move_in_date_earliest.strftime("%a %b %e") %></td>
       </tr>
     <% end %>
 
       <% if @request.move_in_date_latest %>
         <tr>
         <th scope="row">Latest move-in date </th>
-        <td><%= @request.move_in_date_latest %></td>
+        <td class="push-right"><%= @request.move_in_date_latest.strftime("%a %b %e") %></td>
       </tr>
     <% end %>
 
@@ -29,28 +29,28 @@
 
         <tr>
         <th scope="row">Address</th>
-        <td><%= @request.address %></td>
+        <td class="push-right"><%= @request.address %></td>
       </tr>
     <% end %>
 
       <% if @request.radius%>
         <tr>
         <th scope="row">Radius</th>
-        <td><%= @request.radius %> km</td>
+        <td class="push-right"><%= @request.radius %> km</td>
       </tr>
     <% end %>
 
     <% if @request.no_of_flat_mates%>
         <tr>
         <th scope="row">Max. number of flatmates</th>
-        <td><%= @request.no_of_flat_mates %></td>
+        <td class="push-right"><%= @request.no_of_flat_mates %></td>
       </tr>
     <% end %>
 
       <% if @request.size%>
         <tr>
         <th scope="row">Min. room size</th>
-        <td><%= @request.size %> sqm</td>
+        <td class="push-right"><%= @request.size %> sqm</td>
       </tr>
     <% end %>
 

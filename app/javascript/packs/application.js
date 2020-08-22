@@ -46,41 +46,40 @@ document.addEventListener("turbolinks:load", () => {
   initChatroomCable();
   flatpickr(".flatpickr", {
     minDate: "today",
+  });
 
-  })
 
+    const users = document.querySelectorAll(".sharing")
 
-  const users = document.querySelectorAll(".sharing")
-
-  users.forEach((user) => {
-    const circle = user.querySelector(".check-friend");
-    user.addEventListener("click", (event) => {
-      circle.classList.toggle("active")
-      const userId = (user.querySelector(".user_id").innerHTML)
-      const option = document.querySelector(`option[value=${CSS.escape(userId)}]`)
-      option.toggleAttribute("selected")
+    users.forEach((user) => {
+      const circle = user.querySelector(".check-friend");
+      user.addEventListener("click", (event) => {
+        circle.classList.toggle("active")
+        const userId = (user.querySelector(".user_id").innerHTML)
+        const option = document.querySelector(`option[value=${CSS.escape(userId)}]`)
+        option.toggleAttribute("selected")
+      })
     })
-  })
 
-  users.forEach((user) => {
-    user.addEventListener("mouseenter", (event) => {
-      user.classList.toggle("darker")
+    users.forEach((user) => {
+      user.addEventListener("mouseenter", (event) => {
+        user.classList.toggle("darker")
+      })
     })
-  })
 
-  users.forEach((user) => {
-    user.addEventListener("mouseleave", (event) => {
-      user.classList.toggle("darker")
+    users.forEach((user) => {
+      user.addEventListener("mouseleave", (event) => {
+        user.classList.toggle("darker")
+      })
     })
-  })
 
-  const badge = document.querySelector(".badge")
-  const link = document.querySelector(".request-link")
-  if (link) {
-  link.addEventListener("click", (event) => {
-    badge.classList.add("no-show")
-  })
-  }
+    const badge = document.querySelector(".badge")
+    const link = document.querySelector(".request-link")
+    if (link) {
+    link.addEventListener("click", (event) => {
+      badge.classList.add("no-show")
+    })
+    }
 
 
 })
