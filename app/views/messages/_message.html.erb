@@ -1,17 +1,20 @@
-<div class="d-flex justify-space-between align-items-start bg-white shadow-sm mb-3 p-3 rounded" id="message-<%= message.id %>">
   <% if message.sender == current_user %>
-    <div class="flex-grow-1 mr-3">
-      <span class="text-muted mb-2"><%= message.sender.first_name%></span>
-      <p><%= message.content %></p>
-      <small class="text-muted"><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+  <div class="d-flex justify-space-between align-items-start bg-white shadow-sm mb-3 p-3 rounded box-left-margin" id="message-<%= message.id %>">
+      <div class="flex-grow-1 mr-3 text-right-aligned">
+        <span class="text-muted mb-2"><%= message.sender.first_name%></span>
+        <p class="text-left-aligned pl-3"><%= message.content %></p>
+        <small class="text-muted text-right-aligned"><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+      </div>
+      <%= image_tag message.sender.photo, class: "rounded", alt: "avatar-bordered" %>
     </div>
-    <%= image_tag message.sender.photo, class: "rounded", alt: "avatar-bordered" %>
   <% else %>
-    <%= image_tag message.sender.photo, class: "rounded mr-3", alt: "avatar-bordered" %>
-    <div class="flex-grow-1">
-      <span class="text-muted mb-2"><%= message.sender.first_name%></span>
-      <p><%= message.content %></p>
-      <small class="text-muted"><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+    <div class="d-flex justify-space-between align-items-start bg-white shadow-sm mb-3 p-3 rounded box-right-margin" id="message-<%= message.id %>">
+      <%= image_tag message.sender.photo, class: "rounded mr-3", alt: "avatar-bordered" %>
+      <div class="flex-grow-1">
+        <span class="text-muted mb-2"><%= message.sender.first_name%></span>
+        <p><%= message.content %></p>
+        <small class="text-muted"><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+      </div>
     </div>
   <% end %>
-</div>
+

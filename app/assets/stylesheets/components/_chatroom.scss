@@ -31,8 +31,15 @@
 }
 
 #new_message {
-  padding: 1rem;
-  border-top: 1px solid $gray-200;
+  padding-top: 2rem;
+
+  textarea.form-control {
+    height: auto;
+    border-radius: 8px;
+    border-color: midnightblue;
+  }
+
+
 
   .form-group {
     margin-bottom: 0;
