@@ -34,6 +34,8 @@ import "bootstrap";
 
 import { rowColors } from "../components/rows";
 import { greyBackground } from "../components/greyBackground";
+import { initChatroomCable } from "../channels/chatroom_channel";
+
 
 import flatpickr from 'flatpickr';
 require("flatpickr/dist/flatpickr.min.css");
@@ -41,6 +43,7 @@ require("flatpickr/dist/flatpickr.min.css");
 document.addEventListener("turbolinks:load", () => {
   rowColors();
   greyBackground();
+  initChatroomCable();
   flatpickr(".flatpickr", {
     minDate: "today",
   });

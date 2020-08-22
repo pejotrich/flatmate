@@ -151,6 +151,7 @@
           </div>
           <p>The offer was declined</p>
         <% elsif @offer.status === "accepted" %>
+
           <div id="messages" data-chatroom-id="<%= @offer.id %>">
               <% if @user == current_user %>
                 <div class="d-flex justify-space-between align-items-start bg-white shadow-sm mb-3 p-3 box-left-margin">
