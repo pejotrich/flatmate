@@ -26,8 +26,27 @@
   border-top-right-radius: 9px;
   border-top-left-radius: 9px;
   color: white;
-  align-items: center;
+  display: block;
+
+  p {
+    text-align: center;
+    margin-top: 5px;
+    }
+
+
+  
 }
+
+
+h5#exampleModalLabel.modal-title {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+
+
+
 
 #friendsModal .modal-content {
   border-radius: 10px;
