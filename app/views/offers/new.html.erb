@@ -29,14 +29,14 @@
             <% if @request.move_in_date_earliest %>
                 <tr>
                 <th scope="row">Earliest move-in date</th>
-                <td><%= @request.move_in_date_earliest %></td>
+                <td><%= @request.move_in_date_earliest.strftime("%a %b %e") %></td>
               </tr>
             <% end %>
 
               <% if @request.move_in_date_latest %>
                 <tr>
                 <th scope="row">Latest move-in date </th>
-                <td><%= @request.move_in_date_latest %></td>
+                <td><%= @request.move_in_date_latest.strftime("%a %b %e") %></td>
               </tr>
             <% end %>
 
