@@ -45,9 +45,17 @@ button:focus {
   justify-content: space-around;
   th {
     width: 300px;
+    padding-left: 40px;
 
   }
+  td.push-right {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 123px;
+  }
 }
+
+
 
 .table {
   border: solid 1px lightgray;
