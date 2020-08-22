@@ -154,9 +154,9 @@
           <div id="messages" data-chatroom-id="<%= @offer.id %>">
               <% if @user == current_user %>
                 <div class="d-flex justify-space-between align-items-start bg-white shadow-sm mb-3 p-3 box-left-margin">
-                  <div class="mr-3 flex-grow-1">
+                  <div class="mr-3 flex-grow-1 text-right-aligned">
                     <span class="text-muted mb-2"><%= @user.first_name%></span>
-                    <p><%= @offer.first_message %></p>
+                    <p class="text-left-aligned"><%= @offer.first_message %></p>
                     <small class="text-muted"><%= @offer.created_at.strftime("%a %b %e at %l:%M%p") %></small>
                   </div>
                   <%= image_tag @user.photo, class: "rounded", alt: "avatar-bordered" %>
